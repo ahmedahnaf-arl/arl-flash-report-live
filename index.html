@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ARL Daily SBU Sales Flash Report — Sep 01, 2026</title>
+<title>ARL Daily SBU Sales Flash Report — Sep 02, 2026</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;font-size:17px}
@@ -100,7 +100,7 @@ footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border
 </head>
 <body>
 <div id="login-overlay"><div id="login-box">
-<h2>ARL Flash Report</h2><p>September 01, 2026</p>
+<h2>ARL Flash Report</h2><p>September 02, 2026</p>
 <input type="text" id="un" placeholder="Username"><input type="password" id="pw" placeholder="Password">
 <button onclick="auth()">Sign In</button><div class="err" id="login-err"></div>
 </div></div>
@@ -108,7 +108,7 @@ footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border
 <div id="app">
 <header>
 <h1>AKIJ RESOURCE — Daily SBU Sales Flash Report</h1>
-<div class="meta">Report Date: September 01, 2026 | Period: Sep 1–1 (Day 1/30, 3.3%) | Source: DWH GL 3010001–3010006 (Revenue sub-schedule) | FY 2026-27 | Live</div>
+<div class="meta">Report Date: September 02, 2026 | Period: Sep 1–2 (Day 2/30, 6.7%) | Source: DWH GL 3010001–3010006 (Revenue sub-schedule) | FY 2026-27 | Live</div>
 </header>
 
 <div class="flag-card">
@@ -118,7 +118,7 @@ footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border
 <div class="kpi-row" id="kpi-row"></div>
 
 <div class="summary-chart-box">
-<h3>Portfolio Daily Revenue Trend — Sep 1–1 (BDT Cr)</h3>
+<h3>Portfolio Daily Revenue Trend — Sep 1–2 (BDT Cr)</h3>
 <div class="chart-stats" id="portfolio-stats"></div>
 <div class="canvas-row">
 <canvas id="portfolio-daily" width="640" height="280"></canvas>
@@ -134,7 +134,7 @@ footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border
 <div class="insights-row" id="insights-row"></div>
 
 <div class="recon-card">
-<h3>Revenue Reconciliation — MTD Sep 1–1</h3>
+<h3>Revenue Reconciliation — MTD Sep 1–2</h3>
 <div class="recon-grid">
 <div class="recon-col">
 <h4>Our Report Total (sub-schedule)</h4>
@@ -184,7 +184,7 @@ footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border
 <tbody id="scorecard-body"></tbody>
 </table>
 </div>
-<footer>Powered by ARL Live Flash Report Engine · DWH GL 3010001–3010006 (Revenue sub-schedule) · sms.tblDeliveryHeaderArc · Generated live on September 01, 2026 · Next refresh: reload page</footer>
+<footer>Powered by ARL Live Flash Report Engine · DWH GL 3010001–3010006 (Revenue sub-schedule) · sms.tblDeliveryHeaderArc · Generated live on September 02, 2026 · Next refresh: reload page</footer>
 </div>
 
 <script>
@@ -196,21 +196,21 @@ function auth(){
 }
 window.addEventListener('DOMContentLoaded',()=>{ if(sessionStorage.getItem('arl_flash_auth')) document.getElementById('login-overlay').classList.add('hidden'); });
 document.getElementById('pw').addEventListener('keydown',e=>{ if(e.key==='Enter') auth(); });
-const DE=1, DM=30;
-const M_FACTOR=0.0333333333;
+const DE=2, DM=30;
+const M_FACTOR=0.0666666667;
 const SBU_MAP={19:'APFIL',36:'AEL',58:'ACCL',64:'ASLL',69:'ARMCL',72:'BTL_Coal',77:'DTL_Coal',79:'AOCN',80:'ASLL-1',81:'AMTL',82:'iBOS',83:'BPL',84:'AITL',86:'HRML',87:'FAL',88:'ASeLL',91:'NTL',98:'ABSL',99:'ACL',102:'AIL',109:'AAFL',110:'ASeLLC',114:'ALEL',115:'AAIL',118:'ATL',120:'AEFL',123:'AEL_Eng',124:'ABL',126:'Orca',128:'AMXL',129:'NJL',132:'AMPL'};
 const MONTH_TARGETS={AIL:121.0,ACCL:173.0,AEL:180.0,ARMCL:37.91,Orca:1.1,AAFL:103.8,Benzol:2.61,ABSL_Asphalt:8.99,ACL:1.9,ALEL:19.73,NTL:45.75,APFIL:22.17,AITL:3.85,BPL:6.0,BTL_Coal:18.71,AEFL:2.29,ABL:2.32,AAIL:4.53,DTL_Coal:37.5};
-const TD=[{d:'2026-09-01',s:19,v:0.042566},{d:'2026-09-01',s:36,v:5.514507},{d:'2026-09-01',s:58,v:2.547158},{d:'2026-09-01',s:64,v:0.367838},{d:'2026-09-01',s:69,v:1.484784},{d:'2026-09-01',s:72,v:0.083803},{d:'2026-09-01',s:77,v:1.465770},{d:'2026-09-01',s:79,v:0.179756},{d:'2026-09-01',s:80,v:0.025212},{d:'2026-09-01',s:81,v:0.148764},{d:'2026-09-01',s:86,v:1.290399},{d:'2026-09-01',s:87,v:0.360000},{d:'2026-09-01',s:88,v:0.117771},{d:'2026-09-01',s:91,v:2.402395},{d:'2026-09-01',s:98,v:0.093625},{d:'2026-09-01',s:99,v:0.031848},{d:'2026-09-01',s:102,v:1.223110},{d:'2026-09-01',s:109,v:2.070206},{d:'2026-09-01',s:110,v:0.014390},{d:'2026-09-01',s:115,v:0.216000},{d:'2026-09-01',s:126,v:0.012700},{d:'2026-09-01',s:132,v:0.004584}];
-const FR_D={64:0.367839,79:0.179756,80:0.025213,81:0.148764,88:0.117772,110:0.014390};
+const TD=[{d:'2026-09-01',s:19,v:0.042566},{d:'2026-09-02',s:19,v:0.054771},{d:'2026-09-01',s:36,v:5.514507},{d:'2026-09-02',s:36,v:5.019481},{d:'2026-09-01',s:58,v:2.547158},{d:'2026-09-02',s:58,v:3.327041},{d:'2026-09-01',s:64,v:0.367838},{d:'2026-09-01',s:69,v:1.484784},{d:'2026-09-02',s:69,v:1.652749},{d:'2026-09-01',s:72,v:0.083803},{d:'2026-09-02',s:72,v:0.038480},{d:'2026-09-01',s:77,v:1.465770},{d:'2026-09-02',s:77,v:0.091813},{d:'2026-09-01',s:79,v:0.179756},{d:'2026-09-01',s:80,v:0.025212},{d:'2026-09-01',s:81,v:0.148764},{d:'2026-09-02',s:82,v:0.010000},{d:'2026-09-01',s:86,v:1.290399},{d:'2026-09-02',s:86,v:1.604490},{d:'2026-09-01',s:87,v:0.360000},{d:'2026-09-02',s:87,v:0.072120},{d:'2026-09-01',s:88,v:0.117771},{d:'2026-09-01',s:91,v:2.402395},{d:'2026-09-02',s:91,v:2.183900},{d:'2026-09-01',s:98,v:0.093625},{d:'2026-09-02',s:98,v:0.098612},{d:'2026-09-01',s:99,v:0.031848},{d:'2026-09-01',s:102,v:1.223110},{d:'2026-09-02',s:102,v:2.425049},{d:'2026-09-01',s:109,v:2.070206},{d:'2026-09-02',s:109,v:2.690209},{d:'2026-09-01',s:110,v:0.014390},{d:'2026-09-02',s:114,v:0.073341},{d:'2026-09-01',s:115,v:0.216000},{d:'2026-09-02',s:115,v:0.157620},{d:'2026-09-02',s:118,v:0.008555},{d:'2026-09-01',s:126,v:0.012700},{d:'2026-09-02',s:126,v:0.023590},{d:'2026-09-02',s:128,v:0.924832},{d:'2026-09-01',s:132,v:0.004584},{d:'2026-09-02',s:132,v:0.007569}];
+const FR_D={64:0,79:0,80:0,81:0,88:0,110:0};
 const FR_M={64:0.367839,79:0.179756,80:0.025213,81:0.148764,88:0.117772,110:0.014390};
-const DV={86:35000.46,36:75642.69,19:4.30,58:49374.90,91:637.16,98:5798.18,109:11081.00,69:46645.06,102:365.72,132:675.00,115:121.00,72:46.30,126:2.00,129:4.00,99:2400.00,87:3000.00};
-const MV={86:35000.46,36:75642.69,19:4.30,115:121.00,132:675.00,72:46.30,126:2.00,58:49374.90,91:637.16,98:5798.18,109:11081.00,69:46645.06,102:365.72,129:4.00,99:2400.00,87:3000.00};
-const MOV={86:60470.09,36:71574.10,19:2.80,58:20738.33,91:310.20,98:3475.57,109:5267.00,69:16739.74,102:29.10,132:2071.00,99:900.00,129:1.00,87:200.00};
-const GL={19:{d:0.042567,dod:6.601240,m:0.042567,mom:0,yoy:0,fy:44.150856,cy:150.061375},36:{d:5.514508,dod:9.633565,m:5.514508,mom:6.208894,yoy:4.594849,fy:423.642297,cy:1852.213416},57:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0},58:{d:2.547159,dod:15.624356,m:2.547159,mom:1.683819,yoy:4.113341,fy:307.241801,cy:1290.622067},64:{d:0.367839,dod:26.138105,m:0.367839,mom:0.619591,yoy:0.101833,fy:87.955931,cy:321.984363},65:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:-0.072393},68:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0},69:{d:1.484784,dod:1.224298,m:1.484784,mom:1.416706,yoy:1.034462,fy:71.525890,cy:234.219964},72:{d:0.083803,dod:0.054264,m:0.083803,mom:0,yoy:0.067728,fy:9.041735,cy:245.712088},75:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0.013782,cy:1.088775},76:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0},77:{d:1.465771,dod:0.178672,m:1.465771,mom:1.068083,yoy:0.070272,fy:35.306911,cy:250.740885},78:{d:0,dod:0,m:0,mom:0,yoy:0,fy:-0.042900,cy:-0.042900},79:{d:0.179756,dod:0.179756,m:0.179756,mom:0.179365,yoy:0,fy:11.447634,cy:44.446122},80:{d:0.025213,dod:0.022129,m:0.025213,mom:0.029622,yoy:0,fy:1.941064,cy:7.338450},81:{d:0.148764,dod:0.148764,m:0.148764,mom:0.148440,yoy:0,fy:9.311528,cy:39.310868},82:{d:0,dod:0.014762,m:0,mom:0,yoy:0.001900,fy:5.060843,cy:16.561189},83:{d:0,dod:0.167170,m:0,mom:0,yoy:0.155990,fy:1.184185,cy:10.871198},84:{d:0,dod:0.139800,m:0,mom:0,yoy:-0.210460,fy:2.632672,cy:7.450524},86:{d:1.290399,dod:1.277109,m:1.290399,mom:2.684515,yoy:0.625400,fy:102.294608,cy:329.714153},87:{d:0.360000,dod:0.212952,m:0.360000,mom:0.052000,yoy:0.576210,fy:15.029568,cy:45.143782},88:{d:0.117772,dod:0.115236,m:0.117772,mom:0.117515,yoy:0,fy:11.795892,cy:24.695134},89:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0},91:{d:2.402396,dod:3.589590,m:2.402396,mom:1.024284,yoy:6.692622,fy:71.117197,cy:298.082547},92:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0},95:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0.023921},98:{d:0.093625,dod:0.282767,m:0.093625,mom:0.231688,yoy:0.271276,fy:12.140922,cy:90.945723},99:{d:0.031848,dod:0.100000,m:0.031848,mom:0.012150,yoy:0,fy:27.171850,cy:225.663370},102:{d:1.223111,dod:7.456144,m:1.223111,mom:0.699157,yoy:1.587705,fy:174.624456,cy:973.002974},109:{d:2.070206,dod:6.138857,m:2.070206,mom:1.377261,yoy:1.732274,fy:206.397750,cy:707.695785},110:{d:0.014390,dod:0.134015,m:0.014390,mom:0,yoy:0,fy:1.365960,cy:1.610834},112:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0.009000},114:{d:0,dod:2.970333,m:0,mom:0,yoy:0,fy:42.175805,cy:137.887880},115:{d:0.216000,dod:1.129260,m:0.216000,mom:0,yoy:0,fy:9.551890,cy:24.206040},118:{d:0,dod:0.077456,m:0,mom:0,yoy:0,fy:1.622285,cy:3.655529},120:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0.530977,cy:1.479064},123:{d:0,dod:0,m:0,mom:0.005595,yoy:0,fy:0.042892,cy:0.042892},124:{d:0,dod:0.428680,m:0,mom:0,yoy:0,fy:5.642621,cy:8.855207},126:{d:0.012700,dod:0.071460,m:0.012700,mom:0,yoy:0,fy:1.501354,cy:6.050222},128:{d:0,dod:0.377774,m:0,mom:0,yoy:0,fy:11.200116,cy:35.122617},129:{d:0,dod:0.016375,m:0,mom:0.000800,yoy:0,fy:0.342819,cy:0.583875},132:{d:0.004584,dod:0.007016,m:0.004584,mom:0.007193,yoy:0,fy:0.239716,cy:0.267670}};
-const ABSL_ASPH=0.3196, ABSL_BENZ=0.6804;
+const DV={86:46547.55,118:243.00,36:160283.54,19:21940.86,132:902.00,115:10.00,72:21.26,126:3.00,58:55078.32,91:664.58,98:832.00,109:15879.33,102:735.00,69:37810.51,77:58.86,128:9.00,114:4761.54,87:601.00,129:5.00,82:1.00};
+const MV={86:81548.01,118:243.00,36:235926.22,19:21945.16,132:1577.00,115:131.00,72:67.56,126:5.00,58:104794.92,91:1301.74,98:6630.18,109:26993.33,69:84455.57,102:1100.72,77:58.86,129:9.00,82:1.00,99:2400.00,128:9.00,114:4761.54,87:3601.00};
+const MOV={114:16214.00,87:5798.00,86:74342.36,36:105194.60,19:7409.06,132:2359.00,115:6.00,72:115.74,126:1.00,58:81521.02,91:441.76,98:4178.57,124:12320.00,109:19740.79,69:52972.61,102:270.40,77:55.80,99:11101.00,129:4.00,82:1.00};
+const GL={19:{d:0.054772,dod:0.042567,m:0.097338,mom:0,yoy:0,fy:44.205628,cy:150.116146},36:{d:5.019481,dod:5.514508,m:10.533989,mom:12.304053,yoy:18.381314,fy:428.661778,cy:1857.232897},57:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0},58:{d:3.327041,dod:2.547159,m:5.874200,mom:4.873676,yoy:7.943071,fy:310.568842,cy:1293.949108},64:{d:0,dod:0.367839,m:0.367839,mom:0.834091,yoy:0.101833,fy:87.955931,cy:321.984363},65:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:-0.072393},68:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0},69:{d:1.652749,dod:1.484784,m:3.137534,mom:2.433886,yoy:1.826338,fy:73.178640,cy:235.872714},72:{d:0.038481,dod:0.083803,m:0.122284,mom:0.160658,yoy:0.952043,fy:9.080215,cy:245.750569},75:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0.013782,cy:1.088775},76:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0},77:{d:0.091814,dod:1.465771,m:1.557584,mom:1.711681,yoy:0.191480,fy:35.398725,cy:250.832698},78:{d:0,dod:0,m:0,mom:0,yoy:0,fy:-0.042900,cy:-0.042900},79:{d:0,dod:0.179756,m:0.179756,mom:0.179365,yoy:0,fy:11.447634,cy:44.446122},80:{d:0,dod:0.025213,m:0.025213,mom:0.029622,yoy:0,fy:1.941064,cy:7.338450},81:{d:0,dod:0.148764,m:0.148764,mom:0.148440,yoy:0,fy:9.311528,cy:39.310868},82:{d:0.010000,dod:0,m:0.010000,mom:0.010000,yoy:0.001900,fy:5.070843,cy:16.571189},83:{d:0,dod:0,m:0,mom:0,yoy:0.155990,fy:1.184185,cy:10.871198},84:{d:0,dod:0,m:0,mom:0,yoy:-0.200520,fy:2.632672,cy:7.450524},86:{d:1.604491,dod:1.290399,m:2.894890,mom:3.814837,yoy:3.621947,fy:103.899099,cy:331.318644},87:{d:0.072120,dod:0.360000,m:0.432120,mom:0.837351,yoy:0.704655,fy:15.101688,cy:45.215902},88:{d:0,dod:0.117772,m:0.117772,mom:0.117515,yoy:0,fy:11.795892,cy:24.695134},89:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0},91:{d:2.183900,dod:2.402396,m:4.586296,mom:1.437414,yoy:11.156245,fy:73.301097,cy:300.266447},92:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0},95:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0.023921},98:{d:0.098612,dod:0.093625,m:0.192237,mom:0.517566,yoy:0.713780,fy:12.239534,cy:91.044335},99:{d:0,dod:0.031848,m:0.031848,mom:0.012150,yoy:0,fy:27.171850,cy:225.663370},102:{d:2.425050,dod:1.223111,m:3.648161,mom:2.012004,yoy:4.367405,fy:177.049506,cy:975.977774},109:{d:2.690209,dod:2.070206,m:4.760416,mom:3.911871,yoy:3.061341,fy:209.087959,cy:710.385994},110:{d:0,dod:0.014390,m:0.014390,mom:0,yoy:0,fy:1.365960,cy:1.610834},112:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0,cy:0.009000},114:{d:0.073341,dod:0,m:0.073341,mom:0.107388,yoy:0.031671,fy:42.249146,cy:137.961221},115:{d:0.157620,dod:0.216000,m:0.373620,mom:0,yoy:0,fy:9.709510,cy:24.363660},118:{d:0.008555,dod:0,m:0.008555,mom:0,yoy:0,fy:1.630840,cy:3.664085},120:{d:0,dod:0,m:0,mom:0,yoy:0,fy:0.530977,cy:1.479064},123:{d:0,dod:0,m:0,mom:0.005595,yoy:0,fy:0.042892,cy:0.042892},124:{d:0,dod:0,m:0,mom:0.043798,yoy:0,fy:5.642621,cy:8.855207},126:{d:0.023590,dod:0.012700,m:0.036290,mom:0.026000,yoy:0,fy:1.524944,cy:6.073812},128:{d:0.924832,dod:0,m:0.924832,mom:0,yoy:0,fy:12.124948,cy:36.047449},129:{d:0,dod:0,m:0,mom:0.000800,yoy:0,fy:0.342819,cy:0.583875},132:{d:0.007570,dod:0.004584,m:0.012154,mom:0.010150,yoy:0,fy:0.247286,cy:0.275240}};
+const ABSL_ASPH=0.2848, ABSL_BENZ=0.7152;
 const FREIGHT_IDS=new Set([64,79,80,81,88,110]);
-const RECON={g1all:19.094242,excl:0.250782,g5all:0.853733,g2all:0,g6all:0,g4all:1.952065,
-  rpt_gl1:18.843460,rpt_frt:0.853734,rpt_tot:19.697194,full_tot:21.900040,gap:2.202846};
+const RECON={g1all:39.841692,excl:0.534003,g5all:0.853733,g2all:0,g6all:0,g4all:4.093257,
+  rpt_gl1:39.307689,rpt_frt:0.853734,rpt_tot:40.161423,full_tot:44.788682,gap:4.627259};
 
 function fmt(n,d){ if(n==null||isNaN(n)) return '—'; let s=n.toFixed(d||2); return s.replace(/\B(?=(\d{3})+(?!\d))/g,',') }
 function pct(a,b){ if(!b||b===0) return null; return ((a/b)-1)*100 }
@@ -269,12 +269,12 @@ ALL.forEach(r=>{ totalDaily+=r.daily_rev;totalMTD+=r.mtd_rev;totalFY+=r.fy_ytd_r
 let avgAch=achList.length?(achList.reduce((a,b)=>a+b)/achList.length):null;
 let projME=totalMTD>0?(totalMTD/DE*DM):0;
 let kpiHTML='';
-kpiHTML+=`<div class="kpi-card"><div class="label">Daily Revenue (Sep 1)</div><div class="val">${fmt(totalDaily)} Cr</div><div class="sub">GL 3010001–3010006</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">MTD Revenue (Sep 1–1)</div><div class="val">${fmt(totalMTD)} Cr</div><div class="sub">${DE}/${DM} days (${fmt(M_FACTOR*100,1)}%)</div></div>`;
+kpiHTML+=`<div class="kpi-card"><div class="label">Daily Revenue (Sep 2)</div><div class="val">${fmt(totalDaily)} Cr</div><div class="sub">GL 3010001–3010006</div></div>`;
+kpiHTML+=`<div class="kpi-card"><div class="label">MTD Revenue (Sep 1–2)</div><div class="val">${fmt(totalMTD)} Cr</div><div class="sub">${DE}/${DM} days (${fmt(M_FACTOR*100,1)}%)</div></div>`;
 kpiHTML+=`<div class="kpi-card"><div class="label">Projected Month-End</div><div class="val">${fmt(projME)} Cr</div><div class="sub">Run rate: ${fmt(totalMTD/DE)} Cr/day</div></div>`;
 kpiHTML+=`<div class="kpi-card"><div class="label">Avg MTD Achievement</div><div class="val">${avgAch?fmt(avgAch,1)+'%':'N/A'}</div><div class="sub">${achList.length} SBUs with targets</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">Yearly Revenue (CY YTD)</div><div class="val">${fmt(totalCY)} Cr</div><div class="sub">Jan 1 – September 01, 2026</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">YTD Revenue FY26-27</div><div class="val">${fmt(totalFY)} Cr</div><div class="sub">Jul 1 – September 01, 2026</div></div>`;
+kpiHTML+=`<div class="kpi-card"><div class="label">Yearly Revenue (CY YTD)</div><div class="val">${fmt(totalCY)} Cr</div><div class="sub">Jan 1 – September 02, 2026</div></div>`;
+kpiHTML+=`<div class="kpi-card"><div class="label">YTD Revenue FY26-27</div><div class="val">${fmt(totalFY)} Cr</div><div class="sub">Jul 1 – September 02, 2026</div></div>`;
 document.getElementById('kpi-row').innerHTML=kpiHTML;
 
 // MTD bar chart
@@ -305,7 +305,7 @@ let riskSBUs=[...ALL].filter(r=>(r.momentum==='Negative'||r.momentum==='Weak')&&
 let dormantSBUs=[...ALL].filter(r=>r.mtd_rev===0&&r.mtd_vol===0&&r.id!==64&&r.id!==79&&r.id!==80&&r.id!==81&&r.id!==88&&r.id!==110);
 let snapHTML='<div class="insight-box"><h3>Snapshot</h3><ul>';
 snapHTML+=`<li>Total MTD Revenue: <b>${fmt(totalMTD)} Cr</b> across ${ALL.filter(r=>r.mtd_rev>0).length} active SBUs</li>`;
-snapHTML+=`<li>Daily Revenue (Sep 1): <b>${fmt(totalDaily)} Cr</b></li>`;
+snapHTML+=`<li>Daily Revenue (Sep 2): <b>${fmt(totalDaily)} Cr</b></li>`;
 snapHTML+=`<li>Month Progress: <b>${DE}/${DM} (${fmt(M_FACTOR*100,1)}%)</b></li>`;
 snapHTML+=`<li>Projected Month-End: <b>${fmt(projME)} Cr</b></li>`;
 snapHTML+=`<li>Avg Daily Run Rate: <b>${fmt(totalMTD/DE)} Cr/day</b></li>`;
