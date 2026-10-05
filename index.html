@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ARL Daily SBU Sales Flash Report — Oct 03, 2026</title>
+<title>ARL Daily SBU Sales Flash Report — Oct 04, 2026</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;font-size:17px}
@@ -121,7 +121,7 @@ footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border
 </head>
 <body>
 <div id="login-overlay"><div id="login-box">
-<h2>ARL Flash Report</h2><p>October 03, 2026</p>
+<h2>ARL Flash Report</h2><p>October 04, 2026</p>
 <input type="text" id="un" placeholder="Username"><input type="password" id="pw" placeholder="Password">
 <button onclick="auth()">Sign In</button><div class="err" id="login-err"></div>
 </div></div>
@@ -129,7 +129,7 @@ footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border
 <div id="app">
 <header>
 <h1>AKIJ RESOURCE — Daily SBU Sales Flash Report</h1>
-<div class="meta">Report Date: October 03, 2026 | Period: Oct 1–3 (Day 3/31, 9.7%) | Source: DWH GL 3010001–3010006 (Revenue sub-schedule) | FY 2026-27 | Live</div>
+<div class="meta">Report Date: October 04, 2026 | Period: Oct 1–4 (Day 4/31, 12.9%) | Source: DWH GL 3010001–3010006 (Revenue sub-schedule) | FY 2026-27 | Live</div>
 </header>
 
 <div class="flag-card">
@@ -140,7 +140,7 @@ footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border
 <div class="kpi-row" id="kpi-row"></div>
 
 <div class="summary-chart-box">
-<h3>Portfolio Daily Revenue Trend — Oct 1–3 (BDT Cr)</h3>
+<h3>Portfolio Daily Revenue Trend — Oct 1–4 (BDT Cr)</h3>
 <div class="chart-stats" id="portfolio-stats"></div>
 <div class="canvas-row">
 <canvas id="portfolio-daily" width="640" height="280"></canvas>
@@ -156,7 +156,7 @@ footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border
 <div class="insights-row" id="insights-row"></div>
 
 <div class="recon-card">
-<h3>Revenue Reconciliation — MTD Oct 1–3</h3>
+<h3>Revenue Reconciliation — MTD Oct 1–4</h3>
 <div class="recon-grid">
 <div class="recon-col">
 <h4>Our Report Total (sub-schedule)</h4>
@@ -212,7 +212,7 @@ footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border
 <tbody id="scorecard-body"></tbody>
 </table>
 </div>
-<footer>Powered by ARL Live Flash Report Engine · DWH GL 3010001–3010006 (Revenue sub-schedule) · sms.tblDeliveryHeaderArc · Generated live on October 03, 2026 · Next refresh: reload page</footer>
+<footer>Powered by ARL Live Flash Report Engine · DWH GL 3010001–3010006 (Revenue sub-schedule) · sms.tblDeliveryHeaderArc · Generated live on October 04, 2026 · Next refresh: reload page</footer>
 </div>
 
 <script>
@@ -224,8 +224,8 @@ function auth(){
 }
 window.addEventListener('DOMContentLoaded',()=>{ if(sessionStorage.getItem('arl_flash_auth')) document.getElementById('login-overlay').classList.add('hidden'); });
 document.getElementById('pw').addEventListener('keydown',e=>{ if(e.key==='Enter') auth(); });
-const DE=3, DM=31;
-const M_FACTOR=0.0967741935;
+const DE=4, DM=31;
+const M_FACTOR=0.1290322581;
 const SBU_MAP={19:'APFIL',36:'AEL',58:'ACCL',64:'ASLL',69:'ARMCL',72:'BTL_Coal',77:'DTL_Coal',79:'AOCN',80:'ASLL-1',81:'AMTL',82:'iBOS',83:'BPL',84:'AITL',86:'HRML',87:'FAL',88:'ASeLL',91:'NTL',98:'ABSL',99:'ACL',102:'AIL',109:'AAFL',110:'ASeLLC',114:'ALEL',115:'AAIL',118:'ATL',120:'AEFL',123:'AEL_Eng',124:'ABL',126:'Orca',128:'AMXL',129:'NJL',132:'AMPL'};
 const MONTH_TARGETS={'APFIL':21.09,'AEL':129.5,'ACCL':182.11,'ARMCL':45.02,'BTL_Coal':0.0,'DTL_Coal':56.87,'iBOS':2.52,'BPL':6.5,'AITL':1.25,'NTL':50.87,'ABSL_Asphalt':9.09,'Benzol':2.55,'ACL':8.42,'AIL':127.17,'AAFL':111.0,'ALEL':20.95,'AAIL':4.99,'ATL':1.5,'AEFL':2.85,'ABL':2.03,'AMXL':4.75,'NJL':0.32,'AMPL':0.4};
 const TD=[];
@@ -239,8 +239,8 @@ const FR_D={64:0,79:0,80:0.0,81:0,88:0,110:0.0};
 const FR_M={64:0,79:0,80:0.0,81:0,88:0,110:0.0};
 const DV={};
 const MV={102:218.00};
-const MOV={118:246.00,86:120687.03,19:21951.28,36:351573.18,58:166771.30,91:2223.96,98:6864.18,124:58360.00,109:51007.33,84:21.00,69:110948.70,102:1850.52,77:146.89,78:21.97,114:98042.54,87:5954.82,132:1985.00,115:167.00,72:95.39,126:9.00,129:10.00,99:3050.00,82:3.00,128:9.00};
-const GL={19:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.097338,'yoy':0.041888,'fy':63.818514,'cy':169.729032},36:{'d':0.0,'dod':0.0,'m':0.0,'mom':15.50593,'yoy':9.439488,'fy':550.414772,'cy':1978.985891},57:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.0},58:{'d':0.0,'dod':0.0,'m':0.0,'mom':9.183997,'yoy':7.407161,'fy':450.532512,'cy':1433.912778},64:{'d':0.0,'dod':0.0,'m':0.0,'mom':1.252678,'yoy':0.0,'fy':164.345609,'cy':398.374041},65:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':-0.072393},68:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.0},69:{'d':0.0,'dod':0.0,'m':0.0,'mom':3.992303,'yoy':2.546117,'fy':105.36888,'cy':268.062954},72:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.172656,'yoy':0.0,'fy':10.860205,'cy':247.530559},75:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.013782,'cy':1.088775},76:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.0},77:{'d':0.0,'dod':0.0,'m':0.0,'mom':2.393878,'yoy':0.141232,'fy':62.724722,'cy':278.158696},78:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.018125,'yoy':0.0,'fy':0.065777,'cy':0.065777},79:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.359513,'yoy':0.0,'fy':16.660573,'cy':49.65906},80:{'d':0.0,'dod':0.0,'m':0.0,'mom':11.724114,'yoy':0.661863,'fy':356.840343,'cy':1020.718821},81:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.297528,'yoy':0.0,'fy':13.72486,'cy':43.7242},82:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0135,'yoy':0.0,'fy':7.426159,'cy':18.926505},83:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':1.442214,'cy':11.129226},84:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.025877,'yoy':0.0,'fy':2.575928,'cy':7.39378},86:{'d':0.0,'dod':0.0,'m':0.0,'mom':4.273442,'yoy':0.0,'fy':132.349934,'cy':359.769479},87:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.565685,'yoy':0.0,'fy':20.534043,'cy':50.648256},88:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.758043,'yoy':0.0,'fy':16.707586,'cy':29.606828},89:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.0},91:{'d':0.0,'dod':0.0,'m':0.0,'mom':7.628749,'yoy':1.074825,'fy':147.403944,'cy':374.369294},92:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.0},95:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.023921},98:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.203485,'yoy':0.0,'fy':15.958104,'cy':94.762905},99:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.049398,'yoy':0.0,'fy':34.943801,'cy':233.435322},102:{'d':0.0,'dod':0.0,'m':0.0,'mom':7.848775,'yoy':5.160353,'fy':274.677766,'cy':1073.606034},109:{'d':0.0,'dod':0.0,'m':0.0,'mom':10.160372,'yoy':1.023347,'fy':316.025602,'cy':817.323637},110:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.963842,'yoy':0.0,'fy':78.15491,'cy':86.35574},112:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.009},114:{'d':0.0,'dod':0.0,'m':0.0,'mom':1.426416,'yoy':0.0,'fy':63.257403,'cy':158.969478},115:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.49524,'yoy':0.0,'fy':13.9251,'cy':28.57925},118:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.008705,'yoy':0.0,'fy':2.334643,'cy':4.367887},120:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.922643,'cy':1.870729},123:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.049108,'cy':0.049108},124:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':7.769845,'cy':10.982431},126:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.05234,'yoy':0.0,'fy':2.13948,'cy':6.688348},128:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.924832,'yoy':0.0,'fy':16.118628,'cy':40.041128},129:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.651619,'cy':0.865848},132:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.01568,'yoy':0.0,'fy':0.524738,'cy':0.552692}};
+const MOV={86:120687.03,118:246.00,36:365200.10,19:21951.28,132:3099.00,115:167.00,72:95.39,126:13.00,58:187194.76,91:2965.61,124:58360.00,98:6864.18,109:52781.33,84:21.00,102:2029.52,69:139169.62,77:146.89,129:10.00,82:3.00,99:3050.00,128:9.00,78:21.97,114:98042.54,87:5954.82};
+const GL={19:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.097338,'yoy':0.065183,'fy':63.818514,'cy':169.729032},36:{'d':0.0,'dod':0.0,'m':0.0,'mom':19.6048,'yoy':12.13122,'fy':550.414772,'cy':1978.985891},57:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.0},58:{'d':0.0,'dod':0.0,'m':0.0,'mom':11.623973,'yoy':9.332437,'fy':450.532512,'cy':1433.912778},64:{'d':0.0,'dod':0.0,'m':0.0,'mom':2.228856,'yoy':0.0,'fy':164.345609,'cy':398.374041},65:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':-0.072393},68:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.0},69:{'d':0.0,'dod':0.0,'m':0.0,'mom':4.794397,'yoy':3.413515,'fy':105.36888,'cy':268.062954},72:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.172656,'yoy':0.0,'fy':10.860205,'cy':247.530559},75:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.013782,'cy':1.088775},76:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.0},77:{'d':0.0,'dod':0.0,'m':0.0,'mom':2.393878,'yoy':0.175472,'fy':62.724722,'cy':278.158696},78:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.018125,'yoy':0.0,'fy':0.065777,'cy':0.065777},79:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.359513,'yoy':0.0,'fy':16.660573,'cy':49.65906},80:{'d':0.0,'dod':0.0,'m':0.0,'mom':18.491082,'yoy':0.661863,'fy':356.840343,'cy':1020.718821},81:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.595056,'yoy':0.0,'fy':13.72486,'cy':43.7242},82:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0135,'yoy':0.0,'fy':7.426159,'cy':18.926505},83:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':1.442214,'cy':11.129226},84:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.025877,'yoy':0.0,'fy':2.575928,'cy':7.39378},86:{'d':0.0,'dod':0.0,'m':0.0,'mom':4.273442,'yoy':0.339358,'fy':132.349934,'cy':359.769479},87:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.565685,'yoy':0.0576,'fy':20.534043,'cy':50.648256},88:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.993586,'yoy':0.0,'fy':16.707586,'cy':29.606828},89:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.0},91:{'d':0.0,'dod':0.0,'m':0.0,'mom':10.088926,'yoy':2.643162,'fy':147.403944,'cy':374.369294},92:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.0},95:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.023921},98:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.203485,'yoy':0.0015,'fy':15.958104,'cy':94.762905},99:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.049398,'yoy':0.0,'fy':34.943801,'cy':233.435322},102:{'d':0.0,'dod':0.0,'m':0.0,'mom':12.556826,'yoy':5.757353,'fy':274.677766,'cy':1073.606034},109:{'d':0.0,'dod':0.0,'m':0.0,'mom':10.971737,'yoy':1.954086,'fy':316.025602,'cy':817.323637},110:{'d':0.0,'dod':0.0,'m':0.0,'mom':1.927718,'yoy':0.0,'fy':78.15491,'cy':86.35574},112:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.0,'cy':0.009},114:{'d':0.0,'dod':0.0,'m':0.0,'mom':1.426416,'yoy':0.0,'fy':63.257403,'cy':158.969478},115:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.49524,'yoy':0.0,'fy':13.9251,'cy':28.57925},118:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.008705,'yoy':0.0,'fy':2.334643,'cy':4.367887},120:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.922643,'cy':1.870729},123:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.049108,'cy':0.049108},124:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':7.769845,'cy':10.982431},126:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.06609,'yoy':0.0,'fy':2.13948,'cy':6.688348},128:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.924832,'yoy':0.0,'fy':16.118628,'cy':40.041128},129:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.651619,'cy':0.865848},132:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.02052,'yoy':0.0,'fy':0.524738,'cy':0.552692}};
 const ABSL_ASPH=0.74, ABSL_BENZ=0.26;
 const FREIGHT_IDS=new Set([64,79,80,81,88,110]);
 const RECON={g1all:0,excl:0,g5all:0.0,g2all:0,g6all:0,g4all:0,
@@ -303,12 +303,12 @@ ALL.forEach(r=>{ totalDaily+=r.daily_rev;totalMTD+=r.mtd_rev;totalFY+=r.fy_ytd_r
 let avgAch=achList.length?(achList.reduce((a,b)=>a+b)/achList.length):null;
 let projME=totalMTD>0?(totalMTD/DE*DM):0;
 let kpiHTML='';
-kpiHTML+=`<div class="kpi-card"><div class="label">Daily Revenue (Oct 3)</div><div class="val">${fmt(totalDaily)} Cr</div><div class="sub">GL 3010001–3010006</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">MTD Revenue (Oct 1–3)</div><div class="val">${fmt(totalMTD)} Cr</div><div class="sub">${DE}/${DM} days (${fmt(M_FACTOR*100,1)}%)</div></div>`;
+kpiHTML+=`<div class="kpi-card"><div class="label">Daily Revenue (Oct 4)</div><div class="val">${fmt(totalDaily)} Cr</div><div class="sub">GL 3010001–3010006</div></div>`;
+kpiHTML+=`<div class="kpi-card"><div class="label">MTD Revenue (Oct 1–4)</div><div class="val">${fmt(totalMTD)} Cr</div><div class="sub">${DE}/${DM} days (${fmt(M_FACTOR*100,1)}%)</div></div>`;
 kpiHTML+=`<div class="kpi-card"><div class="label">Projected Month-End</div><div class="val">${fmt(projME)} Cr</div><div class="sub">Run rate: ${fmt(totalMTD/DE)} Cr/day</div></div>`;
 kpiHTML+=`<div class="kpi-card"><div class="label">Avg MTD Achievement</div><div class="val">${avgAch?fmt(avgAch,1)+'%':'N/A'}</div><div class="sub">${achList.length} SBUs with targets</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">Yearly Revenue (CY YTD)</div><div class="val">${fmt(totalCY)} Cr</div><div class="sub">Jan 1 – October 03, 2026</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">YTD Revenue FY26-27</div><div class="val">${fmt(totalFY)} Cr</div><div class="sub">Jul 1 – October 03, 2026</div></div>`;
+kpiHTML+=`<div class="kpi-card"><div class="label">Yearly Revenue (CY YTD)</div><div class="val">${fmt(totalCY)} Cr</div><div class="sub">Jan 1 – October 04, 2026</div></div>`;
+kpiHTML+=`<div class="kpi-card"><div class="label">YTD Revenue FY26-27</div><div class="val">${fmt(totalFY)} Cr</div><div class="sub">Jul 1 – October 04, 2026</div></div>`;
 document.getElementById('kpi-row').innerHTML=kpiHTML;
 const MTD_KPI_HTML=kpiHTML;
 
@@ -340,7 +340,7 @@ let riskSBUs=[...ALL].filter(r=>(r.momentum==='Negative'||r.momentum==='Weak')&&
 let dormantSBUs=[...ALL].filter(r=>r.mtd_rev===0&&r.mtd_vol===0&&r.id!==64&&r.id!==79&&r.id!==80&&r.id!==81&&r.id!==88&&r.id!==110);
 let snapHTML='<div class="insight-box"><h3>Snapshot</h3><ul>';
 snapHTML+=`<li>Total MTD Revenue: <b>${fmt(totalMTD)} Cr</b> across ${ALL.filter(r=>r.mtd_rev>0).length} active SBUs</li>`;
-snapHTML+=`<li>Daily Revenue (Oct 3): <b>${fmt(totalDaily)} Cr</b></li>`;
+snapHTML+=`<li>Daily Revenue (Oct 4): <b>${fmt(totalDaily)} Cr</b></li>`;
 snapHTML+=`<li>Month Progress: <b>${DE}/${DM} (${fmt(M_FACTOR*100,1)}%)</b></li>`;
 snapHTML+=`<li>Projected Month-End: <b>${fmt(projME)} Cr</b></li>`;
 snapHTML+=`<li>Avg Daily Run Rate: <b>${fmt(totalMTD/DE)} Cr/day</b></li>`;
