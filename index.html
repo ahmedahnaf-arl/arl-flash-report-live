@@ -76,24 +76,30 @@ footer{color:#64748b;font-size:.82rem;text-align:center;padding:18px 0}
 </header>
 
 <section class="cards">
-<div class="card"><div class="l">Actual Revenue</div><div class="v">635.04 Cr</div><div class="s">1?18 November 2026</div></div>
+<div class="card"><div class="l">Actual Revenue</div><div class="v">580.23 Cr</div><div class="s">1?18 November 2026</div></div>
 <div class="card"><div class="l">Monthly Budget</div><div class="v">1,706.33 Cr</div><div class="s">Full month</div></div>
 <div class="card"><div class="l">Monthly Forecast</div><div class="v">1,191.89 Cr</div><div class="s">Full month</div></div>
-<div class="card"><div class="l">Achievement vs Budget</div><div class="v amber">37.2%</div><div class="s">Month-to-date</div></div>
-<div class="card"><div class="l">Achievement vs Forecast</div><div class="v amber">53.3%</div><div class="s">Month-to-date</div></div>
-<div class="card"><div class="l">Gap to Budget</div><div class="v red">-1,071.29 Cr</div><div class="s">MTD actual less budget</div></div>
+<div class="card"><div class="l">Achievement vs Budget</div><div class="v amber">34.0%</div><div class="s">Month-to-date</div></div>
+<div class="card"><div class="l">Achievement vs Forecast</div><div class="v amber">48.7%</div><div class="s">Month-to-date</div></div>
+<div class="card"><div class="l">Gap to Budget</div><div class="v red">-1,126.10 Cr</div><div class="s">MTD actual less budget</div></div>
 </section>
+
+<div class="panel" style="border-left:4px solid var(--red)">
+<h2>G2G reconciliation</h2>
+<p style="margin:0">Sheet value <b>67.9354 Cr</b> &nbsp;&rarr;&nbsp; verified system value <b>13.1275 Cr</b> (ERP SBU 77, DyTCL) &nbsp;&middot;&nbsp; overstatement corrected: <b class="bad">56.8079 Cr</b> &nbsp;&middot;&nbsp; total revenue restated from 635.04 to <b>580.23 Cr</b>.</p>
+</div>
 
 <div class="panel warn">
 <h2>Data basis and ERP cross-check</h2>
 <p>Revenue figures are taken from the official SBU sub-schedule (actuals to 18 November 2026) and are the authoritative numbers, matching the submitted revenue performance summary. Budget and Forecast are the full-month November targets from the same workbook, so achievement is measured month-to-date against a full-month plan.</p>
-<p><b>Where our previous report differed:</b> the ERP feed carries two foreign-currency shipping entities that post in USD and AED &mdash; ASLL-1 (PTE, &times;116.127) and ASeLLC Ship Management (&times;32.798). Those were not converted, which understated shipping. The ERP feed also has no SBU for the <b>G2G</b> line (Bongo &amp; MTS &amp; Shipping BADC/BCIC), and it books DyTCL, HRML and FAL as separate entities that this schedule does not list.</p>
+<p><b>Where our previous report differed:</b> the ERP feed carries two foreign-currency shipping entities that post in USD and AED &mdash; ASLL-1 (PTE, &times;116.127) and ASeLLC Ship Management (&times;32.798). Those were not converted, which understated shipping. It also books HRML and FAL as separate entities that this schedule does not list.</p>
+<p><b>G2G identified and corrected.</b> The G2G line is <b>ERP SBU 77 &mdash; Daily Trading Company Ltd (DyTCL)</b>, the &ldquo;Daily Trading (G2G)&rdquo; entity. Proof: the sheet&rsquo;s own 15&nbsp;Nov G2G value (BDT 105,803,559 = 10.5804 Cr) matches ERP SBU 77 for 1&ndash;15 Nov to the paisa, and the November review deck&rsquo;s &ldquo;G2G actual to 8&nbsp;Nov = 7.04 Cr&rdquo; matches ERP SBU 77 at 7.0398 Cr. The 67.9354 Cr printed for 17&ndash;18&nbsp;Nov is a <b>single-day step of +57.35 Cr that the system does not support</b>: ERP SBU 77 is 11.7453 Cr on 17&nbsp;Nov and 13.1275 Cr on 18&nbsp;Nov, there were zero SBU-77 postings on 17&nbsp;Nov, and total company revenue on that day was only 26.30 Cr across all SBUs. This report therefore uses the ERP figure (13.1275 Cr) for G2G and the sheet figure is shown in the ERP-mapping column for audit.</p>
 <p class="mu">ERP comparison column shows the ERP sub-schedule roll-up for the same period, converted to BDT. Variance = ERP minus official actual; positive means ERP is higher.</p>
 </div>
 
 <div class="grid2">
-<div class="panel"><h2>Top 8 by actual revenue (Cr)</h2><div class='bar'><span class='lbl'>ASLL</span><span class='track'><i style='width:100.0%'></i></span><span class='val'>192.01</span></div><div class='bar'><span class='lbl'>AEL</span><span class='track'><i style='width:45.1%'></i></span><span class='val'>86.68</span></div><div class='bar'><span class='lbl'>ACCL</span><span class='track'><i style='width:39.9%'></i></span><span class='val'>76.69</span></div><div class='bar'><span class='lbl'>AAFL</span><span class='track'><i style='width:36.0%'></i></span><span class='val'>69.10</span></div><div class='bar'><span class='lbl'>G2G</span><span class='track'><i style='width:35.4%'></i></span><span class='val'>67.94</span></div><div class='bar'><span class='lbl'>AIL</span><span class='track'><i style='width:29.9%'></i></span><span class='val'>57.43</span></div><div class='bar'><span class='lbl'>ARMCL</span><span class='track'><i style='width:11.9%'></i></span><span class='val'>22.84</span></div><div class='bar'><span class='lbl'>NTL</span><span class='track'><i style='width:9.0%'></i></span><span class='val'>17.19</span></div></div>
-<div class="panel"><h2>Lowest achievement vs forecast</h2><ul class="clean"><li><b>G2G</b> 2.7% of forecast <span class='mu'>(0.07 / 2.50 Cr)</span></li><li><b>AASL</b> 4.3% of forecast <span class='mu'>(0.08 / 1.75 Cr)</span></li><li><b>NJL</b> 7.9% of forecast <span class='mu'>(0.02 / 0.30 Cr)</span></li><li><b>ALL</b> 8.9% of forecast <span class='mu'>(0.08 / 0.85 Cr)</span></li><li><b>AMXL</b> 8.9% of forecast <span class='mu'>(0.41 / 4.60 Cr)</span></li><li><b>AITL</b> 11.0% of forecast <span class='mu'>(0.13 / 1.20 Cr)</span></li><li><b>ABSL</b> 13.0% of forecast <span class='mu'>(0.77 / 5.90 Cr)</span></li><li><b>AEFL</b> 28.1% of forecast <span class='mu'>(0.14 / 0.50 Cr)</span></li></ul></div>
+<div class="panel"><h2>Top 8 by actual revenue (Cr)</h2><div class='bar'><span class='lbl'>ASLL</span><span class='track'><i style='width:100.0%'></i></span><span class='val'>192.01</span></div><div class='bar'><span class='lbl'>AEL</span><span class='track'><i style='width:45.1%'></i></span><span class='val'>86.68</span></div><div class='bar'><span class='lbl'>ACCL</span><span class='track'><i style='width:39.9%'></i></span><span class='val'>76.69</span></div><div class='bar'><span class='lbl'>AAFL</span><span class='track'><i style='width:36.0%'></i></span><span class='val'>69.10</span></div><div class='bar'><span class='lbl'>AIL</span><span class='track'><i style='width:29.9%'></i></span><span class='val'>57.43</span></div><div class='bar'><span class='lbl'>ARMCL</span><span class='track'><i style='width:11.9%'></i></span><span class='val'>22.84</span></div><div class='bar'><span class='lbl'>NTL</span><span class='track'><i style='width:9.0%'></i></span><span class='val'>17.19</span></div><div class='bar'><span class='lbl'>G2G</span><span class='track'><i style='width:6.8%'></i></span><span class='val'>13.13</span></div></div>
+<div class="panel"><h2>Lowest achievement vs forecast</h2><ul class="clean"><li><b>G2G</b> 2.7% of forecast <span class='mu'>(0.07 / 2.50 Cr)</span></li><li><b>AASL</b> 4.3% of forecast <span class='mu'>(0.08 / 1.75 Cr)</span></li><li><b>NJL</b> 7.9% of forecast <span class='mu'>(0.02 / 0.30 Cr)</span></li><li><b>ALL</b> 8.9% of forecast <span class='mu'>(0.08 / 0.85 Cr)</span></li><li><b>AMXL</b> 8.9% of forecast <span class='mu'>(0.41 / 4.60 Cr)</span></li><li><b>G2G</b> 9.0% of forecast <span class='mu'>(13.13 / 146.65 Cr)</span></li><li><b>AITL</b> 11.0% of forecast <span class='mu'>(0.13 / 1.20 Cr)</span></li><li><b>ABSL</b> 13.0% of forecast <span class='mu'>(0.77 / 5.90 Cr)</span></li></ul></div>
 </div>
 
 <div class="panel">
@@ -107,7 +113,7 @@ footer{color:#64748b;font-size:.82rem;text-align:center;padding:18px 0}
 <th class="num">ERP</th><th class="num">Variance</th><th>ERP mapping</th>
 </tr></thead>
 <tbody>
-<tr><td class='n'>1</td><td>&mdash;</td><td>G2G (Bongo &amp; MTS &amp; Shipping BADC/BCIC)</td><td class='c'>Service</td><td class='num'>67.9354</td><td class='num'>131.9805</td><td class='num'>146.6450</td><td class='num bad'>51.5%</td><td class='num'>46.3%</td><td class='num'>0.0000</td><td class='num neg'>-67.9354</td><td class='note'>No matching ERP SBU. Candidate ERP lines DyTCL+HRML+FAL = 41.72 Cr.</td></tr>
+<tr><td class='n'>1</td><td>&mdash;</td><td>G2G (Bongo &amp; MTS &amp; Shipping BADC/BCIC)</td><td class='c'>Service</td><td class='num'>13.1275</td><td class='num'>131.9805</td><td class='num'>146.6450</td><td class='num bad'>9.9%</td><td class='num'>9.0%</td><td class='num'>0.0000</td><td class='num neg'>-13.1275</td><td class='note'>= ERP SBU 77 DyTCL. Sheet value 679,354,082 is a 17-Nov step not supported by ERP.</td></tr>
 <tr><td class='n'>2</td><td>ACCL</td><td>Akij Cement Company Ltd.</td><td class='c'>M.Ton</td><td class='num'>76.6947</td><td class='num'>189.7000</td><td class='num'>191.0800</td><td class='num bad'>40.4%</td><td class='num'>40.1%</td><td class='num'>76.6947</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 58</td></tr>
 <tr><td class='n'>3</td><td>AIL</td><td>Akij Ispat Ltd.</td><td class='c'>M.Ton</td><td class='num'>57.4289</td><td class='num'>134.9013</td><td class='num'>125.3000</td><td class='num bad'>42.6%</td><td class='num'>45.8%</td><td class='num'>57.4289</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 102</td></tr>
 <tr><td class='n'>4</td><td>APFIL</td><td>Akij Poly Fibre Industries Ltd.</td><td class='c'>PCS</td><td class='num'>8.3559</td><td class='num'>21.2362</td><td class='num'>21.2362</td><td class='num bad'>39.3%</td><td class='num'>39.3%</td><td class='num'>8.3559</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 19</td></tr>
@@ -141,8 +147,8 @@ footer{color:#64748b;font-size:.82rem;text-align:center;padding:18px 0}
 <tr><td class='n'>32</td><td>ACEL</td><td>AKIJ Consumer Electronics Ltd.</td><td class='c'>PCS</td><td class='num'>0.6850</td><td class='num'>9.2747</td><td class='num'>1.7500</td><td class='num bad'>7.4%</td><td class='num'>39.1%</td><td class='num'>0.6850</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 126</td></tr>
 <tr><td class='n'>33</td><td>AMPL</td><td>Akij Mediplex Ltd.</td><td class='c'>Service</td><td class='num'>0.1804</td><td class='num'>1.0826</td><td class='num'>0.6000</td><td class='num bad'>16.7%</td><td class='num'>30.1%</td><td class='num'>0.1804</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 132</td></tr>
 <tr class="tot"><td></td><td></td><td>Total</td><td></td>
-<td class="num">635.04</td><td class="num">1,706.33</td><td class="num">1,191.89</td>
-<td class="num">37.2%</td><td class="num">53.3%</td><td></td><td></td><td></td></tr>
+<td class="num">580.23</td><td class="num">1,706.33</td><td class="num">1,191.89</td>
+<td class="num">34.0%</td><td class="num">48.7%</td><td></td><td></td><td></td></tr>
 </tbody>
 </table>
 </div>
