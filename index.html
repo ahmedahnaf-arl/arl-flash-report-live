@@ -1,675 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ARL Daily SBU Sales Flash Report — Nov 21, 2026</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>ARL SBU Revenue Performance — November 2026</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;font-size:17px}
-#app{padding:1.5rem 2rem;max-width:1500px;margin:0 auto}
-#loading{text-align:center;padding:3rem;color:#94a3b8;font-size:1.15rem}
-header{border-bottom:1px solid #334155;padding-bottom:1rem;margin-bottom:1.5rem}
-header h1{font-size:1.8rem;color:#f8fafc}
-header .meta{color:#94a3b8;font-size:1rem;margin-top:0.25rem}
-.portal-nav{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-.portal-nav a{padding:8px 14px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#cbd5e1;text-decoration:none;font-size:.92rem;font-weight:600}
-.portal-nav a:hover{border-color:#38bdf8;color:#f8fafc}
-.portal-nav a.active{background:#38bdf8;border-color:#38bdf8;color:#0f172a}
-.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
-.kpi-card{background:#1e293b;border:1px solid #334155;border-radius:0.75rem;padding:1.1rem;text-align:center;transition:transform 0.2s,box-shadow 0.2s}
-.kpi-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,0.4)}
-.kpi-card .label{color:#94a3b8;font-size:0.9rem;text-transform:uppercase;letter-spacing:0.05rem}
-.kpi-card .val{font-size:1.85rem;font-weight:700;color:#f8fafc;margin:0.3rem 0;animation:kpiPop 0.6s ease-out}
-.kpi-card .sub{font-size:0.9rem;color:#94a3b8}
-@keyframes kpiPop{0%{transform:scale(0.92);opacity:0.4}60%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}
-@media (max-width:768px){.kpi-row{grid-template-columns:repeat(2,1fr)}.charts-row{grid-template-columns:1fr}.insights-row{grid-template-columns:1fr}.summary-chart-box .canvas-row{flex-direction:column;align-items:center}.canvas-row canvas{width:100%;height:auto}.recon-grid{grid-template-columns:1fr}}
-@media (max-width:480px){.kpi-row{grid-template-columns:1fr}}
-.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:1rem;margin-bottom:1.5rem}
-.chart-box{background:#1e293b;border:1px solid #334155;border-radius:0.75rem;padding:1rem;box-shadow:0 4px 12px rgba(0,0,0,0.25);transition:box-shadow 0.2s}
-.chart-box:hover{box-shadow:0 6px 20px rgba(56,189,248,0.08)}
-.chart-box h3{font-size:1.05rem;color:#94a3b8;margin-bottom:0.75rem;text-transform:uppercase}
-.bar-wrap{display:flex;flex-direction:column;gap:5px}
-.bar-item{display:flex;align-items:center;gap:0.5rem}
-.bar-item .lbl{width:90px;font-size:0.9rem;text-align:right;color:#94a3b8;flex-shrink:0}
-.bar-item .bar-bg{flex:1;height:20px;background:#1e293b;border-radius:3px;overflow:hidden;position:relative}
-.bar-item .bar-fill{height:100%;border-radius:3px;transition:width 0.5s}
-.bar-item .bar-val{width:80px;font-size:0.9rem;color:#cbd5e1;flex-shrink:0;text-align:right}
-.insights-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem}
-.insight-box{background:#1e293b;border:1px solid #334155;border-radius:0.75rem;padding:1rem}
-.insight-box h3{font-size:1rem;color:#f8fafc;margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid #334155}
-.insight-box ul{list-style:none;font-size:0.95rem;line-height:1.6}
-.insight-box li{color:#cbd5e1;padding:0.2rem 0}
-.insight-box li.neg{color:#fca5a5}
-.insight-box li.pos{color:#86efac}
-.recon-card{background:#1e293b;border:1px solid #334155;border-radius:0.75rem;padding:1.5rem;margin-bottom:1.5rem}
-.recon-card h3{color:#38bdf8;margin-bottom:1rem;font-size:1.15rem}
-.recon-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-.recon-col h4{color:#94a3b8;font-size:0.95rem;text-transform:uppercase;margin-bottom:0.75rem}
-.recon-col table{width:100%;font-size:1rem}
-.recon-col td{padding:0.35rem 0.5rem;color:#cbd5e1}
-.recon-col .total td{border-top:1px solid #475569;font-weight:700;color:#f8fafc}
-.recon-col .val{text-align:right;font-family:monospace}
-.recon-note{color:#fbbf24;font-size:0.95rem;margin-top:1rem;padding:0.6rem;background:#422006;border-radius:0.5rem}
-.scorecard-table{width:100%;border-collapse:collapse;font-size:0.98rem;background:#1e293b;border-radius:0.75rem;overflow:hidden;border:1px solid #334155}
-.scorecard-table th{background:#0f172a;color:#94a3b8;padding:0.6rem 0.5rem;text-align:left;font-weight:600;position:sticky;top:0;z-index:2;font-size:0.9rem;text-transform:uppercase}
-.scorecard-table th.num{text-align:right}
-.scorecard-table td{padding:0.55rem 0.6rem;border-bottom:1px solid #1e293b;transition:background 0.15s}
-.scorecard-table tbody tr{transition:box-shadow 0.15s}
-.scorecard-table tbody tr:hover{background:#1e3a5f;box-shadow:inset 3px 0 0 #38bdf8}
-.scorecard-table tbody tr.top-performer{background:#1a2f1a}
-.scorecard-table tbody tr.top-performer:hover{background:#1e3a2e;box-shadow:inset 3px 0 0 #4ade80}
-.scorecard-table td.num{text-align:right;font-family:monospace}
-.scorecard-wrap{overflow-x:auto;border-radius:0.75rem;margin-bottom:1.5rem;-webkit-overflow-scrolling:touch}
-.scorecard-controls{display:flex;gap:0.75rem;margin-bottom:0.75rem;align-items:center;flex-wrap:wrap}
-.scorecard-controls select,.scorecard-controls input{background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:0.5rem;padding:0.5rem 0.85rem;font-size:0.95rem}
-.scorecard-controls select:focus,.scorecard-controls input:focus{outline:none;border-color:#38bdf8}
-.scorecard-controls input{min-width:220px}
-.scorecard-controls label{color:#94a3b8;font-size:0.9rem;margin-right:0.25rem}
-.date-filter{display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;margin-bottom:0.75rem;padding:0.75rem;background:#1e293b;border:1px solid #334155;border-radius:0.6rem}
-.date-filter label{color:#94a3b8;font-size:0.85rem}
-.date-filter input[type=date]{background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:0.45rem;padding:0.4rem 0.6rem;font-size:0.9rem}
-.date-filter input[type=date]:focus{outline:none;border-color:#38bdf8}
-.date-filter button{background:#38bdf8;color:#0f172a;border:none;border-radius:0.45rem;padding:0.4rem 0.9rem;font-weight:700;font-size:0.85rem;cursor:pointer}
-.date-filter button.reset{background:#334155;color:#e2e8f0}
-.date-filter button:hover{filter:brightness(1.1)}
-.date-filter .df-status{color:#38bdf8;font-size:0.85rem}
-.chart-stats{display:flex;gap:1rem;margin-bottom:0.75rem;font-size:0.9rem;color:#94a3b8;flex-wrap:wrap}
-.chart-stats span{background:#0f172a;padding:0.25rem 0.6rem;border-radius:0.35rem;border:1px solid #334155}
-.chart-stats b{color:#38bdf8}
-.mom-up{color:#4ade80}
-.mom-down{color:#f87171}
-.mom-neu{color:#fbbf24}
-footer{text-align:center;color:#64748b;font-size:0.85rem;padding:1.5rem 0;border-top:1px solid #1e293b;margin-top:1.5rem}
-.flag-card{background:#451a03;border:1px solid #d97706;border-radius:0.75rem;padding:1rem;margin-bottom:1rem;font-size:0.95rem;color:#fcd34d}
-.flag-card b{color:#fbbf24}
-.vol-cell{color:#7dd3fc}
-.chart-toggle{cursor:pointer;color:#38bdf8;font-size:0.85rem;display:inline-block;margin-left:0.3rem;transition:transform 0.2s}
-.chart-toggle.open{transform:rotate(90deg)}
-.chart-row{display:none}
-.chart-row.open{display:table-row}
-.chart-row td{padding:0;border:none;background:#0f172a}
-.chart-canvas-wrap{padding:0.75rem 1rem}
-.chart-canvas-wrap canvas{background:#1a2332;border-radius:0.5rem;border:1px solid #334155;cursor:pointer}
-.sbu-detail{padding:0 1rem 0.75rem 1rem}
-.sbu-detail-summary{display:flex;gap:0.75rem;flex-wrap:wrap;margin:0.5rem 0}
-.sbu-detail-summary span{background:#1e293b;border:1px solid #334155;border-radius:0.4rem;padding:0.35rem 0.7rem;font-size:0.85rem;color:#cbd5e1}
-.sbu-detail-summary b{color:#38bdf8}
-.sbu-detail-table{overflow-x:auto;border:1px solid #334155;border-radius:0.5rem;background:#1e293b}
-.sbu-detail-table table{width:100%;border-collapse:collapse;font-size:0.88rem}
-.sbu-detail-table th{background:#0f172a;color:#94a3b8;padding:0.4rem 0.6rem;text-align:left;font-weight:600;font-size:0.78rem;text-transform:uppercase;position:sticky;top:0}
-.sbu-detail-table th.num{text-align:right}
-.sbu-detail-table td{padding:0.3rem 0.6rem;border-top:1px solid #1e293b;text-align:left}
-.sbu-detail-table td.num{text-align:right;font-family:monospace}
-.sbu-detail-table td.rev{color:#4ade80}
-.sbu-detail-table tfoot td{background:#0f172a;font-weight:700;color:#f8fafc;border-top:2px solid #334155}
-.sbu-detail-table tfoot td.num{font-family:monospace}
-.summary-chart-box{background:#1e293b;border:1px solid #334155;border-radius:0.75rem;padding:1rem;margin-bottom:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,0.25)}
-.summary-chart-box h3{font-size:1.05rem;color:#94a3b8;margin-bottom:0.75rem;text-transform:uppercase}
-.summary-chart-box .canvas-row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
-.summary-chart-box canvas{background:#1a2332;border-radius:0.5rem;border:1px solid #334155;cursor:crosshair}
-#login-overlay{position:fixed;inset:0;background:rgba(15,23,42,0.98);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column}
-#login-overlay.hidden{display:none}
-#login-box{background:#1e293b;padding:2.5rem;border-radius:1rem;border:1px solid #334155;width:380px;text-align:center}
-#login-box h2{color:#38bdf8;margin-bottom:0.5rem;font-size:1.5rem}
-#login-box p{color:#94a3b8;margin-bottom:1.5rem;font-size:1rem}
-#login-box input{width:100%;padding:0.85rem;margin:0.35rem 0;border-radius:0.5rem;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:1.05rem}
-#login-box input:focus{outline:none;border-color:#38bdf8}
-#login-box button{width:100%;padding:0.85rem;margin-top:1rem;background:#38bdf8;color:#0f172a;border:none;border-radius:0.5rem;font-weight:700;font-size:1.15rem;cursor:pointer}
-#login-box .err{color:#f87171;margin-top:0.5rem;font-size:0.95rem}
-#loading-overlay{position:fixed;inset:0;background:rgba(15,23,42,0.95);z-index:9998;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#94a3b8;font-size:1.25rem}
-#loading-overlay.hidden{display:none}
-.spinner{width:40px;height:40px;border:3px solid #334155;border-top:3px solid #38bdf8;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:1rem}
-@keyframes spin{to{transform:rotate(360deg)}}
+:root{--bg:#0f172a;--panel:#1e293b;--line:#334155;--text:#e2e8f0;--mu:#94a3b8;--cyan:#38bdf8;--green:#86efac;--amber:#fbbf24;--red:#fca5a5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,"Segoe UI",sans-serif}
+main{max-width:1620px;margin:0 auto;padding:22px}
+h1{margin:0;font-size:1.7rem;color:#f8fafc}
+h2{color:var(--cyan);font-size:1.05rem;margin:0 0 12px}
+.meta{color:var(--mu);margin-top:5px;font-size:.95rem}
+.portal-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.portal-nav a{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:#cbd5e1;text-decoration:none;font-weight:600;font-size:.92rem}
+.portal-nav a.active{background:var(--cyan);border-color:var(--cyan);color:#082f49}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:18px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px;text-align:center}
+.card .l{color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.card .v{font-size:1.55rem;font-weight:750;margin:6px 0;color:#f8fafc}
+.card .s{color:var(--mu);font-size:.82rem}
+.v.green{color:var(--green)}.v.amber{color:var(--amber)}.v.red{color:var(--red)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0}
+.panel.warn{border-left:4px solid var(--amber)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bar{display:flex;align-items:center;gap:9px;margin:5px 0;font-size:.88rem}
+.bar .lbl{width:78px;text-align:right;color:var(--mu);flex:none}
+.bar .track{flex:1;height:16px;background:#0f172a;border-radius:3px;overflow:hidden}
+.bar .track i{display:block;height:100%;background:linear-gradient(90deg,#38bdf8,#818cf8)}
+.bar .val{width:62px;text-align:right;font-variant-numeric:tabular-nums;color:#cbd5e1;flex:none}
+ul.clean{list-style:none;margin:0;padding:0;font-size:.9rem}
+ul.clean li{padding:4px 0;border-bottom:1px solid #263449}
+.mu{color:var(--mu)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{padding:8px 9px;border-bottom:1px solid #263449;vertical-align:top}
+th{background:#111d32;color:#cbd5e1;text-align:left;position:sticky;top:0;z-index:1;font-size:.8rem;text-transform:uppercase}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.c{text-align:center}td.n{width:34px;color:var(--mu)}
+td.note{color:#8fa3bd;font-size:.8rem;min-width:210px}
+tr.tot td{font-weight:750;background:#14253b;border-top:2px solid #475569}
+.good{color:var(--green)}.mid{color:var(--amber)}.bad{color:var(--red)}
+.pos{color:var(--amber)}.neg{color:var(--red)}.ok{color:var(--mu)}
+.wrap{overflow:auto;max-height:70vh;border:1px solid var(--line);border-radius:10px}
+footer{color:#64748b;font-size:.82rem;text-align:center;padding:18px 0}
+#gate{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:#050b16ee;padding:16px}
+#gate[hidden]{display:none}
+.gate-card{width:min(380px,100%);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px}
+.gate-card h3{margin:0 0 4px;color:#f8fafc}
+.gate-card input,.gate-card button{width:100%;padding:11px;margin-top:10px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--text)}
+.gate-card button{background:var(--cyan);color:#082f49;font-weight:700;cursor:pointer;border:none}
+#err{color:var(--red);margin-top:8px;font-size:.9rem}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div id="login-overlay"><div id="login-box">
-<h2>ARL Flash Report</h2><p>November 21, 2026</p>
-<input type="text" id="un" placeholder="Username"><input type="password" id="pw" placeholder="Password">
-<button onclick="auth()">Sign In</button><div class="err" id="login-err"></div>
+<div id="gate"><div class="gate-card">
+<h3>ARL Flash Report</h3>
+<div class="mu" style="font-size:.85rem">Sign in to continue</div>
+<input id="u" placeholder="Username" autocomplete="username">
+<input id="p" type="password" placeholder="Password" autocomplete="current-password">
+<button id="go">Sign In</button>
+<div id="err"></div>
 </div></div>
-<div id="loading-overlay"><div class="spinner"></div><span>Querying DWH live... this may take 30-45 seconds</span></div>
-<div id="app">
+
+<main>
+<nav class="portal-nav">
+<a class="active" href="index.html">1 &middot; Revenue Performance</a>
+<a href="october-tracker.html">2 &middot; October Revenue Tracker</a>
+</nav>
+
 <header>
-<nav class="portal-nav"><a class="active" href="index.html">1 · ERP Flash Report</a><a href="october-tracker.html">2 · October Revenue Tracker</a></nav>
-<h1>AKIJ RESOURCE — Daily SBU Sales Flash Report</h1>
-<div class="meta">Report Date: November 21, 2026 | Period: Nov 1–21 (Day 21/30, 70.0%) | Source: ERP GL 3010001, 3010002, 3010005, 3010006 (Revenue sub-schedule) | FY 2026-27 | Live</div>
+<h1>AKIJ RESOURCE &mdash; SBU Revenue Performance</h1>
+<div class="meta">Period: 1?18 November 2026 &nbsp;|&nbsp; As of 18 November 2026 (Day 18/30) &nbsp;|&nbsp; Actuals: official sub-schedule &nbsp;|&nbsp; Targets: Budget &amp; Forecast, November 2026</div>
 </header>
 
-<div class="flag-card">
-<b>Basis:</b> Revenue = net of sales returns (GL 3010001, 3010002, 3010005 and 3010006, credits − debits). Unallocated cement deliveries (intSBUId=0) map to ACCL (58). ABSL is included as one SBU; ACEL is the tracker name for report SBU 126.<br>
-<b>Targets:</b> No current-period forecast target source is loaded; target achievement is suppressed.
+<section class="cards">
+<div class="card"><div class="l">Actual Revenue</div><div class="v">635.04 Cr</div><div class="s">1?18 November 2026</div></div>
+<div class="card"><div class="l">Monthly Budget</div><div class="v">1,706.33 Cr</div><div class="s">Full month</div></div>
+<div class="card"><div class="l">Monthly Forecast</div><div class="v">1,191.89 Cr</div><div class="s">Full month</div></div>
+<div class="card"><div class="l">Achievement vs Budget</div><div class="v amber">37.2%</div><div class="s">Month-to-date</div></div>
+<div class="card"><div class="l">Achievement vs Forecast</div><div class="v amber">53.3%</div><div class="s">Month-to-date</div></div>
+<div class="card"><div class="l">Gap to Budget</div><div class="v red">-1,071.29 Cr</div><div class="s">MTD actual less budget</div></div>
+</section>
+
+<div class="panel warn">
+<h2>Data basis and ERP cross-check</h2>
+<p>Revenue figures are taken from the official SBU sub-schedule (actuals to 18 November 2026) and are the authoritative numbers, matching the submitted revenue performance summary. Budget and Forecast are the full-month November targets from the same workbook, so achievement is measured month-to-date against a full-month plan.</p>
+<p><b>Where our previous report differed:</b> the ERP feed carries two foreign-currency shipping entities that post in USD and AED &mdash; ASLL-1 (PTE, &times;116.127) and ASeLLC Ship Management (&times;32.798). Those were not converted, which understated shipping. The ERP feed also has no SBU for the <b>G2G</b> line (Bongo &amp; MTS &amp; Shipping BADC/BCIC), and it books DyTCL, HRML and FAL as separate entities that this schedule does not list.</p>
+<p class="mu">ERP comparison column shows the ERP sub-schedule roll-up for the same period, converted to BDT. Variance = ERP minus official actual; positive means ERP is higher.</p>
 </div>
 
-<div class="kpi-row" id="kpi-row"></div>
-
-<div class="summary-chart-box">
-<h3>Portfolio Daily Revenue Trend — Nov 1–21 (BDT Cr)</h3>
-<div class="chart-stats" id="portfolio-stats"></div>
-<div class="canvas-row">
-<canvas id="portfolio-daily" width="640" height="280"></canvas>
-<canvas id="top5-stacked" width="440" height="280"></canvas>
-</div>
+<div class="grid2">
+<div class="panel"><h2>Top 8 by actual revenue (Cr)</h2><div class='bar'><span class='lbl'>ASLL</span><span class='track'><i style='width:100.0%'></i></span><span class='val'>192.01</span></div><div class='bar'><span class='lbl'>AEL</span><span class='track'><i style='width:45.1%'></i></span><span class='val'>86.68</span></div><div class='bar'><span class='lbl'>ACCL</span><span class='track'><i style='width:39.9%'></i></span><span class='val'>76.69</span></div><div class='bar'><span class='lbl'>AAFL</span><span class='track'><i style='width:36.0%'></i></span><span class='val'>69.10</span></div><div class='bar'><span class='lbl'>G2G</span><span class='track'><i style='width:35.4%'></i></span><span class='val'>67.94</span></div><div class='bar'><span class='lbl'>AIL</span><span class='track'><i style='width:29.9%'></i></span><span class='val'>57.43</span></div><div class='bar'><span class='lbl'>ARMCL</span><span class='track'><i style='width:11.9%'></i></span><span class='val'>22.84</span></div><div class='bar'><span class='lbl'>NTL</span><span class='track'><i style='width:9.0%'></i></span><span class='val'>17.19</span></div></div>
+<div class="panel"><h2>Lowest achievement vs forecast</h2><ul class="clean"><li><b>G2G</b> 2.7% of forecast <span class='mu'>(0.07 / 2.50 Cr)</span></li><li><b>AASL</b> 4.3% of forecast <span class='mu'>(0.08 / 1.75 Cr)</span></li><li><b>NJL</b> 7.9% of forecast <span class='mu'>(0.02 / 0.30 Cr)</span></li><li><b>ALL</b> 8.9% of forecast <span class='mu'>(0.08 / 0.85 Cr)</span></li><li><b>AMXL</b> 8.9% of forecast <span class='mu'>(0.41 / 4.60 Cr)</span></li><li><b>AITL</b> 11.0% of forecast <span class='mu'>(0.13 / 1.20 Cr)</span></li><li><b>ABSL</b> 13.0% of forecast <span class='mu'>(0.77 / 5.90 Cr)</span></li><li><b>AEFL</b> 28.1% of forecast <span class='mu'>(0.14 / 0.50 Cr)</span></li></ul></div>
 </div>
 
-<div class="charts-row">
-<div class="chart-box"><h3>MTD Revenue — Top 15 SBUs (Cr)</h3><div class="bar-wrap" id="mtd-chart"></div></div>
-<div class="chart-box"><h3>MoM Momentum Distribution</h3><div class="bar-wrap" id="mom-chart"></div></div>
-</div>
-
-<div class="insights-row" id="insights-row"></div>
-
-<div class="recon-card">
-<h3>Revenue Reconciliation — MTD Nov 1–21</h3>
-<div class="recon-grid">
-<div class="recon-col">
-<h4>Our Report Total (sub-schedule)</h4>
+<div class="panel">
+<h2>SBU-wise revenue: actual vs budget vs forecast</h2>
+<div class="wrap">
 <table>
-<tr><td>GL 3010001 Sales (Local)</td><td class="val" id="rpt-gross">—</td></tr>
-<tr><td style="font-size:0.9rem;color:#94a3b8;padding-left:1.5rem">All named ERP SBUs (unmapped journal IDs excluded)</td></tr>
-<tr><td>GL 3010002 Sales (Foreign)</td><td class="val" id="rpt-3010002">—</td></tr>
-<tr><td>GL 3010005 Freight (ASLL, AOCN, AMTL, ASeLL, ASLL-1, ASeLLC)</td><td class="val" id="rpt-freight">—</td></tr>
-<tr><td>GL 3010006 Agency Income</td><td class="val" id="rpt-3010006">—</td></tr>
-<tr class="total"><td>Report Total</td><td class="val" id="rpt-total">—</td></tr>
+<thead><tr>
+<th>#</th><th>Code</th><th>SBU</th><th>UOM</th>
+<th class="num">Actual</th><th class="num">Budget</th><th class="num">Forecast</th>
+<th class="num">Ach vs Budget</th><th class="num">Ach vs Forecast</th>
+<th class="num">ERP</th><th class="num">Variance</th><th>ERP mapping</th>
+</tr></thead>
+<tbody>
+<tr><td class='n'>1</td><td>&mdash;</td><td>G2G (Bongo &amp; MTS &amp; Shipping BADC/BCIC)</td><td class='c'>Service</td><td class='num'>67.9354</td><td class='num'>131.9805</td><td class='num'>146.6450</td><td class='num bad'>51.5%</td><td class='num'>46.3%</td><td class='num'>0.0000</td><td class='num neg'>-67.9354</td><td class='note'>No matching ERP SBU. Candidate ERP lines DyTCL+HRML+FAL = 41.72 Cr.</td></tr>
+<tr><td class='n'>2</td><td>ACCL</td><td>Akij Cement Company Ltd.</td><td class='c'>M.Ton</td><td class='num'>76.6947</td><td class='num'>189.7000</td><td class='num'>191.0800</td><td class='num bad'>40.4%</td><td class='num'>40.1%</td><td class='num'>76.6947</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 58</td></tr>
+<tr><td class='n'>3</td><td>AIL</td><td>Akij Ispat Ltd.</td><td class='c'>M.Ton</td><td class='num'>57.4289</td><td class='num'>134.9013</td><td class='num'>125.3000</td><td class='num bad'>42.6%</td><td class='num'>45.8%</td><td class='num'>57.4289</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 102</td></tr>
+<tr><td class='n'>4</td><td>APFIL</td><td>Akij Poly Fibre Industries Ltd.</td><td class='c'>PCS</td><td class='num'>8.3559</td><td class='num'>21.2362</td><td class='num'>21.2362</td><td class='num bad'>39.3%</td><td class='num'>39.3%</td><td class='num'>8.3559</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 19</td></tr>
+<tr><td class='n'>5</td><td>ARMCL</td><td>Akij Ready Mix Concrete Ltd.</td><td class='c'>CFT</td><td class='num'>22.8408</td><td class='num'>49.2737</td><td class='num'>46.8750</td><td class='num bad'>46.4%</td><td class='num'>48.7%</td><td class='num'>22.8408</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 69</td></tr>
+<tr><td class='n'>6</td><td>ABSL</td><td>Akij Building Solutions-Asphalt</td><td class='c'>M.Ton</td><td class='num'>0.7678</td><td class='num'>23.2710</td><td class='num'>5.9000</td><td class='num bad'>3.3%</td><td class='num'>13.0%</td><td class='num'>2.1061</td><td class='num pos'>+1.3383</td><td class='note'>ERP SBU 98 (all ABSL lines)</td></tr>
+<tr><td class='n'>7</td><td>ABSL</td><td>Akij Building-Lube-Oil</td><td class='c'>Ltr</td><td class='num'>1.3383</td><td class='num'>2.7419</td><td class='num'>1.2500</td><td class='num bad'>48.8%</td><td class='num'>107.1%</td><td class='num'>?</td><td class='num '>?</td><td class='note'>within ERP SBU 98</td></tr>
+<tr><td class='n'>8</td><td>&mdash;</td><td>Akij Building Solutions-Bitumen</td><td class='c'>Ltr</td><td class='num'>0.0000</td><td class='num'>26.8500</td><td class='num'>0.0000</td><td class='num bad'>0.0%</td><td class='num'>?</td><td class='num'>?</td><td class='num '>?</td><td class='note'>within ERP SBU 98</td></tr>
+<tr><td class='n'>9</td><td>AEL</td><td>Akij Essentials Ltd.(Manufacruring)</td><td class='c'>M.Ton</td><td class='num'>86.6766</td><td class='num'>172.1818</td><td class='num'>143.6740</td><td class='num bad'>50.3%</td><td class='num'>60.3%</td><td class='num'>?</td><td class='num '>?</td><td class='note'>within ERP SBU 36</td></tr>
+<tr><td class='n'>10</td><td>&mdash;</td><td>Akij Essentials Ltd.(Export)</td><td class='c'>M.Ton</td><td class='num'>0.0670</td><td class='num'>3.0105</td><td class='num'>2.5000</td><td class='num bad'>2.2%</td><td class='num'>2.7%</td><td class='num'>?</td><td class='num '>?</td><td class='note'>within ERP SBU 36</td></tr>
+<tr><td class='n'>11</td><td>&mdash;</td><td>Akij Essentials Ltd.(Trading)</td><td class='c'>M.Ton</td><td class='num'>0.7368</td><td class='num'>278.9231</td><td class='num'>1.2381</td><td class='num bad'>0.3%</td><td class='num'>59.5%</td><td class='num'>?</td><td class='num '>?</td><td class='note'>within ERP SBU 36</td></tr>
+<tr><td class='n'>12</td><td>BTL</td><td>Bongo &amp; Daily (Coal)</td><td class='c'>M.Ton</td><td class='num'>0.0508</td><td class='num'>113.6567</td><td class='num'>0.0000</td><td class='num bad'>0.0%</td><td class='num'>?</td><td class='num'>0.0508</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 72</td></tr>
+<tr><td class='n'>13</td><td>ACL</td><td>Akij Commodities Ltd. (Cotton)</td><td class='c'>M.Ton</td><td class='num'>8.2361</td><td class='num'>0.0000</td><td class='num'>8.2361</td><td class='num '>?</td><td class='num'>100.0%</td><td class='num'>9.2128</td><td class='num pos'>+0.9767</td><td class='note'>ERP SBU 99 (all ACL lines)</td></tr>
+<tr><td class='n'>14</td><td>ACL</td><td>Akij Commodities Ltd. (F&amp;B)</td><td class='c'>Carton</td><td class='num'>0.9760</td><td class='num'>3.2464</td><td class='num'>1.2000</td><td class='num bad'>30.1%</td><td class='num'>81.3%</td><td class='num'>?</td><td class='num '>?</td><td class='note'>within ERP SBU 99</td></tr>
+<tr><td class='n'>15</td><td>&mdash;</td><td>Akij Commodities Ltd. (Fruits)</td><td class='c'>Carton</td><td class='num'>0.0007</td><td class='num'>0.0000</td><td class='num'>0.0000</td><td class='num '>?</td><td class='num'>?</td><td class='num'>?</td><td class='num '>?</td><td class='note'>within ERP SBU 99</td></tr>
+<tr><td class='n'>16</td><td>ASLL</td><td>Akij Shipping Line Ltd. (ASLL)</td><td class='c'>Service</td><td class='num'>192.0148</td><td class='num'>292.4602</td><td class='num'>292.4602</td><td class='num mid'>65.7%</td><td class='num'>65.7%</td><td class='num'>133.3646</td><td class='num neg'>-58.6502</td><td class='note'>ERP 6-entity roll-up with FX (PTE x116.127, ASeLLC x32.798)</td></tr>
+<tr><td class='n'>17</td><td>ALEL</td><td>Akij Light Engineering Ltd.</td><td class='c'>PCS</td><td class='num'>12.6860</td><td class='num'>26.1318</td><td class='num'>27.3861</td><td class='num bad'>48.5%</td><td class='num'>46.3%</td><td class='num'>12.6949</td><td class='num pos'>+0.0089</td><td class='note'>ERP SBU 114</td></tr>
+<tr><td class='n'>18</td><td>ATL</td><td>Akij Telecom Ltd.</td><td class='c'>PCS</td><td class='num'>0.1182</td><td class='num'>1.8000</td><td class='num'>0.3000</td><td class='num bad'>6.6%</td><td class='num'>39.4%</td><td class='num'>0.1182</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 118</td></tr>
+<tr><td class='n'>19</td><td>AITL</td><td>Akij Infotech Ltd.</td><td class='c'>PCS</td><td class='num'>0.1325</td><td class='num'>4.9500</td><td class='num'>1.2000</td><td class='num bad'>2.7%</td><td class='num'>11.0%</td><td class='num'>0.1325</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 84</td></tr>
+<tr><td class='n'>20</td><td>BPL</td><td>Blue Pill Limited.</td><td class='c'>PCS</td><td class='num'>0.1665</td><td class='num'>7.5000</td><td class='num'>0.3000</td><td class='num bad'>2.2%</td><td class='num'>55.5%</td><td class='num'>0.1665</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 83</td></tr>
+<tr><td class='n'>21</td><td>iBOS</td><td>iBOS Limited.</td><td class='c'>Service</td><td class='num'>1.0813</td><td class='num'>2.7847</td><td class='num'>2.5969</td><td class='num bad'>38.8%</td><td class='num'>41.6%</td><td class='num'>1.1276</td><td class='num pos'>+0.0463</td><td class='note'>ERP SBU 82</td></tr>
+<tr><td class='n'>22</td><td>AAFL</td><td>Akij Agro Feed Ltd.</td><td class='c'>M. Ton</td><td class='num'>69.1011</td><td class='num'>96.2000</td><td class='num'>111.9300</td><td class='num mid'>71.8%</td><td class='num'>61.7%</td><td class='num'>69.1011</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 109</td></tr>
+<tr><td class='n'>23</td><td>ABL</td><td>Akij Breeders Ltd.</td><td class='c'>PCS</td><td class='num'>1.1763</td><td class='num'>2.7788</td><td class='num'>1.9485</td><td class='num bad'>42.3%</td><td class='num'>60.4%</td><td class='num'>1.1763</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 124</td></tr>
+<tr><td class='n'>24</td><td>NTL</td><td>Nobayon Traders Ltd.</td><td class='c'>M. Ton</td><td class='num'>17.1949</td><td class='num'>74.6000</td><td class='num'>34.7000</td><td class='num bad'>23.0%</td><td class='num'>49.6%</td><td class='num'>17.1949</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 91</td></tr>
+<tr><td class='n'>25</td><td>AASL</td><td>Akij Air Service Ltd.</td><td class='c'>Service</td><td class='num'>0.0754</td><td class='num'>1.7527</td><td class='num'>1.7527</td><td class='num bad'>4.3%</td><td class='num'>4.3%</td><td class='num'>0.0818</td><td class='num pos'>+0.0065</td><td class='note'>ERP SBU 122</td></tr>
+<tr><td class='n'>26</td><td>ALL</td><td>Akij Logistics Ltd.</td><td class='c'>Service</td><td class='num'>0.0754</td><td class='num'>6.9642</td><td class='num'>0.8474</td><td class='num bad'>1.1%</td><td class='num'>8.9%</td><td class='num'>2.0576</td><td class='num pos'>+1.9823</td><td class='note'>ERP SBU 103</td></tr>
+<tr><td class='n'>27</td><td>AMXL</td><td>Akij Movex Ltd.</td><td class='c'>Service</td><td class='num'>0.4114</td><td class='num'>4.6000</td><td class='num'>4.6000</td><td class='num bad'>8.9%</td><td class='num'>8.9%</td><td class='num'>0.4114</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 128</td></tr>
+<tr><td class='n'>28</td><td>ALCL</td><td>AKIJ LifeCare Ltd.</td><td class='c'>PCS</td><td class='num'>5.2932</td><td class='num'>13.5895</td><td class='num'>9.2000</td><td class='num bad'>39.0%</td><td class='num'>57.5%</td><td class='num'>5.2932</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 116</td></tr>
+<tr><td class='n'>29</td><td>AAIL</td><td>Akij Automobile Industries Ltd.</td><td class='c'>PCS</td><td class='num'>2.3786</td><td class='num'>4.3898</td><td class='num'>4.3898</td><td class='num bad'>54.2%</td><td class='num'>54.2%</td><td class='num'>2.3786</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 115</td></tr>
+<tr><td class='n'>30</td><td>NJL</td><td>Nextjobz Ltd.</td><td class='c'>Service</td><td class='num'>0.0235</td><td class='num'>0.2989</td><td class='num'>0.2989</td><td class='num bad'>7.9%</td><td class='num'>7.9%</td><td class='num'>0.0235</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 129</td></tr>
+<tr><td class='n'>31</td><td>AEFL</td><td>Akij Electrofab Ltd.</td><td class='c'>Spool</td><td class='num'>0.1407</td><td class='num'>4.2003</td><td class='num'>0.5000</td><td class='num bad'>3.3%</td><td class='num'>28.1%</td><td class='num'>0.1407</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 120</td></tr>
+<tr><td class='n'>32</td><td>ACEL</td><td>AKIJ Consumer Electronics Ltd.</td><td class='c'>PCS</td><td class='num'>0.6850</td><td class='num'>9.2747</td><td class='num'>1.7500</td><td class='num bad'>7.4%</td><td class='num'>39.1%</td><td class='num'>0.6850</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 126</td></tr>
+<tr><td class='n'>33</td><td>AMPL</td><td>Akij Mediplex Ltd.</td><td class='c'>Service</td><td class='num'>0.1804</td><td class='num'>1.0826</td><td class='num'>0.6000</td><td class='num bad'>16.7%</td><td class='num'>30.1%</td><td class='num'>0.1804</td><td class='num ok'>+0.0000</td><td class='note'>ERP SBU 132</td></tr>
+<tr class="tot"><td></td><td></td><td>Total</td><td></td>
+<td class="num">635.04</td><td class="num">1,706.33</td><td class="num">1,191.89</td>
+<td class="num">37.2%</td><td class="num">53.3%</td><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 </div>
-<div class="recon-col">
-<h4>Full GL Reconciliation (all entities)</h4>
-<table>
-<tr><td>GL 3010001 Sales (Local)</td><td class="val" id="full-3010001">—</td></tr>
-<tr><td>GL 3010002 Sales (Foreign)</td><td class="val" id="full-3010002">—</td></tr>
-<tr><td>GL 3010005 Freight Income</td><td class="val" id="full-3010005">—</td></tr>
-<tr><td>GL 3010006 Agency Income</td><td class="val" id="full-3010006">—</td></tr>
-<tr class="total"><td>Revenue Subtotal (3010001+2+5+6)</td><td class="val" id="full-revenue-total">—</td></tr>
-<tr><td>GL 3010004 Other Income (non-operating)</td><td class="val" id="full-3010004">—</td></tr>
-<tr class="total"><td>Full GL Total incl. Other Income</td><td class="val" id="full-total">—</td></tr>
-</table>
-</div>
-</div>
-<div class="recon-note" id="recon-note"></div>
 </div>
 
-
-<div class="date-filter" id="date-filter">
-<label>Date range:</label>
-<input type="date" id="df-start">
-<label>to</label>
-<input type="date" id="df-end">
-<button onclick="applyDateFilter()">Apply</button>
-<button class="reset" onclick="resetDateFilter()">Reset to MTD</button>
-<span class="df-status" id="df-status"></span>
-</div>
-<div class="scorecard-controls">
-<label>Sort by:</label>
-<select id="scorecard-sort" onchange="sortScorecard()">
-<option value="mtd_rev">MTD Revenue (default)</option>
-<option value="daily_rev">Daily Revenue</option>
-<option value="code">SBU Code A–Z</option>
-<option value="mtd_ach_pct">Ach% High–Low</option>
-<option value="mom_pct">MoM% High–Low</option>
-<option value="yoy_pct">YoY% High–Low</option>
-<option value="proj_rev">Projected M/E</option>
-</select>
-<input type="text" id="scorecard-filter" placeholder="Filter SBUs..." oninput="filterScorecard()">
-</div>
-<div class="scorecard-wrap">
-<table class="scorecard-table">
-<thead id="scorecard-head">
-<tr>
-<th>SBU</th><th class="num">Daily Rev</th><th class="num">DoD%</th><th class="num">MTD Rev</th><th class="num">Monthly Tgt</th><th class="num">MTD Tgt</th><th class="num">Ach%</th>
-<th class="num">MoM%</th><th class="num">YoY%</th><th class="num">FY YTD</th><th class="num">CY YTD</th><th class="num">Proj M/E</th><th>Signal</th>
-<th class="num">MTD Vol</th><th class="num">Daily Vol</th><th></th></tr>
-</thead>
-<tbody id="scorecard-body"></tbody>
-</table>
-</div>
-<footer>Powered by ARL Live Flash Report Engine · ERP GL 3010001, 3010002, 3010005, 3010006 (Revenue sub-schedule) · sms.tblDeliveryHeader · Generated live on November 21, 2026 · Next refresh: reload page</footer>
-</div>
+<footer>Generated from the official November 2026 SBU revenue sub-schedule &middot; ERP cross-check via iBOS &middot; All amounts in BDT crore</footer>
+</main>
 
 <script>
-const CREDS={ 'arl.admin':'Flash@2026', 'cbdo':'CBDO@ARL26' };
-function auth(){
-  let u=document.getElementById('un').value.trim(), p=document.getElementById('pw').value;
-  if(CREDS[u]===p){ document.getElementById('login-overlay').classList.add('hidden'); sessionStorage.setItem('arl_flash_auth','1'); }
-  else document.getElementById('login-err').textContent='Invalid credentials';
+const AUTH={'arl.admin':'Flash@2026','cbdo':'CBDO@ARL26'};
+const gate=document.getElementById('gate');
+function signIn(){
+  const u=document.getElementById('u').value.trim(), p=document.getElementById('p').value;
+  if(AUTH[u]===p){sessionStorage.setItem('arl_flash_auth','1');gate.hidden=true;}
+  else document.getElementById('err').textContent='Invalid credentials';
 }
-window.addEventListener('DOMContentLoaded',()=>{ if(sessionStorage.getItem('arl_flash_auth')) document.getElementById('login-overlay').classList.add('hidden'); });
-document.getElementById('pw').addEventListener('keydown',e=>{ if(e.key==='Enter') auth(); });
-const DE=21, DM=30;
-const M_FACTOR=0.7;
-const SBU_MAP={19:'APFIL',36:'AEL',58:'ACCL',64:'ASLL',69:'ARMCL',72:'BTL_Coal',77:'DyTCL',79:'AOCN',80:'ASLL-1',81:'AMTL',82:'iBOS',83:'BPL',84:'AITL',86:'HRML',87:'FAL',88:'ASeLL',91:'NTL',98:'ABSL',99:'ACL',102:'AIL',103:'ALL',109:'AAFL',110:'ASeLLC',111:'SATHS',114:'ALEL',115:'AAIL',116:'ALCL',118:'ATL',120:'AEFL',122:'AASL',123:'AENL',124:'ABL',126:'ACEL',128:'AMXL',129:'NJL',132:'AMPL'};
-const MONTH_TARGETS={};
-const TD=[{'d':'2026-11-01','s':19,'v':0.33245},{'d':'2026-11-02','s':19,'v':0.150724},{'d':'2026-11-04','s':19,'v':0.092287},{'d':'2026-11-06','s':19,'v':0.725667},{'d':'2026-11-07','s':19,'v':0.35346},{'d':'2026-11-09','s':19,'v':0.31175},{'d':'2026-11-10','s':19,'v':0.655504},{'d':'2026-11-11','s':19,'v':0.19441},{'d':'2026-11-12','s':19,'v':0.920062},{'d':'2026-11-13','s':19,'v':0.535083},{'d':'2026-11-14','s':19,'v':0.13731},{'d':'2026-11-15','s':19,'v':0.588189},{'d':'2026-11-16','s':19,'v':1.401625},{'d':'2026-11-17','s':19,'v':0.514196},{'d':'2026-11-18','s':19,'v':1.44317},{'d':'2026-11-19','s':19,'v':0.42378},{'d':'2026-11-20','s':19,'v':0.081621},{'d':'2026-11-21','s':19,'v':0.673707},{'d':'2026-11-01','s':36,'v':6.672251},{'d':'2026-11-02','s':36,'v':4.997117},{'d':'2026-11-03','s':36,'v':5.382644},{'d':'2026-11-04','s':36,'v':4.967633},{'d':'2026-11-05','s':36,'v':5.075668},{'d':'2026-11-06','s':36,'v':3.984058},{'d':'2026-11-07','s':36,'v':4.681103},{'d':'2026-11-08','s':36,'v':4.264384},{'d':'2026-11-09','s':36,'v':4.697027},{'d':'2026-11-10','s':36,'v':4.062948},{'d':'2026-11-11','s':36,'v':4.558799},{'d':'2026-11-12','s':36,'v':5.636631},{'d':'2026-11-13','s':36,'v':4.422056},{'d':'2026-11-14','s':36,'v':5.343389},{'d':'2026-11-15','s':36,'v':4.532407},{'d':'2026-11-16','s':36,'v':4.476904},{'d':'2026-11-17','s':36,'v':4.471085},{'d':'2026-11-18','s':36,'v':5.254261},{'d':'2026-11-19','s':36,'v':5.367944},{'d':'2026-11-20','s':36,'v':3.882205},{'d':'2026-11-21','s':36,'v':5.068954},{'d':'2026-11-01','s':58,'v':1.513876},{'d':'2026-11-02','s':58,'v':1.654721},{'d':'2026-11-03','s':58,'v':2.091404},{'d':'2026-11-04','s':58,'v':2.956974},{'d':'2026-11-05','s':58,'v':4.296388},{'d':'2026-11-06','s':58,'v':3.47456},{'d':'2026-11-07','s':58,'v':3.303054},{'d':'2026-11-08','s':58,'v':4.244762},{'d':'2026-11-09','s':58,'v':4.20465},{'d':'2026-11-10','s':58,'v':4.911549},{'d':'2026-11-11','s':58,'v':4.474273},{'d':'2026-11-12','s':58,'v':5.359435},{'d':'2026-11-13','s':58,'v':5.654612},{'d':'2026-11-14','s':58,'v':4.398513},{'d':'2026-11-15','s':58,'v':5.540155},{'d':'2026-11-16','s':58,'v':6.354441},{'d':'2026-11-17','s':58,'v':6.127137},{'d':'2026-11-18','s':58,'v':6.134153},{'d':'2026-11-19','s':58,'v':3.964491},{'d':'2026-11-20','s':58,'v':2.884902},{'d':'2026-11-21','s':58,'v':3.720953},{'d':'2026-11-01','s':64,'v':0.428338},{'d':'2026-11-02','s':64,'v':0.384338},{'d':'2026-11-03','s':64,'v':0.381318},{'d':'2026-11-04','s':64,'v':0.386818},{'d':'2026-11-05','s':64,'v':0.288838},{'d':'2026-11-06','s':64,'v':0.279838},{'d':'2026-11-07','s':64,'v':0.285338},{'d':'2026-11-08','s':64,'v':0.261338},{'d':'2026-11-09','s':64,'v':0.225818},{'d':'2026-11-10','s':64,'v':0.349778},{'d':'2026-11-11','s':64,'v':0.325538},{'d':'2026-11-12','s':64,'v':0.1757},{'d':'2026-11-13','s':64,'v':0.588907},{'d':'2026-11-14','s':64,'v':0.247968},{'d':'2026-11-15','s':64,'v':0.647668},{'d':'2026-11-16','s':64,'v':0.691728},{'d':'2026-11-17','s':64,'v':1.003718},{'d':'2026-11-18','s':64,'v':0.521718},{'d':'2026-11-19','s':64,'v':0.5047},{'d':'2026-11-20','s':64,'v':0.417807},{'d':'2026-11-21','s':64,'v':0.169838},{'d':'2026-11-01','s':69,'v':1.299375},{'d':'2026-11-02','s':69,'v':1.016707},{'d':'2026-11-03','s':69,'v':0.76906},{'d':'2026-11-04','s':69,'v':1.111675},{'d':'2026-11-05','s':69,'v':1.359074},{'d':'2026-11-06','s':69,'v':1.691472},{'d':'2026-11-07','s':69,'v':1.348974},{'d':'2026-11-08','s':69,'v':1.151501},{'d':'2026-11-09','s':69,'v':0.87342},{'d':'2026-11-10','s':69,'v':0.976081},{'d':'2026-11-11','s':69,'v':1.306312},{'d':'2026-11-12','s':69,'v':1.547262},{'d':'2026-11-13','s':69,'v':1.089924},{'d':'2026-11-14','s':69,'v':1.330351},{'d':'2026-11-15','s':69,'v':1.746186},{'d':'2026-11-16','s':69,'v':1.762426},{'d':'2026-11-17','s':69,'v':1.055397},{'d':'2026-11-18','s':69,'v':1.405584},{'d':'2026-11-19','s':69,'v':1.332711},{'d':'2026-11-20','s':69,'v':0.617148},{'d':'2026-11-21','s':69,'v':0.898219},{'d':'2026-11-02','s':72,'v':0.050806},{'d':'2026-11-01','s':77,'v':3.450143},{'d':'2026-11-04','s':77,'v':0.579118},{'d':'2026-11-05','s':77,'v':0.855677},{'d':'2026-11-08','s':77,'v':2.15491},{'d':'2026-11-10','s':77,'v':1.415698},{'d':'2026-11-11','s':77,'v':0.048724},{'d':'2026-11-15','s':77,'v':2.076083},{'d':'2026-11-16','s':77,'v':1.164967},{'d':'2026-11-18','s':77,'v':1.382214},{'d':'2026-11-19','s':77,'v':0.353189},{'d':'2026-11-01','s':79,'v':0.179756},{'d':'2026-11-03','s':79,'v':0.359513},{'d':'2026-11-04','s':79,'v':0.223146},{'d':'2026-11-05','s':79,'v':0.179756},{'d':'2026-11-06','s':79,'v':0.179756},{'d':'2026-11-07','s':79,'v':0.179756},{'d':'2026-11-08','s':79,'v':0.179756},{'d':'2026-11-09','s':79,'v':0.179756},{'d':'2026-11-10','s':79,'v':0.179756},{'d':'2026-11-11','s':79,'v':0.179756},{'d':'2026-11-13','s':79,'v':0.359513},{'d':'2026-11-14','s':79,'v':0.179756},{'d':'2026-11-15','s':79,'v':0.179756},{'d':'2026-11-16','s':79,'v':0.179756},{'d':'2026-11-17','s':79,'v':0.179756},{'d':'2026-11-18','s':79,'v':0.179756},{'d':'2026-11-20','s':79,'v':0.359513},{'d':'2026-11-21','s':79,'v':0.179756},{'d':'2026-11-01','s':80,'v':0.035218},{'d':'2026-11-02','s':80,'v':0.073523},{'d':'2026-11-03','s':80,'v':0.044204},{'d':'2026-11-04','s':80,'v':0.052772},{'d':'2026-11-06','s':80,'v':0.09216},{'d':'2026-11-07','s':80,'v':0.077442},{'d':'2026-11-08','s':80,'v':0.045664},{'d':'2026-11-09','s':80,'v':0.048122},{'d':'2026-11-10','s':80,'v':0.047098},{'d':'2026-11-11','s':80,'v':0.047098},{'d':'2026-11-13','s':80,'v':0.119835},{'d':'2026-11-14','s':80,'v':0.064777},{'d':'2026-11-15','s':80,'v':0.04826},{'d':'2026-11-16','s':80,'v':0.047122},{'d':'2026-11-17','s':80,'v':0.03562},{'d':'2026-11-18','s':80,'v':0.028532},{'d':'2026-11-20','s':80,'v':0.095513},{'d':'2026-11-21','s':80,'v':2.9e-05},{'d':'2026-11-01','s':81,'v':0.148764},{'d':'2026-11-02','s':81,'v':0.148764},{'d':'2026-11-03','s':81,'v':0.148764},{'d':'2026-11-04','s':81,'v':0.148764},{'d':'2026-11-05','s':81,'v':0.148764},{'d':'2026-11-06','s':81,'v':0.148764},{'d':'2026-11-07','s':81,'v':0.148764},{'d':'2026-11-08','s':81,'v':0.148764},{'d':'2026-11-09','s':81,'v':0.148764},{'d':'2026-11-10','s':81,'v':0.148764},{'d':'2026-11-11','s':81,'v':0.148764},{'d':'2026-11-13','s':81,'v':0.297528},{'d':'2026-11-14','s':81,'v':0.148764},{'d':'2026-11-15','s':81,'v':0.148764},{'d':'2026-11-16','s':81,'v':0.148764},{'d':'2026-11-17','s':81,'v':0.148764},{'d':'2026-11-18','s':81,'v':0.148764},{'d':'2026-11-20','s':81,'v':0.297528},{'d':'2026-11-21','s':81,'v':0.148764},{'d':'2026-11-02','s':82,'v':0.0005},{'d':'2026-11-03','s':82,'v':0.01},{'d':'2026-11-04','s':82,'v':0.3015},{'d':'2026-11-05','s':82,'v':0.003228},{'d':'2026-11-09','s':82,'v':0.01396},{'d':'2026-11-10','s':82,'v':0.002857},{'d':'2026-11-11','s':82,'v':0.035},{'d':'2026-11-12','s':82,'v':0.0006},{'d':'2026-11-15','s':82,'v':0.668},{'d':'2026-11-16','s':82,'v':0.006666},{'d':'2026-11-17','s':82,'v':0.032273},{'d':'2026-11-18','s':82,'v':0.052975},{'d':'2026-11-19','s':82,'v':0.004979},{'d':'2026-11-02','s':83,'v':0.119025},{'d':'2026-11-18','s':83,'v':0.047495},{'d':'2026-11-02','s':84,'v':0.005675},{'d':'2026-11-05','s':84,'v':0.0078},{'d':'2026-11-08','s':84,'v':0.00867},{'d':'2026-11-10','s':84,'v':0.0065},{'d':'2026-11-11','s':84,'v':0.0954},{'d':'2026-11-12','s':84,'v':0.001},{'d':'2026-11-18','s':84,'v':0.0075},{'d':'2026-11-01','s':86,'v':4.455144},{'d':'2026-11-02','s':86,'v':0.816945},{'d':'2026-11-03','s':86,'v':0.895086},{'d':'2026-11-04','s':86,'v':1.508778},{'d':'2026-11-05','s':86,'v':2.123421},{'d':'2026-11-06','s':86,'v':0.431547},{'d':'2026-11-07','s':86,'v':1.569938},{'d':'2026-11-08','s':86,'v':1.202124},{'d':'2026-11-09','s':86,'v':1.094639},{'d':'2026-11-10','s':86,'v':0.934712},{'d':'2026-11-11','s':86,'v':2.301592},{'d':'2026-11-12','s':86,'v':0.863061},{'d':'2026-11-13','s':86,'v':1.34335},{'d':'2026-11-14','s':86,'v':1.685754},{'d':'2026-11-15','s':86,'v':1.420086},{'d':'2026-11-16','s':86,'v':0.858033},{'d':'2026-11-17','s':86,'v':1.150237},{'d':'2026-11-18','s':86,'v':0.614626},{'d':'2026-11-19','s':86,'v':2.144934},{'d':'2026-11-20','s':86,'v':1.54966},{'d':'2026-11-21','s':86,'v':0.813804},{'d':'2026-11-02','s':87,'v':0.161478},{'d':'2026-11-03','s':87,'v':0.026427},{'d':'2026-11-04','s':87,'v':0.547302},{'d':'2026-11-05','s':87,'v':0.204875},{'d':'2026-11-06','s':87,'v':0.105671},{'d':'2026-11-07','s':87,'v':0.27986},{'d':'2026-11-08','s':87,'v':0.08526},{'d':'2026-11-09','s':87,'v':0.281881},{'d':'2026-11-10','s':87,'v':0.008872},{'d':'2026-11-11','s':87,'v':0.646858},{'d':'2026-11-12','s':87,'v':0.19856},{'d':'2026-11-14','s':87,'v':0.279727},{'d':'2026-11-15','s':87,'v':0.182848},{'d':'2026-11-16','s':87,'v':0.016619},{'d':'2026-11-17','s':87,'v':0.194925},{'d':'2026-11-18','s':87,'v':0.099943},{'d':'2026-11-19','s':87,'v':0.362319},{'d':'2026-11-01','s':88,'v':0.117771},{'d':'2026-11-02','s':88,'v':0.117771},{'d':'2026-11-03','s':88,'v':0.117771},{'d':'2026-11-04','s':88,'v':0.117771},{'d':'2026-11-05','s':88,'v':0.249771},{'d':'2026-11-06','s':88,'v':0.117771},{'d':'2026-11-07','s':88,'v':0.117771},{'d':'2026-11-08','s':88,'v':0.117771},{'d':'2026-11-09','s':88,'v':0.117771},{'d':'2026-11-10','s':88,'v':0.117771},{'d':'2026-11-11','s':88,'v':0.117771},{'d':'2026-11-13','s':88,'v':0.423823},{'d':'2026-11-14','s':88,'v':0.117771},{'d':'2026-11-15','s':88,'v':0.389171},{'d':'2026-11-16','s':88,'v':0.259371},{'d':'2026-11-17','s':88,'v':0.117771},{'d':'2026-11-18','s':88,'v':0.117771},{'d':'2026-11-20','s':88,'v':0.235543},{'d':'2026-11-21','s':88,'v':0.117771},{'d':'2026-11-01','s':91,'v':0.220104},{'d':'2026-11-03','s':91,'v':0.08164},{'d':'2026-11-04','s':91,'v':0.909818},{'d':'2026-11-05','s':91,'v':0.395338},{'d':'2026-11-06','s':91,'v':0.24492},{'d':'2026-11-08','s':91,'v':0.159211},{'d':'2026-11-09','s':91,'v':1.267504},{'d':'2026-11-10','s':91,'v':1.969143},{'d':'2026-11-11','s':91,'v':1.490834},{'d':'2026-11-12','s':91,'v':2.403301},{'d':'2026-11-13','s':91,'v':0.916608},{'d':'2026-11-14','s':91,'v':0.619829},{'d':'2026-11-15','s':91,'v':0.719376},{'d':'2026-11-16','s':91,'v':2.320957},{'d':'2026-11-17','s':91,'v':1.334561},{'d':'2026-11-18','s':91,'v':2.141752},{'d':'2026-11-19','s':91,'v':0.224395},{'d':'2026-11-21','s':91,'v':0.782856},{'d':'2026-11-01','s':98,'v':0.178392},{'d':'2026-11-02','s':98,'v':0.102068},{'d':'2026-11-03','s':98,'v':0.281934},{'d':'2026-11-04','s':98,'v':0.236583},{'d':'2026-11-05','s':98,'v':0.374663},{'d':'2026-11-08','s':98,'v':0.122454},{'d':'2026-11-09','s':98,'v':0.050664},{'d':'2026-11-10','s':98,'v':0.111328},{'d':'2026-11-12','s':98,'v':0.026882},{'d':'2026-11-14','s':98,'v':0.200768},{'d':'2026-11-15','s':98,'v':0.132957},{'d':'2026-11-16','s':98,'v':0.075539},{'d':'2026-11-17','s':98,'v':0.095901},{'d':'2026-11-18','s':98,'v':0.115916},{'d':'2026-11-19','s':98,'v':0.115139},{'d':'2026-11-21','s':98,'v':0.006448},{'d':'2026-11-04','s':99,'v':0.025885},{'d':'2026-11-05','s':99,'v':0.044007},{'d':'2026-11-09','s':99,'v':7.2e-05},{'d':'2026-11-10','s':99,'v':8.518237},{'d':'2026-11-11','s':99,'v':0.273931},{'d':'2026-11-12','s':99,'v':0.12426},{'d':'2026-11-14','s':99,'v':0.122337},{'d':'2026-11-15','s':99,'v':0.099553},{'d':'2026-11-16','s':99,'v':0.000349},{'d':'2026-11-18','s':99,'v':0.004176},{'d':'2026-11-01','s':102,'v':0.631826},{'d':'2026-11-02','s':102,'v':2.744041},{'d':'2026-11-03','s':102,'v':3.567748},{'d':'2026-11-04','s':102,'v':3.268793},{'d':'2026-11-05','s':102,'v':4.102381},{'d':'2026-11-06','s':102,'v':3.677472},{'d':'2026-11-07','s':102,'v':1.507268},{'d':'2026-11-08','s':102,'v':1.713475},{'d':'2026-11-09','s':102,'v':4.299373},{'d':'2026-11-10','s':102,'v':4.616919},{'d':'2026-11-11','s':102,'v':5.50249},{'d':'2026-11-12','s':102,'v':4.123954},{'d':'2026-11-13','s':102,'v':3.09235},{'d':'2026-11-14','s':102,'v':2.07786},{'d':'2026-11-15','s':102,'v':1.953624},{'d':'2026-11-16','s':102,'v':3.632725},{'d':'2026-11-17','s':102,'v':3.569214},{'d':'2026-11-18','s':102,'v':3.347365},{'d':'2026-11-19','s':102,'v':3.060795},{'d':'2026-11-20','s':102,'v':4.64876},{'d':'2026-11-21','s':102,'v':3.176503},{'d':'2026-11-02','s':103,'v':0.056881},{'d':'2026-11-03','s':103,'v':0.084666},{'d':'2026-11-04','s':103,'v':0.20821},{'d':'2026-11-08','s':103,'v':0.178753},{'d':'2026-11-09','s':103,'v':0.011304},{'d':'2026-11-10','s':103,'v':0.237699},{'d':'2026-11-11','s':103,'v':-0.00036},{'d':'2026-11-12','s':103,'v':0.202761},{'d':'2026-11-15','s':103,'v':0.003677},{'d':'2026-11-16','s':103,'v':0.506099},{'d':'2026-11-17','s':103,'v':0.460513},{'d':'2026-11-18','s':103,'v':0.107424},{'d':'2026-11-19','s':103,'v':0.200668},{'d':'2026-11-21','s':103,'v':0.658286},{'d':'2026-11-01','s':109,'v':3.339438},{'d':'2026-11-02','s':109,'v':3.676223},{'d':'2026-11-03','s':109,'v':4.326254},{'d':'2026-11-04','s':109,'v':3.017055},{'d':'2026-11-05','s':109,'v':4.533986},{'d':'2026-11-06','s':109,'v':0.548047},{'d':'2026-11-07','s':109,'v':3.262869},{'d':'2026-11-08','s':109,'v':5.468251},{'d':'2026-11-09','s':109,'v':4.646241},{'d':'2026-11-10','s':109,'v':4.180397},{'d':'2026-11-11','s':109,'v':3.615413},{'d':'2026-11-12','s':109,'v':6.168785},{'d':'2026-11-13','s':109,'v':0.602604},{'d':'2026-11-14','s':109,'v':3.421838},{'d':'2026-11-15','s':109,'v':6.262946},{'d':'2026-11-16','s':109,'v':3.658929},{'d':'2026-11-17','s':109,'v':4.512967},{'d':'2026-11-18','s':109,'v':3.858822},{'d':'2026-11-19','s':109,'v':4.429582},{'d':'2026-11-20','s':109,'v':0.760476},{'d':'2026-11-21','s':109,'v':2.752843},{'d':'2026-11-01','s':110,'v':0.012888},{'d':'2026-11-02','s':110,'v':0.017942},{'d':'2026-11-03','s':110,'v':0.012888},{'d':'2026-11-04','s':110,'v':0.012888},{'d':'2026-11-06','s':110,'v':0.025777},{'d':'2026-11-07','s':110,'v':0.012888},{'d':'2026-11-08','s':110,'v':0.012888},{'d':'2026-11-09','s':110,'v':0.012888},{'d':'2026-11-10','s':110,'v':0.076386},{'d':'2026-11-11','s':110,'v':0.076815},{'d':'2026-11-13','s':110,'v':0.023562},{'d':'2026-11-14','s':110,'v':0.011781},{'d':'2026-11-15','s':110,'v':0.011781},{'d':'2026-11-16','s':110,'v':0.011781},{'d':'2026-11-17','s':110,'v':0.011781},{'d':'2026-11-18','s':110,'v':0.011781},{'d':'2026-11-20','s':110,'v':0.023562},{'d':'2026-11-02','s':114,'v':0.589278},{'d':'2026-11-03','s':114,'v':1.399349},{'d':'2026-11-04','s':114,'v':0.739272},{'d':'2026-11-05','s':114,'v':0.809689},{'d':'2026-11-07','s':114,'v':0.731137},{'d':'2026-11-08','s':114,'v':0.335434},{'d':'2026-11-09','s':114,'v':0.794704},{'d':'2026-11-10','s':114,'v':0.616467},{'d':'2026-11-11','s':114,'v':0.948444},{'d':'2026-11-12','s':114,'v':0.820125},{'d':'2026-11-13','s':114,'v':0.077426},{'d':'2026-11-14','s':114,'v':1.10566},{'d':'2026-11-15','s':114,'v':0.56741},{'d':'2026-11-16','s':114,'v':1.147584},{'d':'2026-11-17','s':114,'v':0.576417},{'d':'2026-11-18','s':114,'v':1.436495},{'d':'2026-11-19','s':114,'v':0.964424},{'d':'2026-11-20','s':114,'v':1.007234},{'d':'2026-11-21','s':114,'v':0.494288},{'d':'2026-11-01','s':115,'v':0.07592},{'d':'2026-11-03','s':115,'v':0.0272},{'d':'2026-11-04','s':115,'v':0.04324},{'d':'2026-11-05','s':115,'v':0.05392},{'d':'2026-11-07','s':115,'v':0.04658},{'d':'2026-11-08','s':115,'v':0.27778},{'d':'2026-11-09','s':115,'v':0.22585},{'d':'2026-11-10','s':115,'v':0.08204},{'d':'2026-11-11','s':115,'v':0.17438},{'d':'2026-11-12','s':115,'v':0.43423},{'d':'2026-11-14','s':115,'v':0.08098},{'d':'2026-11-15','s':115,'v':0.09716},{'d':'2026-11-17','s':115,'v':0.3804},{'d':'2026-11-18','s':115,'v':0.37891},{'d':'2026-11-19','s':115,'v':0.14509},{'d':'2026-11-21','s':115,'v':0.0986},{'d':'2026-11-01','s':116,'v':0.328848},{'d':'2026-11-02','s':116,'v':0.308306},{'d':'2026-11-03','s':116,'v':0.309981},{'d':'2026-11-04','s':116,'v':0.323876},{'d':'2026-11-05','s':116,'v':0.316185},{'d':'2026-11-06','s':116,'v':0.249033},{'d':'2026-11-07','s':116,'v':0.305679},{'d':'2026-11-08','s':116,'v':0.304212},{'d':'2026-11-09','s':116,'v':0.278313},{'d':'2026-11-10','s':116,'v':0.299879},{'d':'2026-11-11','s':116,'v':0.296903},{'d':'2026-11-12','s':116,'v':0.299593},{'d':'2026-11-13','s':116,'v':0.243387},{'d':'2026-11-14','s':116,'v':0.311638},{'d':'2026-11-15','s':116,'v':0.286164},{'d':'2026-11-16','s':116,'v':0.284592},{'d':'2026-11-17','s':116,'v':0.275047},{'d':'2026-11-18','s':116,'v':0.271581},{'d':'2026-11-19','s':116,'v':0.24127},{'d':'2026-11-20','s':116,'v':0.205826},{'d':'2026-11-21','s':116,'v':0.285499},{'d':'2026-11-02','s':118,'v':0.000768},{'d':'2026-11-03','s':118,'v':3.4e-05},{'d':'2026-11-04','s':118,'v':0.000929},{'d':'2026-11-05','s':118,'v':0.000173},{'d':'2026-11-08','s':118,'v':0.000102},{'d':'2026-11-09','s':118,'v':0.000348},{'d':'2026-11-11','s':118,'v':9.8e-05},{'d':'2026-11-15','s':118,'v':0.103147},{'d':'2026-11-17','s':118,'v':0.007516},{'d':'2026-11-18','s':118,'v':0.005072},{'d':'2026-11-19','s':118,'v':0.006171},{'d':'2026-11-04','s':120,'v':0.0093},{'d':'2026-11-07','s':120,'v':0.0217},{'d':'2026-11-12','s':120,'v':0.0062},{'d':'2026-11-15','s':120,'v':0.103461},{'d':'2026-11-21','s':120,'v':0.1709},{'d':'2026-11-01','s':122,'v':-0.017582},{'d':'2026-11-02','s':122,'v':0.003876},{'d':'2026-11-03','s':122,'v':0.008847},{'d':'2026-11-04','s':122,'v':0.006671},{'d':'2026-11-05','s':122,'v':0.011893},{'d':'2026-11-06','s':122,'v':0.001456},{'d':'2026-11-07','s':122,'v':0.002132},{'d':'2026-11-08','s':122,'v':0.002502},{'d':'2026-11-09','s':122,'v':0.011167},{'d':'2026-11-10','s':122,'v':0.012238},{'d':'2026-11-11','s':122,'v':0.011331},{'d':'2026-11-12','s':122,'v':0.004036},{'d':'2026-11-13','s':122,'v':0.00101},{'d':'2026-11-14','s':122,'v':0.001249},{'d':'2026-11-15','s':122,'v':0.00621},{'d':'2026-11-16','s':122,'v':0.005459},{'d':'2026-11-17','s':122,'v':0.003447},{'d':'2026-11-18','s':122,'v':0.005881},{'d':'2026-11-19','s':122,'v':0.004247},{'d':'2026-11-20','s':122,'v':0.003418},{'d':'2026-11-21','s':122,'v':0.00072},{'d':'2026-11-04','s':123,'v':0.007027},{'d':'2026-11-01','s':124,'v':0.120904},{'d':'2026-11-03','s':124,'v':0.113536},{'d':'2026-11-05','s':124,'v':0.244116},{'d':'2026-11-09','s':124,'v':0.24218},{'d':'2026-11-11','s':124,'v':0.130264},{'d':'2026-11-12','s':124,'v':0.1033},{'d':'2026-11-15','s':124,'v':0.11962},{'d':'2026-11-16','s':124,'v':0.102354},{'d':'2026-11-19','s':124,'v':0.113892},{'d':'2026-11-20','s':124,'v':0.08778},{'d':'2026-11-01','s':126,'v':0.02655},{'d':'2026-11-02','s':126,'v':0.023467},{'d':'2026-11-03','s':126,'v':0.02827},{'d':'2026-11-04','s':126,'v':0.041861},{'d':'2026-11-05','s':126,'v':0.0127},{'d':'2026-11-06','s':126,'v':0.0107},{'d':'2026-11-07','s':126,'v':0.04035},{'d':'2026-11-08','s':126,'v':0.072799},{'d':'2026-11-09','s':126,'v':0.0534},{'d':'2026-11-10','s':126,'v':0.02235},{'d':'2026-11-11','s':126,'v':0.0584},{'d':'2026-11-12','s':126,'v':0.09579},{'d':'2026-11-13','s':126,'v':0.0328},{'d':'2026-11-14','s':126,'v':0.00245},{'d':'2026-11-15','s':126,'v':0.0154},{'d':'2026-11-16','s':126,'v':0.04575},{'d':'2026-11-17','s':126,'v':0.0368},{'d':'2026-11-18','s':126,'v':0.06515},{'d':'2026-11-19','s':126,'v':0.00715},{'d':'2026-11-20','s':126,'v':0.02075},{'d':'2026-11-21','s':126,'v':0.01158},{'d':'2026-11-07','s':128,'v':0.142608},{'d':'2026-11-12','s':128,'v':0.268834},{'d':'2026-11-19','s':128,'v':1.129974},{'d':'2026-11-21','s':128,'v':0.214153},{'d':'2026-11-02','s':129,'v':0.023528},{'d':'2026-11-19','s':129,'v':0.01105},{'d':'2026-11-01','s':132,'v':0.017466},{'d':'2026-11-02','s':132,'v':0.037693},{'d':'2026-11-03','s':132,'v':0.015633},{'d':'2026-11-04','s':132,'v':0.014219},{'d':'2026-11-05','s':132,'v':0.017548}];
-const TD_BDT={19:{'2026-11-01':3324500.0,'2026-11-02':1507240.0,'2026-11-04':922875.0,'2026-11-06':7256672.0,'2026-11-07':3534600.0,'2026-11-09':3117500.0,'2026-11-10':6555049.0,'2026-11-11':1944100.0,'2026-11-12':9200623.8,'2026-11-13':5350836.0,'2026-11-14':1373100.0,'2026-11-15':5881890.0,'2026-11-16':14016250.0,'2026-11-17':5141965.4,'2026-11-18':14431700.0,'2026-11-19':4237800.0,'2026-11-20':816216.0,'2026-11-21':6737070.0},36:{'2026-11-01':66722516.4,'2026-11-02':49971177.2,'2026-11-03':53826443.2,'2026-11-04':49676333.5,'2026-11-05':50756680.399998,'2026-11-06':39840589.0,'2026-11-07':46811038.419997,'2026-11-08':42643845.450001,'2026-11-09':46970276.719999,'2026-11-10':40629481.86,'2026-11-11':45587998.78,'2026-11-12':56366314.500001,'2026-11-13':44220564.000001,'2026-11-14':53433897.759999,'2026-11-15':45324074.159998,'2026-11-16':44769046.977051,'2026-11-17':44710855.137541,'2026-11-18':52542617.792003,'2026-11-19':53679448.4,'2026-11-20':38822057.0,'2026-11-21':50689540.618162},58:{'2026-11-01':15138763.75,'2026-11-02':16547215.75,'2026-11-03':20914047.0,'2026-11-04':29569744.75,'2026-11-05':42963881.75,'2026-11-06':34745602.5,'2026-11-07':33030541.25,'2026-11-08':42447621.75,'2026-11-09':42046507.25,'2026-11-10':49115497.25,'2026-11-11':44742736.5,'2026-11-12':53594351.5,'2026-11-13':56546128.5,'2026-11-14':43985138.75,'2026-11-15':55401552.25,'2026-11-16':63544413.0,'2026-11-17':61271379.5,'2026-11-18':61341530.0,'2026-11-19':39644918.25,'2026-11-20':28849027.0,'2026-11-21':37209534.0},64:{'2026-11-01':4283389.0,'2026-11-02':3843389.0,'2026-11-03':3813183.0,'2026-11-04':3868183.0,'2026-11-05':2888389.0,'2026-11-06':2798389.0,'2026-11-07':2853389.0,'2026-11-08':2613389.0,'2026-11-09':2258189.0,'2026-11-10':3497789.0,'2026-11-11':3255389.0,'2026-11-12':1757000.0,'2026-11-13':5889078.0,'2026-11-14':2479689.0,'2026-11-15':6476689.0,'2026-11-16':6917289.0,'2026-11-17':10037189.0,'2026-11-18':5217189.0,'2026-11-19':5047000.0,'2026-11-20':4178078.0,'2026-11-21':1698389.0},69:{'2026-11-01':12993751.27,'2026-11-02':10167072.22,'2026-11-03':7690608.32215,'2026-11-04':11116757.98,'2026-11-05':13590744.0,'2026-11-06':16914720.85,'2026-11-07':13489744.27,'2026-11-08':11515012.24,'2026-11-09':8734209.95,'2026-11-10':9760813.5167,'2026-11-11':13063121.68,'2026-11-12':15472623.91,'2026-11-13':10899247.88,'2026-11-14':13303513.95,'2026-11-15':17461861.911,'2026-11-16':17624260.17,'2026-11-17':10553974.39,'2026-11-18':14055843.62,'2026-11-19':13327118.45,'2026-11-20':6171482.87,'2026-11-21':8982195.24},72:{'2026-11-02':508067.0},77:{'2026-11-01':34501432.822,'2026-11-04':5791181.11,'2026-11-05':8556772.53,'2026-11-08':21549104.5255,'2026-11-10':14156988.116,'2026-11-11':487248.07,'2026-11-15':20760831.456,'2026-11-16':11649672.236,'2026-11-18':13822143.689,'2026-11-19':3531890.064},79:{'2026-11-01':1797565.0,'2026-11-03':3595130.0,'2026-11-04':2231460.0,'2026-11-05':1797565.0,'2026-11-06':1797565.0,'2026-11-07':1797565.0,'2026-11-08':1797565.0,'2026-11-09':1797565.0,'2026-11-10':1797565.0,'2026-11-11':1797565.0,'2026-11-13':3595130.0,'2026-11-14':1797565.0,'2026-11-15':1797565.0,'2026-11-16':1797565.0,'2026-11-17':1797565.0,'2026-11-18':1797565.0,'2026-11-20':3595130.0,'2026-11-21':1797565.0},80:{'2026-11-01':352185.2984,'2026-11-02':735239.7038,'2026-11-03':442048.5019,'2026-11-04':527725.8421,'2026-11-06':921609.2182,'2026-11-07':774422.4933,'2026-11-08':456641.3185,'2026-11-09':481221.7119,'2026-11-10':470988.5785,'2026-11-11':470988.5785,'2026-11-13':1198356.0315,'2026-11-14':647779.2035,'2026-11-15':482603.3461,'2026-11-16':471226.4214,'2026-11-17':356205.7203,'2026-11-18':285324.2719,'2026-11-20':955137.4531,'2026-11-21':297.8908},81:{'2026-11-01':1487640.0,'2026-11-02':1487640.0,'2026-11-03':1487640.0,'2026-11-04':1487640.0,'2026-11-05':1487640.0,'2026-11-06':1487640.0,'2026-11-07':1487640.0,'2026-11-08':1487640.0,'2026-11-09':1487640.0,'2026-11-10':1487640.0,'2026-11-11':1487640.0,'2026-11-13':2975280.0,'2026-11-14':1487640.0,'2026-11-15':1487640.0,'2026-11-16':1487640.0,'2026-11-17':1487640.0,'2026-11-18':1487640.0,'2026-11-20':2975280.0,'2026-11-21':1487640.0},82:{'2026-11-02':5000.0,'2026-11-03':100000.0,'2026-11-04':3015000.0,'2026-11-05':32286.0,'2026-11-09':139600.0,'2026-11-10':28571.0,'2026-11-11':350000.0,'2026-11-12':6000.0,'2026-11-15':6680000.0,'2026-11-16':66666.666667,'2026-11-17':322738.1,'2026-11-18':529751.666667,'2026-11-19':49798.0},83:{'2026-11-02':1190250.0,'2026-11-18':474956.5},84:{'2026-11-02':56750.0,'2026-11-05':78000.0,'2026-11-08':86700.0,'2026-11-10':65000.0,'2026-11-11':954000.0,'2026-11-12':10000.0,'2026-11-18':75000.0},86:{'2026-11-01':44551442.1109,'2026-11-02':8169451.164,'2026-11-03':8950861.5624,'2026-11-04':15087782.42,'2026-11-05':21234212.9,'2026-11-06':4315470.0,'2026-11-07':15699387.112,'2026-11-08':12021243.8556,'2026-11-09':10946391.9764,'2026-11-10':9347129.614,'2026-11-11':23015929.762,'2026-11-12':8630619.846,'2026-11-13':13433500.0,'2026-11-14':16857545.5316,'2026-11-15':14200861.178,'2026-11-16':8580339.614,'2026-11-17':11502379.282,'2026-11-18':6146269.3392,'2026-11-19':21449343.2,'2026-11-20':15496600.0,'2026-11-21':8138040.0},87:{'2026-11-02':1614789.6,'2026-11-03':264270.0,'2026-11-04':5473025.0,'2026-11-05':2048755.0,'2026-11-06':1056713.334,'2026-11-07':2798600.0,'2026-11-08':852605.0,'2026-11-09':2818810.0,'2026-11-10':88727.25,'2026-11-11':6468580.0,'2026-11-12':1985609.6,'2026-11-14':2797275.0,'2026-11-15':1828489.6,'2026-11-16':166195.0,'2026-11-17':1949254.6,'2026-11-18':999430.0,'2026-11-19':3623195.0},88:{'2026-11-01':1177715.0,'2026-11-02':1177715.0,'2026-11-03':1177715.0,'2026-11-04':1177715.0,'2026-11-05':2497715.0,'2026-11-06':1177715.0,'2026-11-07':1177715.0,'2026-11-08':1177715.0,'2026-11-09':1177715.0,'2026-11-10':1177715.0,'2026-11-11':1177715.0,'2026-11-13':4238230.0,'2026-11-14':1177715.0,'2026-11-15':3891715.0,'2026-11-16':2593715.0,'2026-11-17':1177715.0,'2026-11-18':1177715.0,'2026-11-20':2355430.0,'2026-11-21':1177715.0},91:{'2026-11-01':2201042.0,'2026-11-03':816400.0,'2026-11-04':9098189.5,'2026-11-05':3953382.0,'2026-11-06':2449200.0,'2026-11-08':1592118.0,'2026-11-09':12675048.5,'2026-11-10':19691430.75,'2026-11-11':14908342.25,'2026-11-12':24033016.0,'2026-11-13':9166086.75,'2026-11-14':6198298.0,'2026-11-15':7193765.0,'2026-11-16':23209574.0,'2026-11-17':13345615.0,'2026-11-18':21417528.2495,'2026-11-19':2243957.5,'2026-11-21':7828566.0},98:{'2026-11-01':1783920.0,'2026-11-02':1020688.384,'2026-11-03':2819345.32,'2026-11-04':2365832.4,'2026-11-05':3746635.0,'2026-11-08':1224546.8,'2026-11-09':506644.0,'2026-11-10':1113280.0,'2026-11-12':268820.0,'2026-11-14':2007682.8,'2026-11-15':1329570.208,'2026-11-16':755390.0,'2026-11-17':959010.0,'2026-11-18':1159168.40001,'2026-11-19':1151393.3,'2026-11-21':64480.0},99:{'2026-11-04':258854.0,'2026-11-05':440070.0,'2026-11-09':723.0,'2026-11-10':85182371.22232,'2026-11-11':2739319.0,'2026-11-12':1242600.0,'2026-11-14':1223370.0,'2026-11-15':995536.0,'2026-11-16':3497.0,'2026-11-18':41760.0},102:{'2026-11-01':6318269.99974,'2026-11-02':27440419.99995,'2026-11-03':35677489.99974,'2026-11-04':32687938.49908,'2026-11-05':41023818.0,'2026-11-06':36774725.5012,'2026-11-07':15072683.3338,'2026-11-08':17134754.99975,'2026-11-09':42993739.99985,'2026-11-10':46169194.9998,'2026-11-11':55024903.5,'2026-11-12':41239544.99991,'2026-11-13':30923508.9998,'2026-11-14':20778600.0008,'2026-11-15':19536244.9994,'2026-11-16':36327258.5005,'2026-11-17':35692140.49978,'2026-11-18':33473657.9993,'2026-11-19':30607954.4,'2026-11-20':46487609.9995,'2026-11-21':31765031.0001},103:{'2026-11-02':568815.25,'2026-11-03':846669.51,'2026-11-04':2082109.328,'2026-11-08':1787530.41,'2026-11-09':113047.92,'2026-11-10':2376990.86,'2026-11-11':-3600.0,'2026-11-12':2027617.73,'2026-11-15':36777.0,'2026-11-16':5060998.46,'2026-11-17':4605132.4,'2026-11-18':1074241.0,'2026-11-19':2006686.53,'2026-11-21':6582860.98},109:{'2026-11-01':33394386.78,'2026-11-02':36762235.32,'2026-11-03':43262544.98,'2026-11-04':30170553.88,'2026-11-05':45339863.98,'2026-11-06':5480471.65,'2026-11-07':32628697.09,'2026-11-08':54682515.89,'2026-11-09':46462411.13,'2026-11-10':41803978.36,'2026-11-11':36154132.88,'2026-11-12':61687859.88,'2026-11-13':6026044.71,'2026-11-14':34218387.46,'2026-11-15':62629466.44,'2026-11-16':36589292.9,'2026-11-17':45129676.73,'2026-11-18':38588221.9,'2026-11-19':44295826.97,'2026-11-20':7604761.46,'2026-11-21':27528439.14},110:{'2026-11-01':128887.7415,'2026-11-02':179427.1015,'2026-11-03':128887.7415,'2026-11-04':128887.7415,'2026-11-06':257775.5195,'2026-11-07':128887.7554,'2026-11-08':128887.7415,'2026-11-09':128887.7415,'2026-11-10':763860.32,'2026-11-11':768151.32,'2026-11-13':235620.64,'2026-11-14':117810.32,'2026-11-15':117810.32,'2026-11-16':117810.32,'2026-11-17':117810.32,'2026-11-18':117810.32,'2026-11-20':235620.64},114:{'2026-11-02':5892786.01,'2026-11-03':13993499.34,'2026-11-04':7392720.33,'2026-11-05':8096890.82,'2026-11-07':7311372.58,'2026-11-08':3354344.22,'2026-11-09':7947046.2,'2026-11-10':6164678.18,'2026-11-11':9484440.46,'2026-11-12':8201255.64,'2026-11-13':774264.86,'2026-11-14':11056605.13,'2026-11-15':5674106.82,'2026-11-16':11475847.58,'2026-11-17':5764174.34,'2026-11-18':14364958.14,'2026-11-19':9644247.44,'2026-11-20':10072348.74,'2026-11-21':4942885.54},115:{'2026-11-01':759200.0,'2026-11-03':272000.0,'2026-11-04':432400.0,'2026-11-05':539200.0,'2026-11-07':465800.0,'2026-11-08':2777800.0,'2026-11-09':2258500.0,'2026-11-10':820400.0,'2026-11-11':1743800.0,'2026-11-12':4342300.0,'2026-11-14':809800.0,'2026-11-15':971600.0,'2026-11-17':3804000.0,'2026-11-18':3789100.0,'2026-11-19':1450900.0,'2026-11-21':986000.0},116:{'2026-11-01':3288480.34,'2026-11-02':3083060.76,'2026-11-03':3099817.27,'2026-11-04':3238766.96,'2026-11-05':3161856.39,'2026-11-06':2490330.62,'2026-11-07':3056797.53,'2026-11-08':3042129.87,'2026-11-09':2783130.63,'2026-11-10':2998791.5,'2026-11-11':2969033.84,'2026-11-12':2995936.44,'2026-11-13':2433876.16,'2026-11-14':3116380.39,'2026-11-15':2861647.27,'2026-11-16':2845925.13,'2026-11-17':2750471.92,'2026-11-18':2715810.48,'2026-11-19':2412701.75,'2026-11-20':2058264.7,'2026-11-21':2854996.64},118:{'2026-11-02':7680.0,'2026-11-03':349.0,'2026-11-04':9298.0,'2026-11-05':1730.0,'2026-11-08':1024.0,'2026-11-09':3480.0,'2026-11-11':986.0,'2026-11-15':1031471.0,'2026-11-17':75168.0,'2026-11-18':50725.0,'2026-11-19':61712.0},120:{'2026-11-04':93000.0,'2026-11-07':217000.0,'2026-11-12':62000.0,'2026-11-15':1034610.0,'2026-11-21':1709000.0},122:{'2026-11-01':-175828.07,'2026-11-02':38762.2548,'2026-11-03':88475.387,'2026-11-04':66710.9858,'2026-11-05':118938.5148,'2026-11-06':14562.4796,'2026-11-07':21320.205,'2026-11-08':25025.689,'2026-11-09':111677.273,'2026-11-10':122384.235,'2026-11-11':113313.846,'2026-11-12':40369.035,'2026-11-13':10103.9,'2026-11-14':12493.661,'2026-11-15':62100.07,'2026-11-16':54594.2364,'2026-11-17':34470.149,'2026-11-18':58819.2574,'2026-11-19':42474.73,'2026-11-20':34182.7,'2026-11-21':7208.2},123:{'2026-11-04':70270.0},124:{'2026-11-01':1209040.0,'2026-11-03':1135360.0,'2026-11-05':2441160.0,'2026-11-09':2421800.0,'2026-11-11':1302640.0,'2026-11-12':1033000.0,'2026-11-15':1196200.0,'2026-11-16':1023540.0,'2026-11-19':1138920.0,'2026-11-20':877800.0},126:{'2026-11-01':265500.0,'2026-11-02':234676.0,'2026-11-03':282700.0,'2026-11-04':418610.0,'2026-11-05':127000.0,'2026-11-06':107000.0,'2026-11-07':403500.0,'2026-11-08':727990.0,'2026-11-09':534000.0,'2026-11-10':223500.0,'2026-11-11':584000.0,'2026-11-12':957900.0,'2026-11-13':328000.0,'2026-11-14':24500.0,'2026-11-15':154000.0,'2026-11-16':457500.0,'2026-11-17':368000.0,'2026-11-18':651500.0,'2026-11-19':71500.0,'2026-11-20':207500.0,'2026-11-21':115800.0},128:{'2026-11-07':1426086.0,'2026-11-12':2688347.0,'2026-11-19':11299744.0,'2026-11-21':2141530.0},129:{'2026-11-02':235284.0,'2026-11-19':110500.0},132:{'2026-11-01':174665.0,'2026-11-02':376939.0,'2026-11-03':156330.0,'2026-11-04':142190.0,'2026-11-05':175485.0}};
-const ORD_TD=[{'d':'2026-11-02','s':19,'c':2},{'d':'2026-11-03','s':19,'c':1},{'d':'2026-11-04','s':19,'c':1},{'d':'2026-11-05','s':19,'c':14},{'d':'2026-11-09','s':19,'c':4},{'d':'2026-11-10','s':19,'c':1},{'d':'2026-11-11','s':19,'c':2},{'d':'2026-11-12','s':19,'c':3},{'d':'2026-11-15','s':19,'c':8},{'d':'2026-11-17','s':19,'c':8},{'d':'2026-11-19','s':19,'c':2},{'d':'2026-11-01','s':36,'c':99},{'d':'2026-11-02','s':36,'c':115},{'d':'2026-11-03','s':36,'c':119},{'d':'2026-11-04','s':36,'c':129},{'d':'2026-11-05','s':36,'c':145},{'d':'2026-11-06','s':36,'c':23},{'d':'2026-11-07','s':36,'c':56},{'d':'2026-11-08','s':36,'c':120},{'d':'2026-11-09','s':36,'c':103},{'d':'2026-11-10','s':36,'c':106},{'d':'2026-11-11','s':36,'c':86},{'d':'2026-11-12','s':36,'c':167},{'d':'2026-11-13','s':36,'c':17},{'d':'2026-11-14','s':36,'c':68},{'d':'2026-11-15','s':36,'c':107},{'d':'2026-11-16','s':36,'c':100},{'d':'2026-11-17','s':36,'c':94},{'d':'2026-11-18','s':36,'c':91},{'d':'2026-11-19','s':36,'c':148},{'d':'2026-11-20','s':36,'c':13},{'d':'2026-11-21','s':36,'c':52},{'d':'2026-11-01','s':58,'c':96},{'d':'2026-11-02','s':58,'c':157},{'d':'2026-11-03','s':58,'c':394},{'d':'2026-11-04','s':58,'c':666},{'d':'2026-11-05','s':58,'c':984},{'d':'2026-11-06','s':58,'c':54},{'d':'2026-11-07','s':58,'c':93},{'d':'2026-11-08','s':58,'c':362},{'d':'2026-11-09','s':58,'c':268},{'d':'2026-11-10','s':58,'c':302},{'d':'2026-11-11','s':58,'c':347},{'d':'2026-11-12','s':58,'c':854},{'d':'2026-11-13','s':58,'c':143},{'d':'2026-11-14','s':58,'c':221},{'d':'2026-11-15','s':58,'c':826},{'d':'2026-11-16','s':58,'c':434},{'d':'2026-11-17','s':58,'c':630},{'d':'2026-11-18','s':58,'c':663},{'d':'2026-11-19','s':58,'c':844},{'d':'2026-11-20','s':58,'c':45},{'d':'2026-11-21','s':58,'c':107},{'d':'2026-11-01','s':64,'c':1},{'d':'2026-11-01','s':69,'c':14},{'d':'2026-11-02','s':69,'c':12},{'d':'2026-11-03','s':69,'c':16},{'d':'2026-11-04','s':69,'c':24},{'d':'2026-11-05','s':69,'c':19},{'d':'2026-11-06','s':69,'c':5},{'d':'2026-11-07','s':69,'c':1},{'d':'2026-11-08','s':69,'c':20},{'d':'2026-11-09','s':69,'c':17},{'d':'2026-11-10','s':69,'c':10},{'d':'2026-11-11','s':69,'c':21},{'d':'2026-11-12','s':69,'c':19},{'d':'2026-11-13','s':69,'c':4},{'d':'2026-11-14','s':69,'c':9},{'d':'2026-11-15','s':69,'c':16},{'d':'2026-11-16','s':69,'c':27},{'d':'2026-11-17','s':69,'c':19},{'d':'2026-11-18','s':69,'c':20},{'d':'2026-11-19','s':69,'c':21},{'d':'2026-11-20','s':69,'c':10},{'d':'2026-11-21','s':69,'c':2},{'d':'2026-11-02','s':72,'c':2},{'d':'2026-11-02','s':83,'c':1},{'d':'2026-11-18','s':83,'c':1},{'d':'2026-11-02','s':84,'c':2},{'d':'2026-11-05','s':84,'c':1},{'d':'2026-11-08','s':84,'c':1},{'d':'2026-11-10','s':84,'c':1},{'d':'2026-11-11','s':84,'c':2},{'d':'2026-11-12','s':84,'c':1},{'d':'2026-11-18','s':84,'c':1},{'d':'2026-11-01','s':86,'c':4},{'d':'2026-11-02','s':86,'c':2},{'d':'2026-11-03','s':86,'c':2},{'d':'2026-11-04','s':86,'c':3},{'d':'2026-11-05','s':86,'c':4},{'d':'2026-11-06','s':86,'c':1},{'d':'2026-11-07','s':86,'c':2},{'d':'2026-11-08','s':86,'c':1},{'d':'2026-11-09','s':86,'c':3},{'d':'2026-11-10','s':86,'c':2},{'d':'2026-11-11','s':86,'c':3},{'d':'2026-11-12','s':86,'c':2},{'d':'2026-11-13','s':86,'c':1},{'d':'2026-11-14','s':86,'c':4},{'d':'2026-11-15','s':86,'c':2},{'d':'2026-11-16','s':86,'c':2},{'d':'2026-11-17','s':86,'c':4},{'d':'2026-11-18','s':86,'c':2},{'d':'2026-11-19','s':86,'c':4},{'d':'2026-11-20','s':86,'c':1},{'d':'2026-11-21','s':86,'c':5},{'d':'2026-11-03','s':87,'c':2},{'d':'2026-11-04','s':87,'c':1},{'d':'2026-11-05','s':87,'c':1},{'d':'2026-11-06','s':87,'c':1},{'d':'2026-11-07','s':87,'c':1},{'d':'2026-11-08','s':87,'c':1},{'d':'2026-11-09','s':87,'c':2},{'d':'2026-11-11','s':87,'c':1},{'d':'2026-11-14','s':87,'c':1},{'d':'2026-11-17','s':87,'c':1},{'d':'2026-11-18','s':87,'c':2},{'d':'2026-11-19','s':87,'c':2},{'d':'2026-11-03','s':91,'c':3},{'d':'2026-11-04','s':91,'c':2},{'d':'2026-11-05','s':91,'c':5},{'d':'2026-11-08','s':91,'c':8},{'d':'2026-11-09','s':91,'c':9},{'d':'2026-11-10','s':91,'c':5},{'d':'2026-11-11','s':91,'c':4},{'d':'2026-11-12','s':91,'c':5},{'d':'2026-11-14','s':91,'c':1},{'d':'2026-11-15','s':91,'c':5},{'d':'2026-11-16','s':91,'c':10},{'d':'2026-11-17','s':91,'c':4},{'d':'2026-11-18','s':91,'c':6},{'d':'2026-11-19','s':91,'c':1},{'d':'2026-11-01','s':98,'c':14},{'d':'2026-11-02','s':98,'c':4},{'d':'2026-11-03','s':98,'c':1},{'d':'2026-11-04','s':98,'c':11},{'d':'2026-11-05','s':98,'c':3},{'d':'2026-11-07','s':98,'c':1},{'d':'2026-11-08','s':98,'c':1},{'d':'2026-11-09','s':98,'c':3},{'d':'2026-11-10','s':98,'c':6},{'d':'2026-11-11','s':98,'c':1},{'d':'2026-11-12','s':98,'c':4},{'d':'2026-11-14','s':98,'c':14},{'d':'2026-11-15','s':98,'c':3},{'d':'2026-11-16','s':98,'c':3},{'d':'2026-11-17','s':98,'c':5},{'d':'2026-11-18','s':98,'c':11},{'d':'2026-11-19','s':98,'c':5},{'d':'2026-11-02','s':99,'c':2},{'d':'2026-11-04','s':99,'c':1},{'d':'2026-11-05','s':99,'c':2},{'d':'2026-11-08','s':99,'c':2},{'d':'2026-11-09','s':99,'c':1},{'d':'2026-11-10','s':99,'c':15},{'d':'2026-11-11','s':99,'c':2},{'d':'2026-11-12','s':99,'c':1},{'d':'2026-11-14','s':99,'c':2},{'d':'2026-11-15','s':99,'c':1},{'d':'2026-11-18','s':99,'c':1},{'d':'2026-11-01','s':102,'c':30},{'d':'2026-11-02','s':102,'c':64},{'d':'2026-11-03','s':102,'c':34},{'d':'2026-11-04','s':102,'c':54},{'d':'2026-11-05','s':102,'c':36},{'d':'2026-11-06','s':102,'c':2},{'d':'2026-11-07','s':102,'c':4},{'d':'2026-11-08','s':102,'c':36},{'d':'2026-11-09','s':102,'c':29},{'d':'2026-11-10','s':102,'c':27},{'d':'2026-11-11','s':102,'c':38},{'d':'2026-11-12','s':102,'c':40},{'d':'2026-11-13','s':102,'c':5},{'d':'2026-11-14','s':102,'c':11},{'d':'2026-11-15','s':102,'c':31},{'d':'2026-11-16','s':102,'c':48},{'d':'2026-11-17','s':102,'c':30},{'d':'2026-11-18','s':102,'c':39},{'d':'2026-11-19','s':102,'c':46},{'d':'2026-11-20','s':102,'c':10},{'d':'2026-11-21','s':102,'c':5},{'d':'2026-11-01','s':109,'c':207},{'d':'2026-11-02','s':109,'c':178},{'d':'2026-11-03','s':109,'c':195},{'d':'2026-11-04','s':109,'c':219},{'d':'2026-11-05','s':109,'c':274},{'d':'2026-11-06','s':109,'c':1},{'d':'2026-11-07','s':109,'c':109},{'d':'2026-11-08','s':109,'c':335},{'d':'2026-11-09','s':109,'c':205},{'d':'2026-11-10','s':109,'c':232},{'d':'2026-11-11','s':109,'c':216},{'d':'2026-11-12','s':109,'c':321},{'d':'2026-11-13','s':109,'c':7},{'d':'2026-11-14','s':109,'c':155},{'d':'2026-11-15','s':109,'c':314},{'d':'2026-11-16','s':109,'c':211},{'d':'2026-11-17','s':109,'c':237},{'d':'2026-11-18','s':109,'c':207},{'d':'2026-11-19','s':109,'c':274},{'d':'2026-11-20','s':109,'c':3},{'d':'2026-11-21','s':109,'c':125},{'d':'2026-11-01','s':114,'c':204},{'d':'2026-11-02','s':114,'c':188},{'d':'2026-11-03','s':114,'c':112},{'d':'2026-11-04','s':114,'c':89},{'d':'2026-11-05','s':114,'c':106},{'d':'2026-11-06','s':114,'c':8},{'d':'2026-11-07','s':114,'c':37},{'d':'2026-11-08','s':114,'c':110},{'d':'2026-11-09','s':114,'c':103},{'d':'2026-11-10','s':114,'c':90},{'d':'2026-11-11','s':114,'c':125},{'d':'2026-11-12','s':114,'c':137},{'d':'2026-11-13','s':114,'c':8},{'d':'2026-11-14','s':114,'c':33},{'d':'2026-11-15','s':114,'c':126},{'d':'2026-11-16','s':114,'c':171},{'d':'2026-11-17','s':114,'c':238},{'d':'2026-11-18','s':114,'c':142},{'d':'2026-11-19','s':114,'c':187},{'d':'2026-11-20','s':114,'c':31},{'d':'2026-11-21','s':114,'c':55},{'d':'2026-11-01','s':115,'c':3},{'d':'2026-11-02','s':115,'c':2},{'d':'2026-11-03','s':115,'c':2},{'d':'2026-11-04','s':115,'c':1},{'d':'2026-11-05','s':115,'c':7},{'d':'2026-11-08','s':115,'c':8},{'d':'2026-11-09','s':115,'c':7},{'d':'2026-11-10','s':115,'c':5},{'d':'2026-11-11','s':115,'c':4},{'d':'2026-11-12','s':115,'c':6},{'d':'2026-11-14','s':115,'c':2},{'d':'2026-11-15','s':115,'c':3},{'d':'2026-11-16','s':115,'c':1},{'d':'2026-11-17','s':115,'c':4},{'d':'2026-11-18','s':115,'c':8},{'d':'2026-11-19','s':115,'c':2},{'d':'2026-11-01','s':118,'c':1},{'d':'2026-11-03','s':118,'c':3},{'d':'2026-11-04','s':118,'c':2},{'d':'2026-11-05','s':118,'c':1},{'d':'2026-11-08','s':118,'c':1},{'d':'2026-11-09','s':118,'c':1},{'d':'2026-11-11','s':118,'c':1},{'d':'2026-11-15','s':118,'c':5},{'d':'2026-11-16','s':118,'c':1},{'d':'2026-11-18','s':118,'c':2},{'d':'2026-11-19','s':118,'c':1},{'d':'2026-11-03','s':120,'c':1},{'d':'2026-11-05','s':120,'c':2},{'d':'2026-11-12','s':120,'c':1},{'d':'2026-11-14','s':120,'c':1},{'d':'2026-11-15','s':120,'c':1},{'d':'2026-11-19','s':120,'c':3},{'d':'2026-11-01','s':124,'c':22},{'d':'2026-11-02','s':124,'c':13},{'d':'2026-11-03','s':124,'c':3},{'d':'2026-11-04','s':124,'c':13},{'d':'2026-11-05','s':124,'c':24},{'d':'2026-11-08','s':124,'c':18},{'d':'2026-11-09','s':124,'c':22},{'d':'2026-11-11','s':124,'c':24},{'d':'2026-11-12','s':124,'c':17},{'d':'2026-11-15','s':124,'c':21},{'d':'2026-11-16','s':124,'c':18},{'d':'2026-11-18','s':124,'c':20},{'d':'2026-11-19','s':124,'c':3},{'d':'2026-11-20','s':124,'c':7}];
-const ORD_MTD={19:46,36:1958,58:8490,64:1,69:306,72:2,83:2,84:9,86:54,87:16,91:68,98:90,99:30,102:619,109:4025,114:2300,115:65,118:19,120:9,124:225};
-const ORD_DAILY={36:52,58:107,69:2,86:5,102:5,109:125,114:55};
-const HIST_REV={19:{'2026-07-01':0.14145,'2026-07-02':0.203688,'2026-07-03':0.222798,'2026-07-06':0.533912,'2026-07-07':0.52842,'2026-07-08':0.498747,'2026-07-09':0.3268,'2026-07-10':0.21666,'2026-07-11':0.206139,'2026-07-12':0.861196,'2026-07-13':0.426047,'2026-07-14':0.511993,'2026-07-15':0.761309,'2026-07-16':0.394303,'2026-07-17':0.365441,'2026-07-18':0.358041,'2026-07-19':0.397035,'2026-07-20':0.25619,'2026-07-21':1.265647,'2026-07-22':0.774242,'2026-07-23':1.091347,'2026-07-24':0.869225,'2026-07-25':0.576421,'2026-07-26':0.702839,'2026-07-27':1.22947,'2026-07-28':0.948258,'2026-07-29':0.952197,'2026-07-30':0.873383,'2026-07-31':6.294285,'2026-08-03':0.03354,'2026-08-04':0.398777,'2026-08-06':0.243616,'2026-08-07':0.45839,'2026-08-08':0.26136,'2026-08-09':0.03526,'2026-08-10':0.229382,'2026-08-11':0.68847,'2026-08-12':0.1863,'2026-08-13':0.330001,'2026-08-14':0.236786,'2026-08-15':0.771138,'2026-08-16':0.570889,'2026-08-17':1.021978,'2026-08-18':0.699926,'2026-08-19':0.954338,'2026-08-20':0.445601,'2026-08-21':0.688266,'2026-08-22':0.866816,'2026-08-23':0.645485,'2026-08-24':0.903562,'2026-08-25':1.352935,'2026-08-26':0.785822,'2026-08-27':0.368547,'2026-08-28':0.567442,'2026-08-29':0.419422,'2026-08-30':0.555495,'2026-08-31':6.601239,'2026-09-01':0.042566,'2026-09-02':0.054771,'2026-09-06':0.3201,'2026-09-07':0.087874,'2026-09-08':0.425632,'2026-09-09':0.291138,'2026-09-10':0.580351,'2026-09-11':0.621385,'2026-09-12':0.28694,'2026-09-13':0.831912,'2026-09-14':0.561355,'2026-09-15':0.509169,'2026-09-16':0.3634,'2026-09-17':0.917706,'2026-09-18':0.592935,'2026-09-19':1.667326,'2026-09-20':0.450038,'2026-09-21':0.450597,'2026-09-22':1.078227,'2026-09-23':0.817144,'2026-09-24':0.852127,'2026-09-25':0.231505,'2026-09-26':0.407497,'2026-09-27':0.770245,'2026-09-28':0.771363,'2026-09-29':1.613328,'2026-09-30':5.652166,'2026-10-01':0.112912,'2026-10-02':0.021156,'2026-10-03':0.17976,'2026-10-04':0.081731,'2026-10-05':0.344505,'2026-10-07':0.5285,'2026-10-08':0.525172,'2026-10-09':0.80525,'2026-10-10':0.138,'2026-10-11':0.440883,'2026-10-12':0.852111,'2026-10-13':0.413347,'2026-10-14':0.77492,'2026-10-15':0.6002,'2026-10-16':0.329386,'2026-10-17':0.481571,'2026-10-18':0.709891,'2026-10-19':0.341403,'2026-10-20':0.429332,'2026-10-22':0.960532,'2026-10-23':0.5548,'2026-10-24':0.891661,'2026-10-25':1.106725,'2026-10-26':0.789258,'2026-10-27':0.340037,'2026-10-28':0.874489,'2026-10-29':1.045895,'2026-10-30':0.406913,'2026-10-31':7.753081,'2026-11-01':0.33245,'2026-11-02':0.150724,'2026-11-04':0.092287,'2026-11-06':0.725667,'2026-11-07':0.35346,'2026-11-09':0.31175,'2026-11-10':0.655504,'2026-11-11':0.19441,'2026-11-12':0.920062,'2026-11-13':0.535083,'2026-11-14':0.13731,'2026-11-15':0.588189,'2026-11-16':1.401625,'2026-11-17':0.514196,'2026-11-18':1.44317,'2026-11-19':0.42378,'2026-11-20':0.081621,'2026-11-21':0.673707},36:{'2026-07-01':3.156234,'2026-07-02':3.448441,'2026-07-03':2.21113,'2026-07-04':3.322191,'2026-07-05':3.50075,'2026-07-06':3.526656,'2026-07-07':4.870146,'2026-07-08':4.268171,'2026-07-09':3.973782,'2026-07-10':2.833592,'2026-07-11':4.124074,'2026-07-12':2.962938,'2026-07-13':3.514154,'2026-07-14':3.803882,'2026-07-15':4.224676,'2026-07-16':4.734123,'2026-07-17':4.002966,'2026-07-18':6.797264,'2026-07-19':4.895012,'2026-07-20':4.419236,'2026-07-21':5.421873,'2026-07-22':8.231251,'2026-07-23':6.406148,'2026-07-24':4.18391,'2026-07-25':7.286274,'2026-07-26':9.366835,'2026-07-27':7.687104,'2026-07-28':7.743909,'2026-07-29':8.492076,'2026-07-30':7.680462,'2026-07-31':9.202601,'2026-08-01':6.208893,'2026-08-02':6.095158,'2026-08-03':4.697297,'2026-08-04':5.787736,'2026-08-05':5.002153,'2026-08-06':8.02366,'2026-08-07':3.119414,'2026-08-08':6.164282,'2026-08-09':7.025295,'2026-08-10':10.0105,'2026-08-11':7.036219,'2026-08-12':7.722714,'2026-08-13':21.492458,'2026-08-14':4.046262,'2026-08-15':16.292662,'2026-08-16':7.415329,'2026-08-17':11.388248,'2026-08-18':21.552529,'2026-08-19':11.306601,'2026-08-20':8.668832,'2026-08-21':3.755959,'2026-08-22':8.604145,'2026-08-23':15.098693,'2026-08-24':7.988772,'2026-08-25':6.364774,'2026-08-26':4.023749,'2026-08-27':7.375783,'2026-08-28':3.693679,'2026-08-29':7.040599,'2026-08-30':5.18931,'2026-08-31':9.633564,'2026-09-01':5.514507,'2026-09-02':5.019481,'2026-09-03':4.97194,'2026-09-04':4.098869,'2026-09-05':4.244815,'2026-09-06':3.564224,'2026-09-07':6.171834,'2026-09-08':4.734429,'2026-09-09':4.443302,'2026-09-10':5.367982,'2026-09-11':4.287573,'2026-09-12':5.03498,'2026-09-13':3.798664,'2026-09-14':5.094086,'2026-09-15':5.553314,'2026-09-16':4.694949,'2026-09-17':4.987657,'2026-09-18':4.044091,'2026-09-19':4.846816,'2026-09-20':3.408627,'2026-09-21':4.189171,'2026-09-22':3.1883,'2026-09-23':4.262219,'2026-09-24':4.21257,'2026-09-25':3.151972,'2026-09-26':4.414456,'2026-09-27':3.753833,'2026-09-28':4.823802,'2026-09-29':4.892156,'2026-09-30':10.199134,'2026-10-01':3.622227,'2026-10-02':2.345093,'2026-10-03':1.96334,'2026-10-04':2.17919,'2026-10-05':4.571572,'2026-10-06':3.368089,'2026-10-07':5.420874,'2026-10-08':4.867192,'2026-10-09':4.036468,'2026-10-10':3.622504,'2026-10-11':4.701269,'2026-10-12':4.261656,'2026-10-13':5.025992,'2026-10-14':4.263445,'2026-10-15':5.143935,'2026-10-16':4.800205,'2026-10-17':5.449875,'2026-10-18':6.157223,'2026-10-19':6.621857,'2026-10-20':4.288164,'2026-10-21':2.443096,'2026-10-22':2.231625,'2026-10-23':1.650542,'2026-10-24':2.546382,'2026-10-25':3.869637,'2026-10-26':4.383626,'2026-10-27':5.756295,'2026-10-28':4.50079,'2026-10-29':3.929241,'2026-10-30':4.543938,'2026-10-31':8.06486,'2026-11-01':6.672251,'2026-11-02':4.997117,'2026-11-03':5.382644,'2026-11-04':4.967633,'2026-11-05':5.075668,'2026-11-06':3.984058,'2026-11-07':4.681103,'2026-11-08':4.264384,'2026-11-09':4.697027,'2026-11-10':4.062948,'2026-11-11':4.558799,'2026-11-12':5.636631,'2026-11-13':4.422056,'2026-11-14':5.343389,'2026-11-15':4.532407,'2026-11-16':4.476904,'2026-11-17':4.471085,'2026-11-18':5.254261,'2026-11-19':5.367944,'2026-11-20':3.882205,'2026-11-21':5.068954},58:{'2026-07-01':2.886722,'2026-07-02':4.47974,'2026-07-03':3.228211,'2026-07-04':2.734983,'2026-07-05':6.645373,'2026-07-06':4.449576,'2026-07-07':4.537584,'2026-07-08':3.737208,'2026-07-09':4.108996,'2026-07-10':2.663766,'2026-07-11':3.396769,'2026-07-12':2.009731,'2026-07-13':3.776651,'2026-07-14':4.809887,'2026-07-15':4.734658,'2026-07-16':5.901002,'2026-07-17':4.341327,'2026-07-18':3.231061,'2026-07-19':5.422192,'2026-07-20':3.804566,'2026-07-21':4.459439,'2026-07-22':4.706273,'2026-07-23':4.785215,'2026-07-24':3.344947,'2026-07-25':3.364648,'2026-07-26':5.601885,'2026-07-27':6.540588,'2026-07-28':7.945398,'2026-07-29':7.228732,'2026-07-30':9.414947,'2026-07-31':11.902742,'2026-08-01':1.683818,'2026-08-02':3.189856,'2026-08-03':3.273871,'2026-08-04':3.812079,'2026-08-05':3.160045,'2026-08-06':3.916821,'2026-08-07':3.620015,'2026-08-08':2.823375,'2026-08-09':4.39821,'2026-08-10':5.216255,'2026-08-11':6.081144,'2026-08-12':4.706289,'2026-08-13':4.418404,'2026-08-14':4.738037,'2026-08-15':3.773838,'2026-08-16':5.516371,'2026-08-17':4.920893,'2026-08-18':4.693119,'2026-08-19':5.775746,'2026-08-20':5.879628,'2026-08-21':3.99153,'2026-08-22':3.434502,'2026-08-23':5.29115,'2026-08-24':5.619025,'2026-08-25':5.543714,'2026-08-26':4.244291,'2026-08-27':6.173571,'2026-08-28':5.397901,'2026-08-29':5.105576,'2026-08-30':8.392258,'2026-08-31':15.624356,'2026-09-01':2.547158,'2026-09-02':3.327041,'2026-09-03':3.441816,'2026-09-04':2.439976,'2026-09-05':2.498133,'2026-09-06':3.817176,'2026-09-07':4.34734,'2026-09-08':4.265572,'2026-09-09':3.97703,'2026-09-10':5.363261,'2026-09-11':4.245739,'2026-09-12':3.800395,'2026-09-13':4.67402,'2026-09-14':4.866118,'2026-09-15':5.125602,'2026-09-16':4.968186,'2026-09-17':4.899243,'2026-09-18':3.983575,'2026-09-19':3.39252,'2026-09-20':3.94514,'2026-09-21':6.149773,'2026-09-22':7.738905,'2026-09-23':7.037197,'2026-09-24':7.415026,'2026-09-25':5.965409,'2026-09-26':5.299731,'2026-09-27':6.788632,'2026-09-28':6.758068,'2026-09-29':9.310524,'2026-09-30':17.917645,'2026-10-01':2.506604,'2026-10-02':2.829166,'2026-10-03':2.491645,'2026-10-04':4.158578,'2026-10-05':4.509051,'2026-10-06':3.141242,'2026-10-07':3.391111,'2026-10-08':4.772605,'2026-10-09':3.30139,'2026-10-10':4.18423,'2026-10-11':3.942028,'2026-10-12':5.188081,'2026-10-13':5.698293,'2026-10-14':6.811141,'2026-10-15':5.616012,'2026-10-16':4.071243,'2026-10-17':4.584546,'2026-10-18':5.998957,'2026-10-19':6.970294,'2026-10-20':5.43133,'2026-10-21':4.500704,'2026-10-22':5.141672,'2026-10-23':3.203586,'2026-10-24':3.955649,'2026-10-25':5.98238,'2026-10-26':7.197047,'2026-10-27':8.540024,'2026-10-28':9.502636,'2026-10-29':8.218458,'2026-10-30':9.663928,'2026-10-31':13.898892,'2026-11-01':1.513876,'2026-11-02':1.654721,'2026-11-03':2.091404,'2026-11-04':2.956974,'2026-11-05':4.296388,'2026-11-06':3.47456,'2026-11-07':3.303054,'2026-11-08':4.244762,'2026-11-09':4.20465,'2026-11-10':4.911549,'2026-11-11':4.474273,'2026-11-12':5.359435,'2026-11-13':5.654612,'2026-11-14':4.398513,'2026-11-15':5.540155,'2026-11-16':6.354441,'2026-11-17':6.127137,'2026-11-18':6.134153,'2026-11-19':3.964491,'2026-11-20':2.884902,'2026-11-21':3.720953},64:{'2026-07-02':0.528,'2026-07-09':1.16778,'2026-07-16':2.80625,'2026-07-20':0.674364,'2026-07-21':0.620069,'2026-07-22':0.643493,'2026-07-24':0.337182,'2026-07-25':0.168591,'2026-07-26':0.2255,'2026-07-27':0.843182,'2026-07-28':0.355591,'2026-07-29':0.630591,'2026-07-30':0.676444,'2026-07-31':37.033419,'2026-08-01':0.619591,'2026-08-02':0.2145,'2026-08-03':0.672682,'2026-08-04':0.2145,'2026-08-05':0.253,'2026-08-06':0.2145,'2026-08-07':0.2585,'2026-08-08':1.266655,'2026-08-09':0.4245,'2026-08-10':0.1155,'2026-08-11':0.506877,'2026-08-12':0.422919,'2026-08-13':0.168959,'2026-08-14':0.168959,'2026-08-15':0.456269,'2026-08-16':0.591609,'2026-08-17':0.487079,'2026-08-18':0.502819,'2026-08-19':0.571239,'2026-08-20':0.516459,'2026-08-21':0.501359,'2026-08-22':0.413358,'2026-08-23':0.586109,'2026-08-24':0.692059,'2026-08-25':0.649559,'2026-08-26':0.509959,'2026-08-27':0.746258,'2026-08-28':0.713459,'2026-08-29':0.636459,'2026-08-30':0.643829,'2026-08-31':26.138104,'2026-09-01':0.367838,'2026-09-02':0.582338,'2026-09-03':0.3025,'2026-09-04':0.976177,'2026-09-05':0.169838,'2026-09-06':0.549338,'2026-09-07':0.466838,'2026-09-08':0.285338,'2026-09-09':0.169838,'2026-09-10':0.242,'2026-09-11':0.504136,'2026-09-12':30.597175,'2026-09-13':0.257838,'2026-09-14':0.301128,'2026-09-15':29.080691,'2026-09-16':0.378838,'2026-09-18':0.438677,'2026-09-19':0.285338,'2026-09-20':0.257838,'2026-09-21':0.510838,'2026-09-22':0.768558,'2026-09-23':0.620838,'2026-09-24':0.088,'2026-09-25':0.954127,'2026-09-26':5.581506,'2026-09-27':0.855252,'2026-09-28':0.609838,'2026-09-29':0.554838,'2026-09-30':1.367042,'2026-10-01':0.275,'2026-10-02':28.201061,'2026-10-03':0.168959,'2026-10-04':0.168959,'2026-10-05':0.366079,'2026-10-06':0.667319,'2026-10-07':0.718659}};
-const HIST_ORD={19:{'2026-07-02':1,'2026-07-03':2,'2026-07-06':6,'2026-07-07':5,'2026-07-08':3,'2026-07-09':3,'2026-07-10':1,'2026-07-12':9,'2026-07-13':3,'2026-07-14':4,'2026-07-15':2,'2026-07-16':5,'2026-07-20':7,'2026-07-21':1,'2026-07-22':7,'2026-07-23':1,'2026-07-25':1,'2026-07-26':4,'2026-07-27':8,'2026-07-28':2,'2026-07-29':1,'2026-07-30':11,'2026-08-03':1,'2026-08-04':3,'2026-08-06':4,'2026-08-08':2,'2026-08-09':1,'2026-08-10':4,'2026-08-11':2,'2026-08-12':6,'2026-08-13':4,'2026-08-15':2,'2026-08-16':2,'2026-08-17':2,'2026-08-18':5,'2026-08-19':1,'2026-08-20':15,'2026-08-21':2,'2026-08-22':1,'2026-08-23':1,'2026-08-24':7,'2026-08-25':13,'2026-08-27':3,'2026-08-28':2,'2026-08-29':3,'2026-08-30':3,'2026-08-31':14,'2026-09-06':4,'2026-09-08':4,'2026-09-09':7,'2026-09-10':3,'2026-09-12':1,'2026-09-13':3,'2026-09-14':3,'2026-09-15':3,'2026-09-17':8,'2026-09-19':1,'2026-09-20':3,'2026-09-21':3,'2026-09-22':2,'2026-09-23':3,'2026-09-24':5,'2026-09-25':1,'2026-09-27':2,'2026-09-28':5,'2026-09-29':6,'2026-09-30':9,'2026-10-02':1,'2026-10-04':1,'2026-10-05':2,'2026-10-07':2,'2026-10-08':9,'2026-10-11':5,'2026-10-12':1,'2026-10-13':1,'2026-10-14':1,'2026-10-15':9,'2026-10-17':1,'2026-10-18':2,'2026-10-19':5,'2026-10-22':2,'2026-10-23':1,'2026-10-24':1,'2026-10-25':6,'2026-10-27':4,'2026-10-28':3,'2026-10-29':11,'2026-10-31':2,'2026-11-02':2,'2026-11-03':1,'2026-11-04':1,'2026-11-05':14,'2026-11-09':4,'2026-11-10':1,'2026-11-11':2,'2026-11-12':3,'2026-11-15':8,'2026-11-17':8,'2026-11-19':2},36:{'2026-07-01':22,'2026-07-02':105,'2026-07-03':10,'2026-07-04':45,'2026-07-05':99,'2026-07-06':125,'2026-07-07':127,'2026-07-08':98,'2026-07-09':184,'2026-07-10':15,'2026-07-11':36,'2026-07-12':107,'2026-07-13':164,'2026-07-14':146,'2026-07-15':140,'2026-07-16':217,'2026-07-17':23,'2026-07-18':55,'2026-07-19':169,'2026-07-20':85,'2026-07-21':85,'2026-07-22':103,'2026-07-23':155,'2026-07-24':17,'2026-07-25':68,'2026-07-26':127,'2026-07-27':118,'2026-07-28':172,'2026-07-29':75,'2026-07-30':191,'2026-07-31':23,'2026-08-01':12,'2026-08-02':57,'2026-08-03':68,'2026-08-04':116,'2026-08-05':28,'2026-08-06':189,'2026-08-07':23,'2026-08-08':50,'2026-08-09':149,'2026-08-10':145,'2026-08-11':130,'2026-08-12':93,'2026-08-13':154,'2026-08-14':24,'2026-08-15':52,'2026-08-16':88,'2026-08-17':117,'2026-08-18':139,'2026-08-19':134,'2026-08-20':184,'2026-08-21':17,'2026-08-22':37,'2026-08-23':105,'2026-08-24':121,'2026-08-25':105,'2026-08-26':17,'2026-08-27':153,'2026-08-28':17,'2026-08-29':46,'2026-08-30':158,'2026-08-31':185,'2026-09-01':135,'2026-09-02':173,'2026-09-03':147,'2026-09-04':24,'2026-09-05':8,'2026-09-06':75,'2026-09-07':87,'2026-09-08':61,'2026-09-09':107,'2026-09-10':142,'2026-09-11':9,'2026-09-12':50,'2026-09-13':126,'2026-09-14':117,'2026-09-15':81,'2026-09-16':57,'2026-09-17':122,'2026-09-18':23,'2026-09-19':48,'2026-09-20':112,'2026-09-21':145,'2026-09-22':73,'2026-09-23':95,'2026-09-24':138,'2026-09-25':8,'2026-09-26':53,'2026-09-27':102,'2026-09-28':123,'2026-09-29':119,'2026-09-30':192,'2026-10-01':35,'2026-10-02':9,'2026-10-03':7,'2026-10-04':95,'2026-10-05':134,'2026-10-06':100,'2026-10-07':100,'2026-10-08':146,'2026-10-09':28,'2026-10-10':66,'2026-10-11':133,'2026-10-12':136,'2026-10-13':132,'2026-10-14':200,'2026-10-15':147,'2026-10-16':20,'2026-10-17':80,'2026-10-18':145,'2026-10-19':185,'2026-10-20':29,'2026-10-21':16,'2026-10-22':14,'2026-10-23':10,'2026-10-24':33,'2026-10-25':192,'2026-10-26':112,'2026-10-27':158,'2026-10-28':88,'2026-10-29':204,'2026-10-30':40,'2026-10-31':58,'2026-11-01':99,'2026-11-02':115,'2026-11-03':119,'2026-11-04':129,'2026-11-05':145,'2026-11-06':23,'2026-11-07':56,'2026-11-08':120,'2026-11-09':103,'2026-11-10':106,'2026-11-11':86,'2026-11-12':167,'2026-11-13':17,'2026-11-14':68,'2026-11-15':107,'2026-11-16':100,'2026-11-17':94,'2026-11-18':91,'2026-11-19':148,'2026-11-20':13,'2026-11-21':52},58:{'2026-07-01':169,'2026-07-02':527,'2026-07-03':146,'2026-07-04':167,'2026-07-05':1718,'2026-07-06':494,'2026-07-07':247,'2026-07-08':203,'2026-07-09':374,'2026-07-10':65,'2026-07-11':125,'2026-07-12':202,'2026-07-13':345,'2026-07-14':420,'2026-07-15':375,'2026-07-16':536,'2026-07-17':185,'2026-07-18':235,'2026-07-19':504,'2026-07-20':256,'2026-07-21':402,'2026-07-22':356,'2026-07-23':459,'2026-07-24':156,'2026-07-25':262,'2026-07-26':647,'2026-07-27':621,'2026-07-28':789,'2026-07-29':786,'2026-07-30':1242,'2026-07-31':299,'2026-08-01':93,'2026-08-02':293,'2026-08-03':289,'2026-08-04':402,'2026-08-05':127,'2026-08-06':550,'2026-08-07':127,'2026-08-08':222,'2026-08-09':515,'2026-08-10':502,'2026-08-11':540,'2026-08-12':493,'2026-08-13':559,'2026-08-14':155,'2026-08-15':317,'2026-08-16':536,'2026-08-17':441,'2026-08-18':406,'2026-08-19':511,'2026-08-20':553,'2026-08-21':148,'2026-08-22':274,'2026-08-23':584,'2026-08-24':525,'2026-08-25':504,'2026-08-26':261,'2026-08-27':816,'2026-08-28':311,'2026-08-29':427,'2026-08-30':913,'2026-08-31':1129,'2026-09-01':218,'2026-09-02':281,'2026-09-03':331,'2026-09-04':111,'2026-09-05':182,'2026-09-06':385,'2026-09-07':439,'2026-09-08':299,'2026-09-09':367,'2026-09-10':608,'2026-09-11':188,'2026-09-12':280,'2026-09-13':462,'2026-09-14':447,'2026-09-15':438,'2026-09-16':455,'2026-09-17':496,'2026-09-18':200,'2026-09-19':248,'2026-09-20':398,'2026-09-21':912,'2026-09-22':1057,'2026-09-23':807,'2026-09-24':1725,'2026-09-25':111,'2026-09-26':159,'2026-09-27':827,'2026-09-28':469,'2026-09-29':622,'2026-09-30':922,'2026-10-01':327,'2026-10-02':77,'2026-10-03':212,'2026-10-04':1177,'2026-10-05':74,'2026-10-06':88,'2026-10-07':123,'2026-10-08':580,'2026-10-09':205,'2026-10-10':213,'2026-10-11':413,'2026-10-12':221,'2026-10-13':1518,'2026-10-14':254,'2026-10-15':279,'2026-10-16':139,'2026-10-17':367,'2026-10-18':858,'2026-10-19':1427,'2026-10-20':110,'2026-10-21':31,'2026-10-22':28,'2026-10-23':14,'2026-10-24':50,'2026-10-25':283,'2026-10-26':947,'2026-10-27':285,'2026-10-28':635,'2026-10-29':605,'2026-10-30':349,'2026-10-31':391,'2026-11-01':96,'2026-11-02':157,'2026-11-03':394,'2026-11-04':666,'2026-11-05':984,'2026-11-06':54,'2026-11-07':93,'2026-11-08':362,'2026-11-09':268,'2026-11-10':302,'2026-11-11':347,'2026-11-12':854,'2026-11-13':143,'2026-11-14':221,'2026-11-15':826,'2026-11-16':434,'2026-11-17':630,'2026-11-18':663,'2026-11-19':844,'2026-11-20':45,'2026-11-21':107},64:{'2026-08-10':1,'2026-11-01':1},69:{'2026-07-01':9,'2026-07-02':22,'2026-07-03':6,'2026-07-04':7,'2026-07-05':17,'2026-07-06':16,'2026-07-07':13,'2026-07-08':9,'2026-07-09':7,'2026-07-10':6,'2026-07-11':5,'2026-07-12':4,'2026-07-13':5,'2026-07-14':13,'2026-07-15':14,'2026-07-16':25,'2026-07-17':15,'2026-07-18':20,'2026-07-19':25,'2026-07-20':7,'2026-07-21':14,'2026-07-22':16,'2026-07-23':15,'2026-07-24':6,'2026-07-25':5,'2026-07-26':15,'2026-07-27':8,'2026-07-28':15,'2026-07-29':16,'2026-07-30':29,'2026-07-31':13,'2026-08-01':23,'2026-08-02':15,'2026-08-03':17,'2026-08-04':23,'2026-08-05':5,'2026-08-06':39,'2026-08-07':12,'2026-08-08':15,'2026-08-09':11,'2026-08-10':21,'2026-08-11':19,'2026-08-12':5,'2026-08-13':32,'2026-08-14':4,'2026-08-15':8,'2026-08-16':10,'2026-08-17':27,'2026-08-18':22,'2026-08-19':17,'2026-08-20':24,'2026-08-21':13,'2026-08-22':11,'2026-08-23':8,'2026-08-24':17,'2026-08-25':29,'2026-08-26':5,'2026-08-27':33,'2026-08-28':9,'2026-08-29':14,'2026-08-30':18,'2026-08-31':21,'2026-09-01':16,'2026-09-02':18,'2026-09-03':9,'2026-09-04':10,'2026-09-05':9,'2026-09-06':29,'2026-09-07':15,'2026-09-08':22,'2026-09-09':23,'2026-09-10':16,'2026-09-11':3,'2026-09-12':10,'2026-09-13':25,'2026-09-14':16,'2026-09-15':19,'2026-09-16':11,'2026-09-17':17,'2026-09-18':8,'2026-09-19':10,'2026-09-20':19,'2026-09-21':23,'2026-09-22':7,'2026-09-23':9,'2026-09-24':29,'2026-09-25':6,'2026-09-26':9,'2026-09-27':7,'2026-09-28':26,'2026-09-29':14,'2026-09-30':22,'2026-10-01':13,'2026-10-02':15,'2026-10-03':16,'2026-10-04':19,'2026-10-05':13,'2026-10-06':14,'2026-10-07':12,'2026-10-08':25,'2026-10-09':11,'2026-10-10':4,'2026-10-11':17,'2026-10-12':22,'2026-10-13':24,'2026-10-14':15,'2026-10-15':20,'2026-10-16':9,'2026-10-17':21,'2026-10-18':23,'2026-10-19':42}};
-const FR_D={64:0.169839,79:0.179757,80:3e-05,81:0.148764,88:0.117772,110:0.0};
-const FR_M={64:8.467066,79:3.818276,80:1.003,81:3.124044,88:3.206482,110:0.380283};
-const DV={86:14289.95,36:179067.27,19:168446.0,126:5.0,58:54283.02,91:208.31,64:13.0,109:9857.0,69:23733.35,102:272.1,128:5.0,114:22823.0};
-const MV={109:423914.02,84:314.0,102:8440.01,69:681759.63,120:1017.0,99:31784.31,82:52.0,129:57.0,19:2800816.54,36:2264234.46,83:2.0,132:91613.0,115:784.0,72:28.07,126:116.0,128:24.0,123:2.0,114:753062.75,87:24861.26,118:5857.0,86:268155.67,58:1540566.56,91:3516.54,98:38308.1,124:293280.0,64:26.0};
-const MOV={36:2257656.88,19:2678635.04,83:22.0,132:229482.0,115:1107.0,72:1066.61,129:53.0,99:20713.33,82:41.0,128:19.0,118:5125.0,86:299721.45,126:88.0,58:1719044.71,98:29395.56,91:3572.35,124:328920.0,109:436943.74,84:1643.0,69:816241.79,102:7942.49,77:10.56,120:735.0,114:755900.04,87:32962.25};
-const GL={19:{'d':0.673707,'dod':0.081622,'m':9.534999,'mom':8.110035,'yoy':10.760697,'fy':97.725526,'cy':203.636045},36:{'d':5.068954,'dod':3.882206,'m':101.79948,'mom':89.153275,'yoy':261.659195,'fy':791.516625,'cy':2220.087743},58:{'d':3.720953,'dod':2.884903,'m':87.265013,'mom':94.098261,'yoy':109.418597,'fy':721.584051,'cy':1704.964317},64:{'d':0.169839,'dod':0.417808,'m':8.567066,'mom':62.780246,'yoy':0.1,'fy':240.507787,'cy':474.536219},69:{'d':0.89822,'dod':0.617148,'m':25.688868,'mom':30.985074,'yoy':22.050655,'fy':173.771522,'cy':336.465596},72:{'d':0.0,'dod':0.0,'m':0.050807,'mom':1.925361,'yoy':66.054738,'fy':13.569532,'cy':250.239886},77:{'d':0.0,'dod':0.0,'m':13.480726,'mom':17.244135,'yoy':35.153144,'fy':98.088333,'cy':313.522306},79:{'d':0.179757,'dod':0.359513,'m':3.818276,'mom':3.774887,'yoy':0.0,'fy':26.0513,'cy':59.049788},80:{'d':3e-05,'dod':0.095514,'m':1.003,'mom':0.592168,'yoy':0.286089,'fy':5.428932,'cy':10.826318},81:{'d':0.148764,'dod':0.297528,'m':3.124044,'mom':3.124044,'yoy':0.0,'fy':21.460588,'cy':51.459928},82:{'d':0.0,'dod':0.0,'m':1.132541,'mom':1.059202,'yoy':0.146028,'fy':10.988924,'cy':22.48927},83:{'d':0.0,'dod':0.0,'m':0.166521,'mom':0.05483,'yoy':0.321617,'fy':1.783622,'cy':11.470634},84:{'d':0.0,'dod':0.0,'m':0.132545,'mom':0.168711,'yoy':0.315365,'fy':2.911384,'cy':7.729236},86:{'d':0.813804,'dod':1.54966,'m':29.77748,'mom':31.304016,'yoy':22.367504,'fy':204.657117,'cy':432.076662},87:{'d':0.0,'dod':0.0,'m':3.683432,'mom':2.562549,'yoy':0.438981,'fy':28.64587,'cy':58.760083},88:{'d':0.117772,'dod':0.235543,'m':3.206482,'mom':3.557291,'yoy':0.0,'fy':25.017986,'cy':37.917228},91:{'d':0.782857,'dod':0.0,'m':18.202156,'mom':18.66858,'yoy':15.854536,'fy':210.737513,'cy':437.702863},98:{'d':0.006448,'dod':0.0,'m':2.227641,'mom':2.689618,'yoy':9.845558,'fy':22.849982,'cy':101.654783},99:{'d':0.0,'dod':0.0,'m':9.21281,'mom':1.544009,'yoy':27.573964,'fy':46.033835,'cy':244.525355},102:{'d':3.176503,'dod':4.648761,'m':68.314949,'mom':64.733822,'yoy':59.916738,'fy':455.406226,'cy':1254.334494},103:{'d':0.658286,'dod':0.0,'m':2.916588,'mom':4.545772,'yoy':8.483813,'fy':41.505206,'cy':73.260042},109:{'d':2.752844,'dod':0.760476,'m':77.043977,'mom':78.211775,'yoy':46.183608,'fy':515.740466,'cy':1017.038501},110:{'d':0.0,'dod':0.023562,'m':0.380283,'mom':0.882624,'yoy':0.0,'fy':4.226281,'cy':4.471156},111:{'d':0.0,'dod':0.0,'m':0.0,'mom':0.0,'yoy':0.0,'fy':0.521011,'cy':7.003024},114:{'d':0.494289,'dod':1.007235,'m':15.160847,'mom':14.840177,'yoy':3.52662,'fy':105.818517,'cy':201.530592},115:{'d':0.0986,'dod':0.0,'m':2.62228,'mom':3.15091,'yoy':0.0,'fy':22.60766,'cy':37.26181},116:{'d':0.2855,'dod':0.205826,'m':6.025821,'mom':5.86467,'yoy':1.530603,'fy':35.726299,'cy':59.516281},118:{'d':0.0,'dod':0.0,'m':0.124362,'mom':0.191185,'yoy':0.045468,'fy':4.812485,'cy':6.84573},120:{'d':0.1709,'dod':0.0,'m':0.311561,'mom':0.2276,'yoy':0.0,'fy':1.722379,'cy':2.670466},122:{'d':0.000721,'dod':0.003418,'m':0.090216,'mom':0.196918,'yoy':-0.971895,'fy':2.706624,'cy':8.490009},123:{'d':0.0,'dod':0.0,'m':0.007027,'mom':0.0,'yoy':0.0,'fy':0.056135,'cy':0.056135},124:{'d':0.0,'dod':0.08778,'m':1.377946,'mom':1.38859,'yoy':0.0,'fy':11.410369,'cy':14.622955},126:{'d':0.01158,'dod':0.02075,'m':0.724468,'mom':0.532,'yoy':0.0,'fy':3.887316,'cy':8.436184},128:{'d':0.214153,'dod':0.0,'m':1.755571,'mom':1.883729,'yoy':0.0,'fy':22.548944,'cy':46.471445},129:{'d':0.0,'dod':0.0,'m':0.034578,'mom':0.261546,'yoy':0.0,'fy':0.996175,'cy':1.210403},132:{'d':0.0,'dod':0.0,'m':0.180381,'mom':0.37274,'yoy':0.0,'fy':1.263246,'cy':1.2912}};
-const ABSL_ASPH=0.3443, ABSL_BENZ=0.6557;
-const FREIGHT_IDS=new Set([64,79,80,81,88,110]);
-const RECON={g1all:478.932271,excl:0,g5all:19.99915,g2all:0.113318,g6all:0.1,g4all:44.815282,
-  rpt_gl1:478.932271,rpt_g2:0.113318,rpt_frt:19.999151,rpt_g6:0.1,
-  rpt_tot:499.14474,full_rev_tot:499.144739,full_tot:543.960021,gap:44.815281};
-
-function fmt(n,d){ if(n==null||isNaN(n)) return '—'; let s=n.toFixed(d||2); return s.replace(/\B(?=(\d{3})+(?!\d))/g,',') }
-function pct(a,b){ if(!b||b===0) return null; return ((a/b)-1)*100 }
-function momSig(v){ if(v==null||isNaN(v)) return 'N/A'; if(v>=20) return 'Strong +'; if(v>=0) return 'Positive'; if(v>=-15) return 'Neutral'; if(v>=-30) return 'Weak'; return 'Negative' }
-function momCls(v){ if(v==null||isNaN(v)) return 'mom-neu'; if(v>=20) return 'mom-up'; if(v>=0) return 'mom-up'; if(v>=-15) return 'mom-neu'; return 'mom-down' }
-
-function buildSBU(id){
-  let g=GL[id], name=SBU_MAP[id]||('SBU_'+id), fr_d=FR_D[id]||0, fr_m=FR_M[id]||0;
-  let daily=(g?(g.d||0):0);
-  let mtd=(g?(g.m||0):0);
-  let dod=((g?g.dod:0)||0);
-  let dv=DV[id]||0, mv=MV[id]||0, movv=MOV[id]||0;
-  let has_vol=mv>0||!!DV[id];
-  let moTgt=MONTH_TARGETS[name]||null;
-  let mtdTgt=moTgt?(moTgt*M_FACTOR):null;
-  let ach=(mtdTgt&&mtd>0)?(mtd/mtdTgt*100):null;
-  let momPct=(g?g.mom:0)>0?pct(mtd,(g?g.mom:0)):null;
-  let yoyPct=(g?g.yoy:0)>0?pct(mtd,(g?g.yoy:0)):null;
-  let proj=mtd>0?(mtd/DE*DM):0;
-  return [{id,code:name,name,src:'GL 3010001+2+5+6',
-    daily_rev:daily,dod_rev:dod,mtd_rev:mtd,mom_rev:(g?g.mom:0)||0,
-    yoy_rev:(g?g.yoy:0)||0,fy_ytd_rev:(g?g.fy:0)||0,cy_ytd_rev:(g?g.cy:0)||0,
-    daily_vol:dv,mtd_vol:mv,mom_vol:movv,has_vol:has_vol,
-    mtd_tgt_rev:mtdTgt,mo_tgt_rev:moTgt,
-    mtd_ach_pct:ach,mom_pct:momPct,yoy_pct:yoyPct,
-    proj_rev:proj,momentum:momSig(momPct),tgt:moTgt?('MTD='+fmt(mtdTgt)):'—'}];
-}
-
-function buildChannel(id,name,ratio){
-  let g=GL[id], base=g||{};
-  let daily=(base.d||0)*ratio, mtd=(base.m||0)*ratio;
-  let dod=(base.dod||0)*ratio, mom=(base.mom||0)*ratio, yoy=(base.yoy||0)*ratio;
-  let fy=(base.fy||0)*ratio, cy=(base.cy||0)*ratio;
-  let moTgt=name==='ABSL Asphalt'?MONTH_TARGETS['ABSL_Asphalt']:MONTH_TARGETS['Benzol'];
-  let mtdTgt=moTgt?moTgt*M_FACTOR:null;
-  let ach=mtdTgt&&mtd>0?(mtd/mtdTgt*100):null;
-  let proj=mtd>0?(mtd/DE*DM):0;
-  let momPct=mom>0?pct(mtd,mom):null;
-  return {id,code:name,name,src:'GL 3010001',
-    daily_rev:daily,dod_rev:dod,mtd_rev:mtd,mom_rev:mom,
-    yoy_rev:yoy,fy_ytd_rev:fy,cy_ytd_rev:cy,
-    daily_vol:0,mtd_vol:0,mom_vol:0,has_vol:false,
-    mtd_tgt_rev:mtdTgt,mo_tgt_rev:moTgt,
-    mtd_ach_pct:ach,mom_pct:momPct,yoy_pct:null,
-    proj_rev:proj,momentum:momSig(momPct),tgt:moTgt?('MTD='+fmt(mtdTgt)):'—'};
-}
-
-let ALL=[];
-// Rows shown on page 1 — every named ERP SBU, so total revenue ties to the GL.
-// Unnamed/unmapped journal IDs are excluded so no "SBU_xxx" rows appear.
-let sortedIDs=Object.keys(SBU_MAP).map(Number).sort((a,b)=>a-b);
-for(let id of sortedIDs){ let r=buildSBU(id); if(Array.isArray(r)) ALL.push(...r); else ALL.push(r); }
-
-// KPI cards
-let totalDaily=0,totalMTD=0,totalFY=0,totalCY=0,achList=[];
-ALL.forEach(r=>{ totalDaily+=r.daily_rev;totalMTD+=r.mtd_rev;totalFY+=r.fy_ytd_rev;totalCY+=r.cy_ytd_rev;if(r.mtd_ach_pct!=null)achList.push(r.mtd_ach_pct); });
-let avgAch=achList.length?(achList.reduce((a,b)=>a+b)/achList.length):null;
-let projME=totalMTD>0?(totalMTD/DE*DM):0;
-let kpiHTML='';
-kpiHTML+=`<div class="kpi-card"><div class="label">Daily Revenue (Nov 21)</div><div class="val">${fmt(totalDaily)} Cr</div><div class="sub">GL 3010001+2+5+6</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">MTD Revenue (Nov 1–21)</div><div class="val">${fmt(totalMTD)} Cr</div><div class="sub">${DE}/${DM} days (${fmt(M_FACTOR*100,1)}%)</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">Projected Month-End</div><div class="val">${fmt(projME)} Cr</div><div class="sub">Run rate: ${fmt(totalMTD/DE)} Cr/day</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">Avg MTD Achievement</div><div class="val">${avgAch?fmt(avgAch,1)+'%':'N/A'}</div><div class="sub">${achList.length} SBUs with targets</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">Yearly Revenue (CY YTD)</div><div class="val">${fmt(totalCY)} Cr</div><div class="sub">Jan 1 – November 21, 2026</div></div>`;
-kpiHTML+=`<div class="kpi-card"><div class="label">YTD Revenue FY26-27</div><div class="val">${fmt(totalFY)} Cr</div><div class="sub">Jul 1 – November 21, 2026</div></div>`;
-document.getElementById('kpi-row').innerHTML=kpiHTML;
-const MTD_KPI_HTML=kpiHTML;
-
-// MTD bar chart
-let byMTD=[...ALL].filter(r=>r.mtd_rev>0).sort((a,b)=>b.mtd_rev-a.mtd_rev).slice(0,15);
-let mtdChartHTML='';
-byMTD.forEach((r,i)=>{
-  let maxV=byMTD[0].mtd_rev, w=(r.mtd_rev/maxV*100).toFixed(0);
-  let clr=i<3?'#38bdf8':i<6?'#818cf8':i<9?'#a78bfa':'#64748b';
-  mtdChartHTML+=`<div class="bar-item"><div class="lbl">${r.code}</div><div class="bar-bg"><div class="bar-fill" style="width:${w}%;background:${clr}"></div></div><div class="bar-val">${fmt(r.mtd_rev)}</div></div>`;
-});
-document.getElementById('mtd-chart').innerHTML=mtdChartHTML;
-
-// MoM momentum
-let momCats={Strong:0,Positive:0,Neutral:0,Weak:0,Negative:0,'N/A':0};
-ALL.forEach(r=>{ let m=r.momentum; if(!m||m==='N/A') momCats['N/A']++; else if(m.startsWith('Strong')) momCats.Strong++; else if(m==='Positive') momCats.Positive++; else if(m==='Neutral') momCats.Neutral++; else if(m==='Weak') momCats.Weak++; else momCats.Negative++; });
-let momHTML='',totalS=ALL.length;
-['Strong','Positive','Neutral','Weak','Negative','N/A'].forEach(cat=>{
-  let cnt=momCats[cat], w=cnt/totalS*100;
-  let clr=cat==='Strong'?'#4ade80':cat==='Positive'?'#86efac':cat==='Neutral'?'#fbbf24':cat==='Weak'?'#f97316':cat==='Negative'?'#f87171':'#64748b';
-  momHTML+=`<div class="bar-item"><div class="lbl">${cat}</div><div class="bar-bg"><div class="bar-fill" style="width:${w.toFixed(0)}%;background:${clr}"></div></div><div class="bar-val">${cnt}</div></div>`;
-});
-document.getElementById('mom-chart').innerHTML=momHTML;
-
-// Insights
-let top3=[...ALL].filter(r=>r.mtd_rev>0).sort((a,b)=>b.mtd_rev-a.mtd_rev).slice(0,3);
-let bottom3=[...ALL].filter(r=>r.mtd_rev>0&&r.mtd_tgt_rev!=null).sort((a,b)=>a.mtd_ach_pct-b.mtd_ach_pct).slice(0,3);
-let riskSBUs=[...ALL].filter(r=>(r.momentum==='Negative'||r.momentum==='Weak')&&r.mtd_rev>0);
-let dormantSBUs=[...ALL].filter(r=>r.mtd_rev===0&&r.mtd_vol===0&&r.id!==64&&r.id!==79&&r.id!==80&&r.id!==81&&r.id!==88&&r.id!==110);
-let snapHTML='<div class="insight-box"><h3>Snapshot</h3><ul>';
-snapHTML+=`<li>Total MTD Revenue: <b>${fmt(totalMTD)} Cr</b> across ${ALL.filter(r=>r.mtd_rev>0).length} active SBUs</li>`;
-snapHTML+=`<li>Daily Revenue (Nov 21): <b>${fmt(totalDaily)} Cr</b></li>`;
-snapHTML+=`<li>Month Progress: <b>${DE}/${DM} (${fmt(M_FACTOR*100,1)}%)</b></li>`;
-snapHTML+=`<li>Projected Month-End: <b>${fmt(projME)} Cr</b></li>`;
-snapHTML+=`<li>Avg Daily Run Rate: <b>${fmt(totalMTD/DE)} Cr/day</b></li>`;
-snapHTML+=`<li>ERP Sync: Live query at load time</li>`;
-snapHTML+='</ul></div>';
-let hiHTML='<div class="insight-box"><h3>SBU Highlights</h3><ul>';
-top3.forEach(r=>hiHTML+=`<li class="pos">${r.code}: MTD ${fmt(r.mtd_rev)} Cr — leader (#${top3.indexOf(r)+1})</li>`);
-hiHTML+=`<li class="pos">AAFL (109): Daily ${fmt(GL[109]?GL[109].d:0)} Cr — strongest performer</li>`;
-hiHTML+=`<li>AEL (36): MTD ${fmt(GL[36]?GL[36].m:0)} Cr, FY YTD ${fmt(GL[36]?GL[36].fy:0)} Cr</li>`;
-hiHTML+=`<li>ACCL (58): MTD ${fmt(GL[58]?GL[58].m:0)} Cr</li>`;
-hiHTML+='</ul></div>';
-let rfHTML='<div class="insight-box"><h3>Risk Flags</h3><ul>';
-if(riskSBUs.length) rfHTML+=riskSBUs.map(r=>`<li class="neg">${r.code}: ${r.momentum} MoM — MTD ${fmt(r.mtd_rev)} Cr</li>`).join('');
-else rfHTML+='<li class="pos">No SBUs in Negative/Weak momentum range</li>';
-if(dormantSBUs.length>0) rfHTML+=`<li>Zero-revenue SBUs: ${dormantSBUs.map(r=>r.code).join(', ')}</li>`;
-rfHTML+='</ul></div>';
-document.getElementById('insights-row').innerHTML=snapHTML+hiHTML+rfHTML;
-
-// Reconciliation
-document.getElementById('rpt-gross').textContent=fmt(RECON.rpt_gl1)+' Cr';
-document.getElementById('rpt-3010002').textContent=fmt(RECON.rpt_g2)+' Cr';
-document.getElementById('rpt-freight').textContent=fmt(RECON.rpt_frt)+' Cr';
-document.getElementById('rpt-3010006').textContent=fmt(RECON.rpt_g6)+' Cr';
-document.getElementById('rpt-total').textContent=fmt(RECON.rpt_tot)+' Cr';
-document.getElementById('full-3010001').textContent=fmt(RECON.g1all)+' Cr';
-document.getElementById('full-3010002').textContent=fmt(RECON.g2all)+' Cr';
-document.getElementById('full-3010005').textContent=fmt(RECON.g5all)+' Cr';
-document.getElementById('full-3010006').textContent=fmt(RECON.g6all)+' Cr';
-document.getElementById('full-revenue-total').textContent=fmt(RECON.full_rev_tot)+' Cr';
-document.getElementById('full-3010004').textContent=fmt(RECON.g4all)+' Cr';
-document.getElementById('full-total').textContent=fmt(RECON.full_tot)+' Cr';
-document.getElementById('recon-note').textContent='Difference between report total and full GL total: '+fmt(RECON.gap)+' Cr, which is GL 3010004 other income (non-operating). Revenue subtotals use GL 3010001, 3010002, 3010005 and 3010006, net of returns, with ledger amounts already in BDT (no FX multiplier applied).';
-
-// Scorecard
-let top3IDs=new Set([...ALL].filter(r=>r.mtd_rev>0).sort((a,b)=>b.mtd_rev-a.mtd_rev).slice(0,3).map(r=>r.id));
-let SCORECARD_SORT='mtd_rev';
-let SCORECARD_FILTER='';
-let RANGE_START=null, RANGE_END=null;
-const MTD_HEAD=document.getElementById('scorecard-head').innerHTML;
-function countDays(s,e){ let a=new Date(s+'T00:00:00'), b=new Date(e+'T00:00:00'); return Math.round((b-a)/86400000)+1; }
-function applyDateFilter(){
-  let s=document.getElementById('df-start').value, e=document.getElementById('df-end').value;
-  if(!s||!e){ alert('Select both From and To dates'); return; }
-  if(s>e){ let t=s; s=e; e=t; document.getElementById('df-start').value=s; document.getElementById('df-end').value=e; }
-  RANGE_START=s; RANGE_END=e;
-  renderScorecard();
-}
-function resetDateFilter(){
-  RANGE_START=null; RANGE_END=null;
-  document.getElementById('df-start').value=''; document.getElementById('df-end').value='';
-  document.getElementById('df-status').textContent='';
-  renderScorecard();
-}
-function renderRangeKPIs(){
-  let s=RANGE_START, e=RANGE_END, days=countDays(s,e);
-  let totRev=0, totOrd=0, active=0;
-  ALL.forEach(r=>{
-    let revMap=HIST_REV[r.id]||{}, ordMap=HIST_ORD[r.id]||{};
-    let rev=0, ord=0;
-    for(let d in revMap){ if(d>=s&&d<=e) rev+=revMap[d]; }
-    for(let d in ordMap){ if(d>=s&&d<=e) ord+=ordMap[d]; }
-    totRev+=rev; totOrd+=ord; if(rev>0||ord>0) active++;
-  });
-  let html='';
-  html+=`<div class="kpi-card"><div class="label">Range Revenue</div><div class="val">${fmt(totRev)} Cr</div><div class="sub">${s} → ${e}</div></div>`;
-  html+=`<div class="kpi-card"><div class="label">Range Orders</div><div class="val">${totOrd.toLocaleString('en-US')}</div><div class="sub">Sales orders</div></div>`;
-  html+=`<div class="kpi-card"><div class="label">Avg Daily Revenue</div><div class="val">${fmt(totRev/days)} Cr</div><div class="sub">${days} days</div></div>`;
-  html+=`<div class="kpi-card"><div class="label">Avg Daily Orders</div><div class="val">${(totOrd/days).toFixed(1)}</div><div class="sub">${days} days</div></div>`;
-  html+=`<div class="kpi-card"><div class="label">Days in Range</div><div class="val">${days}</div><div class="sub">${s} → ${e}</div></div>`;
-  html+=`<div class="kpi-card"><div class="label">Active SBUs</div><div class="val">${active}</div><div class="sub">with revenue or orders</div></div>`;
-  document.getElementById('kpi-row').innerHTML=html;
-}
-function renderRangeScorecard(){
-  renderRangeKPIs();
-  let s=RANGE_START, e=RANGE_END, days=countDays(s,e);
-  let q=(SCORECARD_FILTER||'').toLowerCase();
-  let rows=ALL.map(r=>{
-    let revMap=HIST_REV[r.id]||{}, ordMap=HIST_ORD[r.id]||{};
-    let rev=0, ord=0;
-    for(let d in revMap){ if(d>=s&&d<=e) rev+=revMap[d]; }
-    for(let d in ordMap){ if(d>=s&&d<=e) ord+=ordMap[d]; }
-    return { code:r.code, id:r.id, rev:rev, ord:ord };
-  }).filter(x=>x.rev>0||x.ord>0).filter(x=>!q||x.code.toLowerCase().includes(q));
-  rows.sort((a,b)=>b.rev-a.rev);
-  document.getElementById('scorecard-head').innerHTML='<tr><th>SBU</th><th class="num">Revenue (Cr)</th><th class="num">Orders</th><th class="num">Avg Daily Rev (Cr)</th><th class="num">Avg Daily Orders</th><th class="num">Days</th></tr>';
-  let tbodyHTML='', totRev=0, totOrd=0;
-  rows.forEach((x,i)=>{
-    totRev+=x.rev; totOrd+=x.ord;
-    let topCls=i<3?' top-performer':'';
-    tbodyHTML+=`<tr class="${topCls}"><td>${x.code}</td><td class="num rev">${fmt(x.rev)}</td><td class="num">${x.ord.toLocaleString('en-US')}</td><td class="num">${fmt(x.rev/days)}</td><td class="num">${(x.ord/days).toFixed(1)}</td><td class="num">${days}</td></tr>`;
-  });
-  tbodyHTML+=`<tr style="background:#0f172a;font-weight:700"><td>Total (${rows.length} SBUs)</td><td class="num rev">${fmt(totRev)}</td><td class="num">${totOrd.toLocaleString('en-US')}</td><td class="num">${fmt(totRev/days)}</td><td class="num">${(totOrd/days).toFixed(1)}</td><td class="num">${days}</td></tr>`;
-  document.getElementById('scorecard-body').innerHTML=tbodyHTML;
-  document.getElementById('df-status').textContent='Range: '+s+' → '+e+' ('+days+' days) · '+rows.length+' SBUs';
-}
-function renderScorecard(){
-  if(RANGE_START&&RANGE_END){ renderRangeScorecard(); return; }
-  document.getElementById('scorecard-head').innerHTML=MTD_HEAD;
-  document.getElementById('kpi-row').innerHTML=MTD_KPI_HTML;
-  let sorted=[...ALL];
-  let sortBy=SCORECARD_SORT;
-  if(sortBy==='mtd_rev'||sortBy==='daily_rev'||sortBy==='proj_rev') sorted.sort((a,b)=>b[sortBy]-a[sortBy]);
-  else if(sortBy==='code') sorted.sort((a,b)=>a.code.localeCompare(b.code));
-  else sorted.sort((a,b)=>(b[sortBy]||0)-(a[sortBy]||0));
-  if(SCORECARD_FILTER){ let q=SCORECARD_FILTER.toLowerCase(); sorted=sorted.filter(r=>r.code.toLowerCase().includes(q)); }
-  let tbodyHTML='';
-  sorted.forEach((r,origIdx)=>{
-    let dodPct=r.dod_rev>0?pct(r.daily_rev,r.dod_rev):null;
-    let topCls=top3IDs.has(r.id)?' top-performer':'',idx=ALL.indexOf(r);
-    tbodyHTML+=`<tr class="sbu-row${topCls}" data-idx="${idx}" data-sbu="${r.id}">
-<td>${r.code} <span style="font-size:0.85rem;color:#94a3b8">${r.src}</span> <span class="chart-toggle" data-idx="${idx}">&#9654;</span></td>
-<td class="num">${fmt(r.daily_rev)}</td>
-<td class="num ${dodPct!=null&&dodPct>=0?'mom-up':dodPct!=null?'mom-down':''}">${dodPct!=null?fmt(dodPct,1)+'%':'—'}</td>
-<td class="num">${fmt(r.mtd_rev)}</td>
-<td class="num" style="color:#38bdf8">${r.mo_tgt_rev!=null?fmt(r.mo_tgt_rev):'—'}</td>
-<td class="num">${r.mtd_tgt_rev!=null?fmt(r.mtd_tgt_rev):'—'}</td>
-<td class="num ${r.mtd_ach_pct!=null&&r.mtd_ach_pct>=100?'mom-up':r.mtd_ach_pct!=null&&r.mtd_ach_pct<50?'mom-down':''}">${r.mtd_ach_pct!=null?fmt(r.mtd_ach_pct,1)+'%':'—'}</td>
-<td class="num ${r.mom_pct!=null&&r.mom_pct>0?'mom-up':r.mom_pct!=null?'mom-down':''}">${r.mom_pct!=null?fmt(r.mom_pct,1)+'%':'—'}</td>
-<td class="num">${r.yoy_pct!=null?fmt(r.yoy_pct,1)+'%':'—'}</td>
-<td class="num">${fmt(r.fy_ytd_rev)}</td>
-<td class="num">${fmt(r.cy_ytd_rev)}</td>
-<td class="num">${fmt(r.proj_rev)}</td>
-<td class="${momCls(r.mom_pct)}">${r.momentum}</td>
-<td class="num vol-cell">${r.has_vol&&r.mtd_vol!=null?fmt(r.mtd_vol,1):'—'}</td>
-<td class="num vol-cell">${r.has_vol&&r.daily_vol!=null?fmt(r.daily_vol,1):'—'}</td>
-<td></td></tr>
-<tr class="chart-row" id="cr-${idx}"><td colspan="16"><div class="chart-canvas-wrap"><canvas id="c${idx}" width="560" height="200"></canvas></div><div class="sbu-detail" id="sd-${idx}"></div></td></tr>`;
-  });
-  document.getElementById('scorecard-body').innerHTML=tbodyHTML;
-  // Re-bind chart toggle handlers
-  document.querySelectorAll('.chart-toggle').forEach(el=>{
-    el.addEventListener('click',function(e){ e.stopPropagation(); let idx=this.dataset.idx; let row=document.getElementById('cr-'+idx); let isOpen=row.classList.contains('open'); row.classList.toggle('open'); this.classList.toggle('open'); if(!isOpen){ drawSBUChart(idx); drawSBUDetail(idx); } });
-  });
-  document.querySelectorAll('.sbu-row').forEach(el=>{
-    el.addEventListener('click',function(){ let toggle=this.querySelector('.chart-toggle'); if(toggle) toggle.click(); });
-  });
-}
-renderScorecard();
-function sortScorecard(){ SCORECARD_SORT=document.getElementById('scorecard-sort').value; renderScorecard(); }
-function filterScorecard(){ SCORECARD_FILTER=document.getElementById('scorecard-filter').value; renderScorecard(); }
-
-// === CHART FUNCTIONS ===
-function drawAxes(ctx,w,h,pad,ymax,xlabels,ylabel){
-  ctx.strokeStyle='#334155';ctx.lineWidth=0.5;ctx.fillStyle='#94a3b8';ctx.font='11px monospace';
-  let cW=w-pad.left-pad.right,cH=h-pad.top-pad.bottom,ysteps=5;
-  for(let i=0;i<=ysteps;i++){ let y=pad.top+(cH/ysteps*i);ctx.beginPath();ctx.moveTo(pad.left,y);ctx.lineTo(w-pad.right,y);ctx.stroke();ctx.fillText(fmt(ymax-(ymax/ysteps*i),1),2,y+3); }
-  xlabels.forEach((l,i)=>{ ctx.fillText(l,pad.left+(cW/(xlabels.length-1)*i)-8,h-2); });
-  if(ylabel){ ctx.save();ctx.translate(8,pad.top+cH/2);ctx.rotate(-Math.PI/2);ctx.fillText(ylabel,-ctx.measureText(ylabel).width/2,0);ctx.restore(); }
-}
-
-function drawPortfolioDaily(){
-  let c=document.getElementById('portfolio-daily');if(!c)return;
-  let ctx=c.getContext('2d'),w=c.width,h=c.height,pad={top:25,right:30,bottom:25,left:50};
-  let dtMap={};TD.forEach(t=>{dtMap[t.d]=(dtMap[t.d]||0)+t.v;});
-  let dates=Object.keys(dtMap).sort(),vals=dates.map(d=>dtMap[d]);
-  if(!dates.length){
-    ctx.fillStyle='#94a3b8';ctx.font='13px sans-serif';
-    ctx.fillText('No daily revenue data yet for this period',20,40);
-    let st=document.getElementById('portfolio-stats'); if(st) st.innerHTML='<span>No data available</span>';
-    return;
-  }
-  let ymax=Math.max(...vals)*1.2;
-  let cW=w-pad.left-pad.right,cH=h-pad.top-pad.bottom;
-  drawAxes(ctx,w,h,pad,ymax,dates.map(d=>d.slice(8)),'Cr');
-  let barGap=4,barW=Math.max(6,cW/dates.length-barGap);
-  let bars=[]; // store for hover
-  vals.forEach((v,i)=>{
-    let x=pad.left+(cW/(vals.length-1)*i)-barW/2,hb=(v/ymax*cH);
-    let grad=ctx.createLinearGradient(0,pad.top+cH-hb,0,pad.top+cH);
-    grad.addColorStop(0,'#38bdf8');grad.addColorStop(1,'#1d4ed8');
-    ctx.fillStyle=grad;ctx.fillRect(x,pad.top+cH-hb,barW,hb);
-    ctx.fillStyle='#e2e8f0';ctx.font='10px monospace';ctx.fillText(fmt(v,2),x-4,pad.top+cH-hb-2);
-    bars.push({x:x, w:barW, v:v, d:dates[i]});
-  });
-  let cum=0,cumVals=vals.map(v=>cum+=v);
-  ctx.strokeStyle='#fbbf24';ctx.lineWidth=2;ctx.setLineDash([4,3]);ctx.beginPath();
-  cumVals.forEach((cv,i)=>{ let x=pad.left+(cW/(cumVals.length-1)*i),y=pad.top+cH-(cv/Math.max(...cumVals)*1.1*cH);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y); });
-  ctx.stroke();ctx.setLineDash([]);
-  ctx.fillStyle='#fbbf24';ctx.font='10px monospace';ctx.fillText('MTD:'+fmt(cum,2),pad.left+cW-55,pad.top+10);
-  // Summary stats
-  let avgDaily=vals.reduce((a,b)=>a+b,0)/vals.length,peakDay=dates[vals.indexOf(Math.max(...vals))];
-  let trendDir='Stable',firstHalf=vals.slice(0,Math.floor(vals.length/2)).reduce((a,b)=>a+b,0);
-  let secondHalf=vals.slice(Math.ceil(vals.length/2)).reduce((a,b)=>a+b,0);
-  if(secondHalf>firstHalf*1.1) trendDir='Rising ↑'; else if(firstHalf>secondHalf*1.1) trendDir='Dipping ↓';
-  document.getElementById('portfolio-stats').innerHTML=`<span>Avg Daily: <b>${fmt(avgDaily)} Cr</b></span><span>Peak: <b>${peakDay.slice(5)} (${fmt(Math.max(...vals))} Cr)</b></span><span>Trend: <b>${trendDir}</b></span><span>Range: <b>${fmt(Math.min(...vals))}–${fmt(Math.max(...vals))} Cr</b></span>`;
-  // Hover tooltip
-  let tip=document.createElement('div');tip.id='pd-tip';tip.style.cssText='position:absolute;display:none;background:#0f172a;color:#e2e8f0;padding:4px 8px;border-radius:4px;font-size:13px;pointer-events:none;border:1px solid #38bdf8;white-space:nowrap;z-index:99';
-  let wrap=c.parentElement;if(wrap.style.position!=='relative') wrap.style.position='relative';wrap.appendChild(tip);
-  let oldHover=null;
-  c.onmousemove=function(e){
-    let rect=c.getBoundingClientRect(),mx=e.clientX-rect.left,my=e.clientY-rect.top;
-    let found=null;
-    bars.forEach(b=>{if(mx>=b.x&&mx<=b.x+b.w&&my>=pad.top&&my<=pad.top+cH)found=b;});
-    if(found){
-      tip.style.display='block';tip.style.left=(e.clientX-rect.left+12)+'px';tip.style.top=(e.clientY-rect.top-22)+'px';
-      tip.textContent=found.d.slice(5)+': '+fmt(found.v,2)+' Cr';
-      if(oldHover!==found){ c.style.cursor='pointer'; oldHover=found; }
-    }else{ tip.style.display='none';oldHover=null;c.style.cursor='crosshair'; }
-  };
-  c.onmouseleave=function(){ tip.style.display='none';oldHover=null; };
-}
-
-function drawTop5Stacked(){
-  let c=document.getElementById('top5-stacked');if(!c)return;
-  let ctx=c.getContext('2d'),w=c.width,h=c.height,pad={top:25,right:20,bottom:25,left:45};
-  ctx.clearRect(0,0,w,h);
-  let byMTD=[...ALL].filter(r=>r.mtd_rev>0).sort((a,b)=>b.mtd_rev-a.mtd_rev).slice(0,5);
-  let colors=['#38bdf8','#818cf8','#c084fc','#f472b6','#fbbf24'];
-  let dates=[...new Set(TD.map(t=>t.d))].sort();
-  if(!dates.length){
-    ctx.fillStyle='#94a3b8';ctx.font='13px sans-serif';
-    ctx.fillText('No daily data yet',20,40);
-    return;
-  }
-  let cW=w-pad.left-pad.right,cH=h-pad.top-pad.bottom;
-  let maxStack=0;
-  dates.forEach(d=>{ let stack=byMTD.reduce((s,r)=>s+(TD.filter(t=>t.d===d&&t.s===r.id).reduce((a,b)=>a+b.v,0)),0);maxStack=Math.max(maxStack,stack); });
-  maxStack*=1.15;
-  drawAxes(ctx,w,h,pad,maxStack,dates.map(d=>d.slice(8)),'Cr');
-  byMTD.forEach((r,i)=>{ ctx.fillStyle=colors[i];ctx.fillRect(w-130,8+i*14,10,10);ctx.fillStyle='#e2e8f0';ctx.font='11px sans-serif';ctx.fillText(r.code,w-116,17+i*14); });
-  let barGap=3,barW=Math.max(8,cW/dates.length-barGap);
-  let segments=[]; // store for hover
-  dates.forEach((d,di)=>{
-    let x=pad.left+(cW/(dates.length-1)*di)-barW/2,sy=pad.top+cH;
-    byMTD.forEach((r,si)=>{ let v=TD.filter(t=>t.d===d&&t.s===r.id).reduce((a,b)=>a+b.v,0);sy-=(v/maxStack*cH);ctx.fillStyle=colors[si];ctx.fillRect(x,sy,barW,v/maxStack*cH);segments.push({x:x,w:barW,t:sy,h:v/maxStack*cH,sbu:r.code,v:v,di:di,si:si}); });
-  });
-  // Hover tooltip
-  let tip=document.createElement('div');tip.id='t5-tip';tip.style.cssText='position:absolute;display:none;background:#0f172a;color:#e2e8f0;padding:4px 8px;border-radius:4px;font-size:13px;pointer-events:none;border:1px solid #38bdf8;white-space:nowrap;z-index:99';
-  let wrap=c.parentElement;if(wrap.style.position!=='relative') wrap.style.position='relative';wrap.appendChild(tip);
-  c.onmousemove=function(e){
-    let rect=c.getBoundingClientRect(),mx=e.clientX-rect.left,my=e.clientY-rect.top;
-    let found=segments.filter(s=>mx>=s.x&&mx<=s.x+s.w&&my>=s.t&&my<=s.t+s.h).pop();
-    if(found){
-      tip.style.display='block';tip.style.left=(e.clientX-rect.left+12)+'px';tip.style.top=(e.clientY-rect.top-22)+'px';
-      tip.textContent=found.sbu+': '+fmt(found.v,2)+' Cr';
-      c.style.cursor='pointer';
-    }else{ tip.style.display='none';c.style.cursor='crosshair'; }
-  };
-  c.onmouseleave=function(){ tip.style.display='none'; };
-}
-
-function drawSBUChart(idx){
-  let r=ALL[idx],c=document.getElementById('c'+idx);if(!c||!r)return;
-  let ctx=c.getContext('2d'),w=c.width,h=c.height,pad={top:20,right:30,bottom:22,left:50};
-  ctx.clearRect(0,0,w,h);
-  let days=TD.filter(t=>t.s===r.id);
-  if(!days.length){ctx.fillStyle='#64748b';ctx.font='13px sans-serif';ctx.fillText('No daily data for '+r.code,20,40);return;}
-  let dates=[...new Set(days.map(t=>t.d))].sort(),vals=dates.map(d=>days.filter(t=>t.d===d).reduce((a,b)=>a+b.v,0));
-  let ymax=Math.max(...vals)*1.3||1,cW=w-pad.left-pad.right,cH=h-pad.top-pad.bottom;
-  ctx.fillStyle='#f8fafc';ctx.font='bold 13px sans-serif';ctx.fillText(r.code+' Daily Revenue Trend (Cr) — Click bars for values',pad.left,pad.top-5);
-  drawAxes(ctx,w,h,pad,ymax,dates.map(d=>d.slice(8)),'');
-  let barGap=3,barW=Math.max(8,cW/dates.length-barGap);
-  let sbuBars=[];
-  let palette=['#38bdf8','#818cf8','#c084fc','#f472b6','#fbbf24','#4ade80','#fb923c'];
-  vals.forEach((v,i)=>{ let x=pad.left+(cW/(vals.length-1)*i)-barW/2,hb=(v/ymax*cH);let clr=palette[i%palette.length];ctx.fillStyle=i===vals.length-1?'#38bdf8':clr;ctx.fillRect(x,pad.top+cH-hb,barW,hb);ctx.fillStyle='#e2e8f0';ctx.font='10px monospace';ctx.fillText(fmt(v,2),x-3,pad.top+cH-hb-2);sbuBars.push({x:x,w:barW,v:v,d:dates[i]}); });
-  let cum=0,cumVals=vals.map(v=>cum+=v);
-  ctx.strokeStyle='#fbbf24';ctx.lineWidth=2;ctx.setLineDash([4,3]);ctx.beginPath();
-  cumVals.forEach((cv,i)=>{ ctx.lineTo(pad.left+(cW/(cumVals.length-1)*i),pad.top+cH-(cv/Math.max(...cumVals)*1.15*cH)); });
-  ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#fbbf24';ctx.font='10px monospace';ctx.fillText('MTD:'+fmt(cum,2),pad.left+cW-55,pad.top+10);
-  if(r.mtd_tgt_rev!=null){ let tY=pad.top+cH-((r.mtd_tgt_rev/DE)/ymax*cH);ctx.strokeStyle='#f87171';ctx.lineWidth=1;ctx.setLineDash([5,5]);ctx.beginPath();ctx.moveTo(pad.left,tY);ctx.lineTo(pad.left+cW,tY);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#f87171';ctx.font='10px monospace';ctx.fillText('Tgt/day:'+fmt(r.mtd_tgt_rev/DE,2),pad.left,tY-3); }
-  // Click to show value
-  c.onclick=function(e){
-    let rect=c.getBoundingClientRect(),mx=e.clientX-rect.left,my=e.clientY-rect.top;
-    let found=sbuBars.find(b=>mx>=b.x&&mx<=b.x+b.w&&my>=pad.top&&my<=pad.top+cH);
-    if(found){ let old=c.dataset.selected; if(old==found.d){ delete c.dataset.selected;ctx.clearRect(0,0,w,h);drawSBUChart(idx);return; }
-      c.dataset.selected=found.d;ctx.save();ctx.fillStyle='#fbbf24';ctx.font='bold 11px sans-serif';
-      ctx.fillText(found.d.slice(5)+': '+fmt(found.v,2)+' Cr',found.x+found.w/2-30,pad.top+cH-(found.v/ymax*cH)-10);ctx.restore();
-    }
-  };
-}
-
-function drawSBUDetail(idx){
-  let r=ALL[idx],el=document.getElementById('sd-'+idx);
-  if(!el||!r)return;
-  let sbu=r.id;
-  let bdtMap=TD_BDT[sbu]||{};
-  let ordMap={};
-  ORD_TD.forEach(t=>{ if(t.s===sbu) ordMap[t.d]=(ordMap[t.d]||0)+t.c; });
-  let dates=[...new Set([...Object.keys(bdtMap),...Object.keys(ordMap)])].sort();
-  let moTgt=r.mo_tgt_rev;
-  let dayTgtBdt = moTgt!=null ? moTgt*10000000/DM : null;
-  let moTgtBdt = moTgt!=null ? moTgt*10000000 : null;
-  let dailyOrders=ORD_DAILY[sbu]||0;
-  let mtdOrders=ORD_MTD[sbu]||0;
-  let bdt=n=>Math.round(n).toLocaleString('en-US');
-  let sumRev=0,sumOrd=0;
-  let rows='';
-  dates.forEach(d=>{
-    let rev=bdtMap[d]||0, ord=ordMap[d]||0;
-    sumRev+=rev; sumOrd+=ord;
-    rows+=`<tr><td>${d.slice(5)}</td><td class="num rev">${bdt(rev)}</td><td class="num">${ord.toLocaleString('en-US')}</td><td class="num">${dayTgtBdt!=null?bdt(dayTgtBdt):'—'}</td></tr>`;
-  });
-  let sumTgt = dayTgtBdt!=null ? dayTgtBdt*dates.length : null;
-  el.innerHTML=`
-    <div class="sbu-detail-summary">
-      <span>Daily Orders: <b>${dailyOrders.toLocaleString('en-US')}</b></span>
-      <span>MTD Orders: <b>${mtdOrders.toLocaleString('en-US')}</b></span>
-      <span>Daily Rev Target: <b>${dayTgtBdt!=null?bdt(dayTgtBdt)+' BDT':'—'}</b></span>
-      <span>Monthly Rev Target: <b>${moTgtBdt!=null?bdt(moTgtBdt)+' BDT':'—'}</b></span>
-    </div>
-    <div class="sbu-detail-table"><table>
-      <thead><tr><th>Date</th><th class="num">Revenue (BDT)</th><th class="num">Orders</th><th class="num">Rev Target (BDT)</th></tr></thead>
-      <tbody>${rows}</tbody>
-      <tfoot><tr><td>Total</td><td class="num rev">${bdt(sumRev)}</td><td class="num">${sumOrd.toLocaleString('en-US')}</td><td class="num">${sumTgt!=null?bdt(sumTgt):'—'}</td></tr></tfoot>
-    </table></div>`;
-}
-
-window.addEventListener('load',function(){ document.getElementById('loading-overlay').classList.add('hidden'); try{ drawPortfolioDaily(); drawTop5Stacked(); }catch(e){ } });
-// Set date filter bounds from available FY history
-(function(){
-  let mn=null,mx=null;
-  Object.values(HIST_REV).forEach(m=>Object.keys(m).forEach(d=>{ if(!mn||d<mn)mn=d; if(!mx||d>mx)mx=d; }));
-  let ds=document.getElementById('df-start'), de=document.getElementById('df-end');
-  if(mn){ ds.min=mn; de.min=mn; } if(mx){ ds.max=mx; de.max=mx; }
-})();
+document.getElementById('go').addEventListener('click',signIn);
+document.getElementById('p').addEventListener('keydown',e=>{if(e.key==='Enter')signIn();});
+if(sessionStorage.getItem('arl_flash_auth'))gate.hidden=true;
 </script>
 </body>
 </html>
